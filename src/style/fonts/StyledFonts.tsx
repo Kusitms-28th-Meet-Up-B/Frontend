@@ -5,57 +5,85 @@ interface PropTypes {
 }
 
 export const B1 = styled.pre<PropTypes>`
-  font-family: 'SUIT-Medium';
-  font-size: 64px;
-  line-height: 160%;
+  font-family: 'SUIT-Regular';
+  font-size: 20px;
+  line-height: 150%;
+  color: ${({ $fontColor }) => $fontColor};
+`;
+
+export const B1Bold = styled.pre<PropTypes>`
+  font-family: 'SUIT-Bold';
+  font-size: 20px;
+  line-height: 150%;
   color: ${({ $fontColor }) => $fontColor};
 `;
 
 export const B2 = styled.pre<PropTypes>`
-  font-family: 'SUIT-Medium';
-  font-size: 54px;
-  line-height: 160%;
+  font-family: 'SUIT-Regular';
+  font-size: 18px;
+  line-height: 140%;
+  color: ${({ $fontColor }) => $fontColor};
+`;
+
+export const B2Bold = styled.pre<PropTypes>`
+  font-family: 'SUIT-Bold';
+  font-size: 18px;
+  line-height: 140%;
   color: ${({ $fontColor }) => $fontColor};
 `;
 
 export const B3 = styled.pre<PropTypes>`
   font-family: 'SUIT-Regular';
-  font-size: 44px;
-  line-height: 160%;
+  font-size: 16px;
+  line-height: 140%;
+  color: ${({ $fontColor }) => $fontColor};
+`;
+
+export const B3Bold = styled.pre<PropTypes>`
+  font-family: 'SUIT-Bold';
+  font-size: 16px;
+  line-height: 140%;
   color: ${({ $fontColor }) => $fontColor};
 `;
 
 export const B4 = styled.pre<PropTypes>`
   font-family: 'SUIT-Regular';
-  font-size: 34px;
-  line-height: 160%; /* 19.2px */
+  font-size: 14px;
+  line-height: 140%;
   color: ${({ $fontColor }) => $fontColor};
 `;
 
-export const B5 = styled.pre<PropTypes>`
-  font-family: 'SUIT-Regular';
-  font-size: 28px;
-  line-height: 160%; /* 19.2px */
+export const B4Bold = styled.pre<PropTypes>`
+  font-family: 'SUIT-Bold';
+  font-size: 14px;
+  line-height: 140%;
+  color: ${({ $fontColor }) => $fontColor};
+`;
+
+export const H0 = styled.pre<PropTypes>`
+  font-family: 'SUIT-ExtraBold';
+  font-size: 44px;
+  line-height: 150%;
   color: ${({ $fontColor }) => $fontColor};
 `;
 
 export const H1 = styled.pre<PropTypes>`
   font-family: 'SUIT-ExtraBold';
-  font-size: 104px;
-  line-height: 140%; /* 19.2px */
+  font-size: 32px;
+  line-height: 150%;
   color: ${({ $fontColor }) => $fontColor};
 `;
 
 export const H2 = styled.pre<PropTypes>`
   font-family: 'SUIT-ExtraBold';
-  font-size: 94px;
-  line-height: 140%; /* 19.2px */
+  font-size: 28px;
+  line-height: 150%;
   color: ${({ $fontColor }) => $fontColor};
 `;
 
 export const H3 = styled.pre<PropTypes>`
-  font-family: 'SUIT-Bold';
-  font-size: 84px;
-  line-height: 140%; /* 19.2px */
+  font-family: 'SUIT-ExtraBold';
+  font-size: 24px;
+  line-height: 150%;
   color: ${({ $fontColor }) => $fontColor};
 `;
