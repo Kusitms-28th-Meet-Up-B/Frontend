@@ -2,6 +2,7 @@ import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import Main from './pages/main/Main';
 import Map from './pages/map/Map';
 import { GlobalStyle } from './style/GlobalStyle';
+import Search from './pages/Search';
 
 const route = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const route = createBrowserRouter([
       {
         path: 'map',
         element: <Map />,
+      },
+      {
+        path: 'search',
+        element: <Search />,
       },
     ],
   },
