@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 interface ButtonStyle {
-  $buttonSize: 'big' | 'small';
+  $buttonSize: 'small' | 'large';
   $buttonWidth?: string;
 }
 
