@@ -1,4 +1,4 @@
-import RoundedButton from '@/components/RoundedButton';
+import RoundedButton from '@/components/Button/RoundedButton';
 import MapIcon from '@/assets/icons/map_icon.svg';
 import { B1Bold } from '@/style/fonts/StyledFonts';
 import styled from 'styled-components';
