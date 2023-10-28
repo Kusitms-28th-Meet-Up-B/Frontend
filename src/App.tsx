@@ -1,4 +1,4 @@
-import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Main from './pages/main/Main';
 import Map from './pages/map/Map';
 import { GlobalStyle } from './style/GlobalStyle';
