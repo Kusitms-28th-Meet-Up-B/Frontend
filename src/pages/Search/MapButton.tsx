@@ -5,7 +5,12 @@ import styled from 'styled-components';
 
 const MapButton = () => {
   return (
-    <RoundedButton $buttonColor="var(--color_sub3)" $textColor="white">
+    <RoundedButton
+      $buttonColor="var(--color_sub3)"
+      $textColor="white"
+      $buttonWidth="222px"
+      $buttonHeight="70px"
+    >
       <ButtonTextContainer>
         <B1Bold $fontColor="white">지도에서 보기</B1Bold>
         <img alt="map-icon" src={MapIcon} />
