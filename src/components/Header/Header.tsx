@@ -1,74 +1,7 @@
+import { HeaderData } from '@/constants/Header';
 import { B1, H3 } from '@/style/fonts/StyledFonts';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
-interface DropDown {
-  title: string;
-  link: string;
-}
-
-interface HeaderDataProps {
-  main: string;
-  dropDowns: DropDown[];
-}
-
-const HeaderData: HeaderDataProps[] = [
-  {
-    main: '갈래 소개',
-    dropDowns: [
-      {
-        title: '전체',
-        link: '전체',
-      },
-      {
-        title: '전체',
-        link: '전체',
-      },
-      {
-        title: '전체',
-        link: '전체',
-      },
-    ],
-  },
-  {
-    main: '활동후기',
-    dropDowns: [
-      {
-        title: '전체',
-        link: '전체',
-      },
-      {
-        title: '여행 지원사업 후기',
-        link: '전체',
-      },
-      {
-        title: '여행 공모전 후기',
-        link: '전체',
-      },
-      {
-        title: '여행 대외활동 후기',
-        link: '전체',
-      },
-    ],
-  },
-  {
-    main: '자료실',
-    dropDowns: [
-      {
-        title: '전체',
-        link: '전체',
-      },
-      {
-        title: '전체',
-        link: '전체',
-      },
-      {
-        title: '전체',
-        link: '전체',
-      },
-    ],
-  },
-];
 
 const Header = () => {
   return (
