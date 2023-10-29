@@ -4,3 +4,9 @@ export interface FilterListType {
   calendar: boolean;
   items: string[];
 }
+
+export interface ButtonStyleType {
+  $buttonColor: string;
+  $buttonWidth: string;
+  $buttonHeight: string;
+}

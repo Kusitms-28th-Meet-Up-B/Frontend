@@ -1,12 +1,7 @@
+import { ButtonStyleType } from '@/types';
 import styled from 'styled-components';
 
-interface ButtonStyle {
-  $buttonColor: string;
-  $buttonWidth: string;
-  $buttonHeight: string;
-}
-
-interface ButtonProps extends ButtonStyle {
+interface ButtonProps extends ButtonStyleType {
   children: React.ReactNode;
 }
 
@@ -27,7 +22,7 @@ const RoundedButton = ({
   );
 };
 
-const StyledButton = styled.button<ButtonStyle>`
+const StyledButton = styled.button<ButtonStyleType>`
   border-radius: 40px;
   background-color: ${({ $buttonColor }) => $buttonColor};
   width: ${({ $buttonWidth }) => $buttonWidth};
