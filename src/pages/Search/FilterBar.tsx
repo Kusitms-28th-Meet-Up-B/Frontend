@@ -12,7 +12,11 @@ const FilterBar = () => {
           <FilterButton filter={filter} />
         ))}
       </FilterButtonContainer>
-      <MainButton $buttonSize="small">
+      <MainButton
+        $buttonColor="var(--color_sub3)"
+        $buttonWidth="112px"
+        $buttonHeight="40px"
+      >
         <B2Bold $fontColor="white">선택</B2Bold>
       </MainButton>
     </Container>
