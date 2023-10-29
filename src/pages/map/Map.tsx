@@ -3,7 +3,7 @@ import CustomMarker from './components/CustomMarker';
 import { useRef, useState } from 'react';
 import MapCard from './components/MapCard';
 import styled from 'styled-components';
-import SearchBar from '@/components/SearchBar';
+import SearchBar from '@/components/SearchBar/SearchBar';
 import useOnClickOutside from '@/hooks/useOnClickOutside';
 
 interface markerDataType {
@@ -28,20 +28,6 @@ const markerData: markerDataType[] = [
     lng: 126.979192,
     imageSrc: '/src/assets/map/card_thumbnail.svg',
     title: '울산 행복여행 지원사업 참가자 모집',
-    period: '2023.10.01 - 2023.11.09',
-  },
-  {
-    lat: 37.596566,
-    lng: 126.97002,
-    imageSrc: '/src/assets/map/card_thumbnail.svg',
-    title: '광주 행복여행 지원사업 참가자 모집',
-    period: '2023.10.01 - 2023.11.09',
-  },
-  {
-    lat: 37.596566,
-    lng: 126.97002,
-    imageSrc: '/src/assets/map/card_thumbnail.svg',
-    title: '광주 행복여행 지원사업 참가자 모집',
     period: '2023.10.01 - 2023.11.09',
   },
   {
@@ -132,6 +118,6 @@ const SearchBarWrapper = styled.div`
   position: absolute;
   z-index: 3;
 
-  top: 40px;
+  top: 120px;
   left: 50px;
 `;
