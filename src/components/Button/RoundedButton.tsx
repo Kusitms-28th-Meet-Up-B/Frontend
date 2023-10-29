@@ -1,9 +1,7 @@
-import { B1Bold } from '@/style/fonts/StyledFonts';
 import styled from 'styled-components';
 
 interface ButtonStyle {
   $buttonColor: string;
-  $textColor: string;
   $buttonWidth: string;
   $buttonHeight: string;
 }
@@ -14,7 +12,6 @@ interface ButtonProps extends ButtonStyle {
 
 const RoundedButton = ({
   $buttonColor,
-  $textColor,
   $buttonWidth,
   $buttonHeight,
   children,
@@ -22,13 +19,10 @@ const RoundedButton = ({
   return (
     <StyledButton
       $buttonColor={$buttonColor}
-      $textColor={$textColor}
       $buttonWidth={$buttonWidth}
       $buttonHeight={$buttonHeight}
     >
-      <div className="button-text">
-        <B1Bold $fontColor="white">{children}</B1Bold>
-      </div>
+      <div className="button-text">{children}</div>
     </StyledButton>
   );
 };
@@ -36,7 +30,6 @@ const RoundedButton = ({
 const StyledButton = styled.button<ButtonStyle>`
   border-radius: 40px;
   background-color: ${({ $buttonColor }) => $buttonColor};
-  color: ${({ $textColor }) => $textColor};
   width: ${({ $buttonWidth }) => $buttonWidth};
   height: ${({ $buttonHeight }) => $buttonHeight};
   position: relative;

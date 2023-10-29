@@ -7,7 +7,6 @@ const MapButton = () => {
   return (
     <RoundedButton
       $buttonColor="var(--color_sub3)"
-      $textColor="white"
       $buttonWidth="222px"
       $buttonHeight="70px"
     >
