@@ -1,5 +1,5 @@
 import { B2Bold, B3, H1 } from '@/style/fonts/StyledFonts';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 interface UserInputType {
@@ -18,10 +18,6 @@ const Login = () => {
     id: '',
     password: '',
   });
-
-  useEffect(() => {
-    console.log(userInput);
-  }, [userInput]);
 
   const handleKakaoLogin = () => {
     // 카카오 로그인 주소
