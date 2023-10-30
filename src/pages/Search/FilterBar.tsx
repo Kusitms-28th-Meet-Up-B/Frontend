@@ -1,15 +1,24 @@
-import FilterButton from './FilterButton';
+import FilterButtonList from './FilterButtonList';
 import MainButton from '@/components/Button/MainButton';
 import { FILTER_LIST } from '@/constant';
 import { B2Bold } from '@/style/fonts/StyledFonts';
+import { FilterListType } from '@/types';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 const FilterBar = () => {
+  const [filterList, setFilterList] = useState<FilterListType[]>(FILTER_LIST);
+
   return (
     <Container>
       <FilterButtonContainer>
-        {FILTER_LIST.map(filter => (
-          <FilterButton filter={filter} />
+        {filterList.map(filter => (
+          <FilterButtonList
+            key={filter.title}
+            filterList={filterList}
+            filterItem={filter}
+            setFilterList={setFilterList}
+          />
         ))}
       </FilterButtonContainer>
       <MainButton
