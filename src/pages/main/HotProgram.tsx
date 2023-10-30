@@ -1,49 +1,23 @@
-import { B1, H0, H1 } from '@/style/fonts/StyledFonts';
+import { useQuery } from 'react-query';
 import styled from 'styled-components';
-import ProgramCard from './components/ProgramCard';
 
-interface ProgramsDataType {
-  imageSrc: string;
-  remain: number;
-  title: string;
-  tags: string[];
-  like: number;
-}
-// 추후에 서버에서 불러와야 할 데이터
-const ProgramsData: ProgramsDataType[] = [
-  {
-    imageSrc: '/src/assets/temp/hot-program1.svg',
-    remain: 1,
-    title: '태안 한달살이',
-    tags: ['태안', '태안군', '지원사업', '한달살이'],
-    like: 153,
-  },
-  {
-    imageSrc: '/src/assets/temp/hot-program2.svg',
-    remain: 1,
-    title: '태안 한달살이',
-    tags: ['태안', '태안군', '지원사업', '한달살이'],
-    like: 153,
-  },
-  {
-    imageSrc: '/src/assets/temp/hot-program3.svg',
-    remain: 1,
-    title: '태안 한달살이',
-    tags: ['태안', '태안군', '지원사업', '한달살이'],
-    like: 153,
-  },
-  {
-    imageSrc: '/src/assets/temp/hot-program3.svg',
-    remain: 1,
-    title: '태안 한달살이',
-    tags: ['태안', '태안군', '지원사업', '한달살이'],
-    like: 153,
-  },
-];
+import { B1, H0, H1 } from '@/style/fonts/StyledFonts';
+import HotProgramCard from './components/HotProgramCard';
+import { ProgramMainInfoType } from '@/types';
+import { fetchHotProgram } from '@/apis/main';
+import Loading from '@/components/Loading/Loading';
 
 const HotProgram = () => {
+  const { data, isLoading } = useQuery(['hotPrograms'], fetchHotProgram(), {
+    cacheTime: 500000,
+    staleTime: 500005,
+  });
+
+  const hotPrograms: ProgramMainInfoType[] = data?.data?.result;
+
   return (
     <Container>
+      {isLoading && <Loading />}
       <TextContainer>
         <H1 $fontColor="#F6505A">HOT</H1>
         <FlexContainer>
@@ -56,9 +30,10 @@ const HotProgram = () => {
         </FlexContainer>
       </TextContainer>
       <ProgramCardContainer>
-        {ProgramsData.map((props, index) => (
-          <ProgramCard {...props} key={index} />
-        ))}
+        {hotPrograms &&
+          hotPrograms.map(program => (
+            <HotProgramCard key={program.id} {...program} />
+          ))}
       </ProgramCardContainer>
     </Container>
   );
@@ -70,6 +45,8 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  position: relative;
 
   padding: 0 360px 260px;
   width: 100%;
