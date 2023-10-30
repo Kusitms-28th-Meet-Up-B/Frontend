@@ -1,6 +1,6 @@
 import { FilterListType } from '@/types';
 import { useState, useEffect } from 'react';
-import { DETAILED_CATEGORY_LIST } from '@/constant';
+import { DETAILED_CATEGORY_LIST } from '@/constants/Search';
 import FilterButtonItem from './FilterButtonItem';
 import FilterItem from './FilterItem';
 
@@ -27,14 +27,21 @@ const FilterButtonList = ({
         list => list.program === currentFilterTitle,
       )?.items;
 
-      detailedCategoryList &&
-        setFilterList(
-          filterList.map(filter =>
-            filter.title === '세부 카테고리'
-              ? { ...filter, items: detailedCategoryList }
-              : filter,
-          ),
-        );
+      detailedCategoryList
+        ? setFilterList(
+            filterList.map(filter =>
+              filter.title === '세부 카테고리'
+                ? { ...filter, items: detailedCategoryList }
+                : filter,
+            ),
+          )
+        : setFilterList(
+            filterList.map(filter =>
+              filter.title === '세부 카테고리'
+                ? { ...filter, items: [] }
+                : filter,
+            ),
+          );
     }
   }, [currentFilterTitle]);
 

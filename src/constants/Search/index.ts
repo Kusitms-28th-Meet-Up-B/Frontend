@@ -9,7 +9,7 @@ export const FILTER_LIST: FilterListType[] = [
   },
   {
     title: '지역',
-    buttonSize: 'medium',
+    buttonSize: 'small',
     calendar: false,
     items: ['전국', '수도권', '충청도', '전라도', '강원도', '경상도', '제주도'],
   },
@@ -31,8 +31,8 @@ export const DETAILED_CATEGORY_LIST = [
     items: ['전체', '지자체 한달살이', '팸투어', '기타'],
   },
   {
-    program: '여행공모전',
+    program: '여행 공모전',
     items: ['전체', '여행코스 기획전', '여행사진 공모전', '기타'],
   },
-  { program: '여행대외활동', items: ['기타', '기자단', '서포터즈', '기타'] },
+  { program: '여행 대외활동', items: ['전체', '기자단', '서포터즈', '기타'] },
 ];
