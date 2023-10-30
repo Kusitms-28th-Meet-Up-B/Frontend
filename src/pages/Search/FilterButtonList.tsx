@@ -1,8 +1,9 @@
 import { FilterListType } from '@/types';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { DETAILED_CATEGORY_LIST } from '@/constants/Search';
 import FilterButtonItem from './FilterButtonItem';
 import FilterItem from './FilterItem';
+import styled from 'styled-components';
 
 const FilterButtonList = ({
   filterList,
@@ -17,6 +18,7 @@ const FilterButtonList = ({
   const [currentFilterTitle, setCurrentFilterTitle] = useState<string>(
     filterItem.title,
   );
+  const filterRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (
@@ -45,13 +47,32 @@ const FilterButtonList = ({
     }
   }, [currentFilterTitle]);
 
+  useEffect(() => {
+    const handleClose = (e: MouseEvent) => {
+      if (
+        filterRef.current &&
+        !filterRef.current?.contains(e.target as HTMLDivElement)
+      ) {
+        setIsOpenFilterItem(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClose);
+    return () => {
+      document.removeEventListener('mousedown', handleClose);
+    };
+  }, [isOpenFilterItem]);
+
   return (
-    <div>
+    <div
+      style={{ height: 'min-content' }}
+      onClick={() => {
+        if (filterItem.items.length > 0) setIsOpenFilterItem(!isOpenFilterItem);
+      }}
+      ref={filterRef}
+    >
       <FilterButtonItem
         filterItem={filterItem}
         currentFilterTitle={currentFilterTitle}
-        isOpenFilterItem={isOpenFilterItem}
-        setIsOpenFilterItem={setIsOpenFilterItem}
       />
       {isOpenFilterItem && !filterItem.calendar && (
         <FilterItem
@@ -63,5 +84,9 @@ const FilterButtonList = ({
     </div>
   );
 };
+
+/* const Container = styled.div`
+  height: min-content;
+`; */
 
 export default FilterButtonList;

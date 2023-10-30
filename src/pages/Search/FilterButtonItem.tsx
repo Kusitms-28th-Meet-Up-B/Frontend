@@ -11,23 +11,14 @@ interface FilterButtonStyle {
 interface FilterButtonItemProps {
   filterItem: FilterListType;
   currentFilterTitle: string;
-  isOpenFilterItem: boolean;
-  setIsOpenFilterItem: (isOpen: boolean) => void;
 }
 
 const FilterButtonItem = ({
   filterItem,
   currentFilterTitle,
-  isOpenFilterItem,
-  setIsOpenFilterItem,
 }: FilterButtonItemProps) => {
   return (
-    <Container
-      $buttonSize={filterItem.buttonSize}
-      onClick={() => {
-        if (filterItem.items.length > 0) setIsOpenFilterItem(!isOpenFilterItem);
-      }}
-    >
+    <Container $buttonSize={filterItem.buttonSize}>
       <B3 $fontColor="var(--color_gray600)">{currentFilterTitle}</B3>
       {filterItem.calendar ? (
         <img alt="calendar-icon" src={CalendarIcon} />

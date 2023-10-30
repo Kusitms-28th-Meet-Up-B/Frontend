@@ -40,7 +40,6 @@ const Container = styled.div`
   margin-bottom: 64px;
   position: absolute;
   z-index: 1;
-  background-color: pink;
 `;
 
 const FilterButtonContainer = styled.div`
