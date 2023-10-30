@@ -1,5 +1,4 @@
 import TravelProgramList from '@/components/TravelProgram/TravelProgramList';
-import { CommonInner } from '@/style/common';
 import { H1 } from '@/style/fonts/StyledFonts';
 import styled from 'styled-components';
 
@@ -19,6 +18,7 @@ const SearchResult = () => {
 const ResultHeader = styled.div`
   display: flex;
   flex-direction: row;
+  padding-top: 184px;
   margin-bottom: 65px;
 `;
 export default SearchResult;

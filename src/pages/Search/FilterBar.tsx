@@ -1,6 +1,6 @@
 import FilterButtonList from './FilterButtonList';
 import MainButton from '@/components/Button/MainButton';
-import { FILTER_LIST } from '@/constant';
+import { FILTER_LIST } from '@/constants/Search';
 import { B2Bold } from '@/style/fonts/StyledFonts';
 import { FilterListType } from '@/types';
 import { useState } from 'react';
@@ -38,6 +38,9 @@ const Container = styled.div`
   gap: 34px;
   padding: 40px 0px;
   margin-bottom: 64px;
+  position: absolute;
+  z-index: 1;
+  background-color: pink;
 `;
 
 const FilterButtonContainer = styled.div`
