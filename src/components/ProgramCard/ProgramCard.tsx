@@ -7,7 +7,6 @@ const ProgramCard = ({
 }: {
   programList: ProgramMainInfoType[];
 }) => {
-  console.log(programList);
   return (
     <Container>
       {programList.map(program => (
