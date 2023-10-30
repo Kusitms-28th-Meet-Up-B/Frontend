@@ -1,16 +1,18 @@
 import styled from 'styled-components';
-import TravelProgramItem from './ProgramCardItem';
+import { ProgramMainInfoType } from '@/types';
+import ProgramCardItem from './ProgramCardItem';
 
-const ProgrmaCard = () => {
+const ProgramCard = ({
+  programList,
+}: {
+  programList: ProgramMainInfoType[];
+}) => {
+  console.log(programList);
   return (
     <Container>
-      <TravelProgramItem />
-      <TravelProgramItem />
-      <TravelProgramItem />
-      <TravelProgramItem />
-      <TravelProgramItem />
-      <TravelProgramItem />
-      <TravelProgramItem />
+      {programList.map(program => (
+        <ProgramCardItem key={program.id} program={program} />
+      ))}
     </Container>
   );
 };
@@ -24,4 +26,4 @@ const Container = styled.div`
   padding-bottom: 36px;
 `;
 
-export default ProgrmaCard;
+export default ProgramCard;
