@@ -9,11 +9,11 @@ const Header = () => {
       <InnerContainer>
         <NavBarContainer>
           {HeaderData.map(({ main, dropDowns }) => (
-            <NavBar>
+            <NavBar key={main}>
               <H3 $fontColor="#15191D">{main}</H3>
               <Dropdown>
-                {dropDowns.map(({ title, link }) => (
-                  <li>
+                {dropDowns.map(({ title, link }, index) => (
+                  <li key={index}>
                     <Link to={link}>
                       <B1 $fontColor="#15191D">{title}</B1>
                     </Link>
