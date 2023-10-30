@@ -1,4 +1,4 @@
-import FilterButton from '@/components/Button/FilterButton';
+import FilterButton from './FilterButton';
 import MainButton from '@/components/Button/MainButton';
 import { FILTER_LIST } from '@/constant';
 import { B2Bold } from '@/style/fonts/StyledFonts';

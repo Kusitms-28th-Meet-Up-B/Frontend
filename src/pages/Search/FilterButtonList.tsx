@@ -12,7 +12,7 @@ interface ButtonStyle {
   $calendar: boolean;
   children: React.ReactNode;
 } */
-const FilterButton = ({ filter }: { filter: FilterListType }) => {
+const FilterButtonList = ({ filter }: { filter: FilterListType }) => {
   return (
     <ButtonContainer $buttonSize={filter.buttonSize}>
       <B3 $fontColor="var(--color_gray600)">{filter.title}</B3>
@@ -38,4 +38,4 @@ const ButtonContainer = styled.div<ButtonStyle>`
   width: ${({ $buttonSize }) => $buttonSize === 'large' && '220px'};
 `;
 
-export default FilterButton;
+export default FilterButtonList;
