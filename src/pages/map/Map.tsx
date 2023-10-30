@@ -83,8 +83,8 @@ const MapPage = () => {
       </SearchBarWrapper>
       <Map
         center={{ lat: 37.566566, lng: 126.979192 }}
-        style={{ width: '100%', height: '133.3333vh' }}
-        level={10}
+        style={{ width: '100%', height: '133.3333vh', zoom: '1.33333' }}
+        level={11}
       >
         <MarkerClusterer>
           {markerData.map(({ lat, lng }, idx) => (
