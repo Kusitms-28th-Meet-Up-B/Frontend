@@ -44,7 +44,7 @@ const Container = styled.div`
   background-color: #fff;
 
   position: fixed;
-  z-index: 3;
+  z-index: 4;
 `;
 
 const InnerContainer = styled.div`
