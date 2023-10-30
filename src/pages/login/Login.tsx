@@ -8,8 +8,8 @@ interface UserInputType {
 }
 
 const Login = () => {
-  const REST_API_KEY = 'fc263ff3fb054a4b2d60c3af9883f4fc'; //REST API KEY
-  const REDIRECT_URI = 'http://localhost:5173/kakao/login'; //REDIRECT URI
+  const REST_API_KEY = import.meta.env.VITE_KAKAO_REST_API_KEY; //REST API KEY
+  const REDIRECT_URI = `${window.location.origin}/kakao/login`; //REDIRECT URI
 
   // oauth 요청 URL
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
