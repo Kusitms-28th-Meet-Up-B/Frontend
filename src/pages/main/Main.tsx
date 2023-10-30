@@ -4,12 +4,14 @@ import Banner from './Banner';
 import PageNav from './PageNav';
 import Promotion from './Promotion';
 import HotProgram from './HotProgram';
+import Uploaded from './Uploaded';
 
 const Main = () => {
   return (
     <Container>
       <Banner />
       <PageNav />
+      <Uploaded />
       <Promotion />
       <HotProgram />
     </Container>
@@ -23,5 +25,6 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
 
+  zoom: 1.3333;
   gap: 120px;
 `;
