@@ -29,7 +29,9 @@ const TravelProgramItem = () => {
         <H3 $fontColor="var(--color_gray900)">태안 한달살이</H3>
         <TagContainer>
           {tagList.map(tag => (
-            <B3 $fontColor="var(--color_gray400)">{tag}</B3>
+            <B3 $fontColor="var(--color_gray400)" key={tag}>
+              {tag}
+            </B3>
           ))}
         </TagContainer>
         <Favorite>
