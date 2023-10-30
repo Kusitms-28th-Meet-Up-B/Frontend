@@ -1,41 +1,60 @@
-import styled from 'styled-components';
-import CalendarIcon from '@/assets/icons/calendar_icon.svg';
-import { HiOutlineChevronDown } from 'react-icons/hi2';
-import { B3 } from '@/style/fonts/StyledFonts';
 import { FilterListType } from '@/types';
+import { useState, useEffect } from 'react';
+import { DETAILED_CATEGORY_LIST } from '@/constant';
+import FilterButtonItem from './FilterButtonItem';
+import FilterItem from './FilterItem';
 
-interface ButtonStyle {
-  $buttonSize: 'small' | 'medium' | 'large';
-}
+const FilterButtonList = ({
+  filterList,
+  filterItem,
+  setFilterList,
+}: {
+  filterList: FilterListType[];
+  filterItem: FilterListType;
+  setFilterList: (newFilter: FilterListType[]) => void;
+}) => {
+  const [isOpenFilterItem, setIsOpenFilterItem] = useState<boolean>(false);
+  const [currentFilterTitle, setCurrentFilterTitle] = useState<string>(
+    filterItem.title,
+  );
 
-/* interface ButtonProps extends ButtonStyle {
-  $calendar: boolean;
-  children: React.ReactNode;
-} */
-const FilterButtonList = ({ filter }: { filter: FilterListType }) => {
+  useEffect(() => {
+    if (
+      currentFilterTitle != undefined &&
+      filterItem.title === '여행 프로그램'
+    ) {
+      const detailedCategoryList = DETAILED_CATEGORY_LIST.find(
+        list => list.program === currentFilterTitle,
+      )?.items;
+
+      detailedCategoryList &&
+        setFilterList(
+          filterList.map(filter =>
+            filter.title === '세부 카테고리'
+              ? { ...filter, items: detailedCategoryList }
+              : filter,
+          ),
+        );
+    }
+  }, [currentFilterTitle]);
+
   return (
-    <ButtonContainer $buttonSize={filter.buttonSize}>
-      <B3 $fontColor="var(--color_gray600)">{filter.title}</B3>
-      {filter.calendar ? (
-        <img alt="calendar-icon" src={CalendarIcon} />
-      ) : (
-        <HiOutlineChevronDown color="#666B6F" size="20px" />
+    <div>
+      <FilterButtonItem
+        filterItem={filterItem}
+        currentFilterTitle={currentFilterTitle}
+        isOpenFilterItem={isOpenFilterItem}
+        setIsOpenFilterItem={setIsOpenFilterItem}
+      />
+      {isOpenFilterItem && !filterItem.calendar && (
+        <FilterItem
+          filterItem={filterItem}
+          currentFilterTitle={currentFilterTitle}
+          setCurrentFilterTitle={setCurrentFilterTitle}
+        />
       )}
-    </ButtonContainer>
+    </div>
   );
 };
-
-const ButtonContainer = styled.div<ButtonStyle>`
-  background-color: var(--color_background);
-  display: flex;
-  justify-content: space-between;
-  padding: 0px 16px;
-  align-items: center;
-  border-radius: 40px;
-
-  width: ${({ $buttonSize }) => $buttonSize === 'small' && '120px'};
-  width: ${({ $buttonSize }) => $buttonSize === 'medium' && '200px'};
-  width: ${({ $buttonSize }) => $buttonSize === 'large' && '220px'};
-`;
 
 export default FilterButtonList;
