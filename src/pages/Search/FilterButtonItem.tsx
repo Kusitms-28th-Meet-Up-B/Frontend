@@ -24,7 +24,9 @@ const FilterButtonItem = ({
   return (
     <Container
       $buttonSize={filterItem.buttonSize}
-      onClick={() => setIsOpenFilterItem(!isOpenFilterItem)}
+      onClick={() => {
+        if (filterItem.items.length > 0) setIsOpenFilterItem(!isOpenFilterItem);
+      }}
     >
       <B3 $fontColor="var(--color_gray600)">{currentFilterTitle}</B3>
       {filterItem.calendar ? (
@@ -43,10 +45,11 @@ const Container = styled.div<FilterButtonStyle>`
   padding: 9px 16px;
   align-items: center;
   border-radius: 40px;
+  cursor: pointer;
 
-  width: ${({ $buttonSize }) => $buttonSize === 'small' && '120px'};
+  width: ${({ $buttonSize }) => $buttonSize === 'small' && '162px'};
   width: ${({ $buttonSize }) => $buttonSize === 'medium' && '200px'};
-  width: ${({ $buttonSize }) => $buttonSize === 'large' && '220px'};
+  width: ${({ $buttonSize }) => $buttonSize === 'large' && '230px'};
 `;
 
 export default FilterButtonItem;
