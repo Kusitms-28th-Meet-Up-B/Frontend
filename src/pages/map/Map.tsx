@@ -77,7 +77,7 @@ const MapPage = () => {
       <Map
         center={{ lat: 37.566566, lng: 126.979192 }}
         style={{ width: '100%', height: '100vh' }}
-        level={10}
+        level={11}
       >
         <MarkerClusterer>
           {markerData.map(({ lat, lng }, idx) => (
@@ -101,7 +101,7 @@ export default MapPage;
 
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   zoom: 1.33333;
   position: relative;
 `;
