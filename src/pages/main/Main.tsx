@@ -25,6 +25,5 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
 
-  zoom: 1.3333;
   gap: 120px;
 `;
