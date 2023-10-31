@@ -2,21 +2,36 @@ import Calendar from 'react-calendar';
 import styled from 'styled-components';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment';
-import { Value } from '@/types';
+import { FilterInputType, Value } from '@/types';
+
+interface CustomCalendarProps {
+  date: Value;
+  setDate: React.Dispatch<React.SetStateAction<Value>>;
+  filterInput: FilterInputType;
+  setFilterInput: (input: FilterInputType) => void;
+  fieldDate: [string, string];
+}
 
 export const CustomCalendar = ({
   date,
   setDate,
-}: {
-  date: Value;
-  setDate: React.Dispatch<React.SetStateAction<Value>>;
-}) => {
+  filterInput,
+  setFilterInput,
+  fieldDate,
+}: CustomCalendarProps) => {
   return (
     <Container>
       {
         <Calendar
           defaultValue={date}
-          onChange={setDate}
+          onChange={value => {
+            setDate(value);
+            setFilterInput({
+              ...filterInput,
+              [fieldDate[0]]: value[0].toString(),
+              [fieldDate[1]]: value[1].toString(),
+            });
+          }}
           formatDay={(locale, date) => moment(date).format('D')}
           prevLabel={'◀'}
           prev2Label={null}
@@ -126,6 +141,11 @@ const Container = styled.div`
           width: 100%;
           padding: 6px 0px;
         }
+      }
+
+      .react-calendar__tile--now abbr {
+        color: var(--color_sub3);
+        background-color: white;
       }
 
       .react-calendar__month-view__days__day--neighboringMonth abbr {

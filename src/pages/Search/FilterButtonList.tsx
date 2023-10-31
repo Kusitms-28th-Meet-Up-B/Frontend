@@ -1,19 +1,25 @@
-import { FilterListType, Value } from '@/types';
+import { FilterInputType, FilterListType, Value } from '@/types';
 import { useState, useEffect, useRef } from 'react';
 import { DETAILED_CATEGORY_LIST } from '@/constants/Search';
 import FilterButtonItem from './FilterButtonItem';
 import FilterItem from './FilterItem';
 import { CustomCalendar } from './CustomCalendar';
 
+interface FilterButtonListProps {
+  filterList: FilterListType[];
+  filterItem: FilterListType;
+  setFilterList: (newFilter: FilterListType[]) => void;
+  filterInput: FilterInputType;
+  setFilterInput: (input: FilterInputType) => void;
+}
+
 const FilterButtonList = ({
   filterList,
   filterItem,
   setFilterList,
-}: {
-  filterList: FilterListType[];
-  filterItem: FilterListType;
-  setFilterList: (newFilter: FilterListType[]) => void;
-}) => {
+  filterInput,
+  setFilterInput,
+}: FilterButtonListProps) => {
   const [isOpenFilterItem, setIsOpenFilterItem] = useState<boolean>(false);
   const [currentFilterTitle, setCurrentFilterTitle] = useState<string>(
     filterItem.title,
@@ -77,10 +83,22 @@ const FilterButtonList = ({
           filterItem={filterItem}
           currentFilterTitle={currentFilterTitle}
           setCurrentFilterTitle={setCurrentFilterTitle}
+          filterInput={filterInput}
+          setFilterInput={setFilterInput}
         />
       )}
       {isOpenFilterItem && filterItem.calendar && (
-        <CustomCalendar date={date} setDate={setDate} />
+        <CustomCalendar
+          date={date}
+          setDate={setDate}
+          filterInput={filterInput}
+          setFilterInput={setFilterInput}
+          fieldDate={
+            filterItem.enTitle.includes('recruit')
+              ? ['recruitStartDate', 'recruitEndDate']
+              : ['tripStartDate', 'tripEndDate']
+          }
+        />
       )}
     </div>
   );

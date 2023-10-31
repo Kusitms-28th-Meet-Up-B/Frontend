@@ -5,9 +5,14 @@ import SearchResult from './SearchResult';
 import FilterBar from './FilterBar';
 import SearchBar from '@/components/SearchBar/SearchBar';
 import { useState } from 'react';
+import { FilterInputType } from '@/types';
+import { DEFUALT_FILTER_LIST } from '@/constants/Search';
 
 const Search = () => {
   const [searchInput, setSearchInput] = useState<string>('');
+  const [filterInput, setFilterInput] =
+    useState<FilterInputType>(DEFUALT_FILTER_LIST);
+
   return (
     <CommonInner>
       <Container>
@@ -22,7 +27,7 @@ const Search = () => {
             }}
           />
         </SearchWrapper>
-        <FilterBar />
+        <FilterBar filterInput={filterInput} setFilterInput={setFilterInput} />
         <SearchResult />
         <MapButton />
       </Container>

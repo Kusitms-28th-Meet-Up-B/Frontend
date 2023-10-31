@@ -11,9 +11,21 @@ export interface ProgramMainInfoType {
 /** Search 페이지의 Filter 관련 type */
 export interface FilterListType {
   title: string;
+  enTitle: string;
   buttonSize: 'small' | 'medium' | 'large';
   calendar: boolean;
   items: string[];
+}
+
+export interface FilterInputType {
+  sort: string;
+  location: string;
+  program: string;
+  category: string;
+  recruitStartDate: string;
+  recruitEndDate: string;
+  tripStartDate: string;
+  tripEndDate: string;
 }
 
 /** Search 페이지의 CustomCalendar 관련 type */

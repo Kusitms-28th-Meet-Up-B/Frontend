@@ -2,11 +2,16 @@ import FilterButtonList from './FilterButtonList';
 import MainButton from '@/components/Button/MainButton';
 import { FILTER_LIST } from '@/constants/Search';
 import { B2Bold } from '@/style/fonts/StyledFonts';
-import { FilterListType } from '@/types';
+import { FilterInputType, FilterListType } from '@/types';
 import { useState } from 'react';
 import styled from 'styled-components';
 
-const FilterBar = () => {
+interface FilterBarProps {
+  filterInput: FilterInputType;
+  setFilterInput: (input: FilterInputType) => void;
+}
+
+const FilterBar = ({ filterInput, setFilterInput }: FilterBarProps) => {
   const [filterList, setFilterList] = useState<FilterListType[]>(FILTER_LIST);
 
   return (
@@ -18,6 +23,8 @@ const FilterBar = () => {
             filterList={filterList}
             filterItem={filter}
             setFilterList={setFilterList}
+            filterInput={filterInput}
+            setFilterInput={setFilterInput}
           />
         ))}
       </FilterButtonContainer>
@@ -25,6 +32,10 @@ const FilterBar = () => {
         $buttonColor="var(--color_sub3)"
         $buttonWidth="112px"
         $buttonHeight="40px"
+        onClick={() => {
+          // TODO: API 연결
+          console.log(filterInput);
+        }}
       >
         <B2Bold $fontColor="white">선택</B2Bold>
       </MainButton>

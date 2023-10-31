@@ -1,16 +1,20 @@
 import { B3 } from '@/style/fonts/StyledFonts';
-import { FilterListType } from '@/types';
+import { FilterInputType, FilterListType } from '@/types';
 import styled from 'styled-components';
 
 interface FilterItemProps {
   filterItem: FilterListType;
   currentFilterTitle: string;
   setCurrentFilterTitle: (title: string) => void;
+  filterInput: FilterInputType;
+  setFilterInput: (input: FilterInputType) => void;
 }
 const FilterItem = ({
   filterItem,
   currentFilterTitle,
   setCurrentFilterTitle,
+  filterInput,
+  setFilterInput,
 }: FilterItemProps) => {
   return (
     <Container>
@@ -18,7 +22,10 @@ const FilterItem = ({
         <div
           key={item}
           className="filter-item"
-          onClick={() => setCurrentFilterTitle(item)}
+          onClick={() => {
+            setCurrentFilterTitle(item);
+            setFilterInput({ ...filterInput, [filterItem.enTitle]: item });
+          }}
         >
           <B3
             $fontColor={
