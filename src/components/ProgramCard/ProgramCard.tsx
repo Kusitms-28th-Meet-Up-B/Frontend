@@ -23,7 +23,6 @@ const Container = styled.div`
   flex-wrap: wrap;
   gap: 64px 36px;
   padding-bottom: 36px;
-  cursor: pointer;
 `;
 
 export default ProgramCard;

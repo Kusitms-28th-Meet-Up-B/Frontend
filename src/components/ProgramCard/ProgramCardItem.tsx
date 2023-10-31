@@ -62,6 +62,7 @@ const Container = styled.div`
   width: 323px;
   height: 546px;
   position: relative;
+  cursor: pointer;
 
   .favorite-button {
     position: absolute;
