@@ -2,7 +2,7 @@ import { CommonInner } from '@/style/common';
 import styled from 'styled-components';
 import ProgramHead from './ProgramHead';
 import ProgramBody from './ProgramBody';
-// import RecommendProgram from './RecommendProgram';
+import RecommendProgram from './RecommendProgram';
 import HoneyTipButton from './HoneyTipButton';
 import { useParams } from 'react-router-dom';
 import { useGetProgramDetailInfo } from '@/apis/program';
@@ -23,8 +23,7 @@ const DetailProgram = () => {
             <hr />
             <ProgramBody description={programInfoData.description} />
             <hr />
-            {/* API 미완성으로 데이터를 넘겨줄 수 없어 주석처리 함 */}
-            {/* <RecommendProgram programs={} /> */}
+            <RecommendProgram programs={[]} />
           </InnerContainer>
         </CommonInner>
         <HoneyTipButton />
