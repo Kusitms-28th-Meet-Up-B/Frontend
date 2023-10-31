@@ -13,6 +13,7 @@ const Search = () => {
   const [filterInput, setFilterInput] =
     useState<FilterInputType>(DEFUALT_FILTER_LIST);
 
+  // TODO : 검색 API 연결
   return (
     <CommonInner>
       <Container>
@@ -28,7 +29,7 @@ const Search = () => {
           />
         </SearchWrapper>
         <FilterBar filterInput={filterInput} setFilterInput={setFilterInput} />
-        <SearchResult />
+        <SearchResult keyword="검색어" programCount={0} programList={[]} />
         <MapButton />
       </Container>
     </CommonInner>

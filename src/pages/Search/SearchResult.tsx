@@ -1,16 +1,27 @@
-import TravelProgramList from '@/components/TravelProgram/TravelProgramList';
+import ProgramCard from '@/components/ProgramCard/ProgramCard';
 import { H1 } from '@/style/fonts/StyledFonts';
+import { ProgramMainInfoType } from '@/types';
 import styled from 'styled-components';
 
-const SearchResult = () => {
+interface SearchResultProps {
+  keyword: string;
+  programCount: number;
+  programList: ProgramMainInfoType[];
+}
+
+const SearchResult = ({
+  keyword,
+  programCount,
+  programList,
+}: SearchResultProps) => {
   return (
     <>
       <ResultHeader>
-        <H1 $fontColor="var(--color_gray900)">{`'충청남도' 여행 프로그램`}</H1>
-        <H1 $fontColor="var(--color_sub3)">{` 150`}</H1>
+        <H1 $fontColor="var(--color_gray900)">{`'${keyword}' 여행 프로그램`}</H1>
+        <H1 $fontColor="var(--color_sub3)">{` ${programCount}`}</H1>
         <H1 $fontColor="var(--color_gray900)">{`건`}</H1>
       </ResultHeader>
-      <TravelProgramList />
+      <ProgramCard programList={programList} />
     </>
   );
 };
