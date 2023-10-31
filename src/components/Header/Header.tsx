@@ -8,12 +8,12 @@ const Header = () => {
     <Container>
       <InnerContainer>
         <NavBarContainer>
-          {HeaderData.map(({ main, dropDowns }) => (
-            <NavBar>
+          {HeaderData.map(({ main, dropDowns }, index) => (
+            <NavBar key={index}>
               <H3 $fontColor="#15191D">{main}</H3>
               <Dropdown>
-                {dropDowns.map(({ title, link }) => (
-                  <li>
+                {dropDowns.map(({ title, link }, idx) => (
+                  <li key={idx}>
                     <Link to={link}>
                       <B1 $fontColor="#15191D">{title}</B1>
                     </Link>
