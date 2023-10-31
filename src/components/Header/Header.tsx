@@ -45,6 +45,7 @@ const Container = styled.div`
 
   position: fixed;
   z-index: 3;
+  top: 0;
 `;
 
 const InnerContainer = styled.div`
