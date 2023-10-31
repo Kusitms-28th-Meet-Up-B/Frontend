@@ -52,6 +52,7 @@ const Container = styled.div`
 
     button {
       min-width: 20px;
+      background-color: white;
     }
 
     button:enabled:hover,
@@ -78,6 +79,20 @@ const Container = styled.div`
   }
 
   /* 달력 몸통 */
+  .react-calendar__viewContainer {
+    button {
+      font-size: 16px;
+      line-height: 140%;
+      font-weight: 700;
+      color: var(--color_gray900);
+    }
+    .react-calendar__tile--hasActive,
+    .react-calendar__tile--hasActive abbr {
+      background-color: var(--color_sub3);
+      color: white;
+    }
+  }
+
   .react-calendar__month-view {
     .react-calendar__month-view__weekdays abbr {
       /* B4 */
