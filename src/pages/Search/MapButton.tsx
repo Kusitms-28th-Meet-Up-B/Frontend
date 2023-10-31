@@ -9,6 +9,7 @@ const MapButton = () => {
       $buttonColor="var(--color_sub3)"
       $buttonWidth="222px"
       $buttonHeight="70px"
+      onClick={() => console.log('이동')}
     >
       <ButtonTextContainer>
         <B1Bold $fontColor="white">지도에서 보기</B1Bold>
