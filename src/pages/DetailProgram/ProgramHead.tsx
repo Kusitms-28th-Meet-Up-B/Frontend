@@ -52,13 +52,15 @@ const ProgramHead = ({ program }: { program: ProgramDetailInfoType }) => {
               onClick={handleChange}
             />
           )}
-          <MainButton
-            $buttonColor="var(--color_sub3)"
-            $buttonWidth="182px"
-            $buttonHeight="62px"
-          >
-            <B1Bold $fontColor="white">신청링크</B1Bold>
-          </MainButton>
+          <a href={program.programLink}>
+            <MainButton
+              $buttonColor="var(--color_sub3)"
+              $buttonWidth="182px"
+              $buttonHeight="62px"
+            >
+              <B1Bold $fontColor="white">신청링크</B1Bold>
+            </MainButton>
+          </a>
         </BtnContainer>
       </DescriptionContainer>
     </Container>
