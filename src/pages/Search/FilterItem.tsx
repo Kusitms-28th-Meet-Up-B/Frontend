@@ -36,6 +36,7 @@ const FilterItem = ({
 const Container = styled.div`
   background-color: white;
   padding: 3px 0px;
+  margin-top: 12px;
   text-align: left;
   border-radius: 20px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);

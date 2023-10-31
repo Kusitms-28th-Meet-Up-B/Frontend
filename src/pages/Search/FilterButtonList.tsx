@@ -1,9 +1,9 @@
-import { FilterListType } from '@/types';
+import { FilterListType, Value } from '@/types';
 import { useState, useEffect, useRef } from 'react';
 import { DETAILED_CATEGORY_LIST } from '@/constants/Search';
 import FilterButtonItem from './FilterButtonItem';
 import FilterItem from './FilterItem';
-import styled from 'styled-components';
+import { CustomCalendar } from './CustomCalendar';
 
 const FilterButtonList = ({
   filterList,
@@ -19,6 +19,8 @@ const FilterButtonList = ({
     filterItem.title,
   );
   const filterRef = useRef<HTMLDivElement>(null);
+
+  const [date, setDate] = useState<Value>([new Date(), new Date()]);
 
   useEffect(() => {
     if (
@@ -63,16 +65,12 @@ const FilterButtonList = ({
   }, [isOpenFilterItem]);
 
   return (
-    <div
-      style={{ height: 'min-content' }}
-      onClick={() => {
-        if (filterItem.items.length > 0) setIsOpenFilterItem(!isOpenFilterItem);
-      }}
-      ref={filterRef}
-    >
+    <div style={{ height: 'min-content' }} ref={filterRef}>
       <FilterButtonItem
         filterItem={filterItem}
         currentFilterTitle={currentFilterTitle}
+        isOpenFilterItem={isOpenFilterItem}
+        setIsOpenFilterItem={setIsOpenFilterItem}
       />
       {isOpenFilterItem && !filterItem.calendar && (
         <FilterItem
@@ -81,12 +79,11 @@ const FilterButtonList = ({
           setCurrentFilterTitle={setCurrentFilterTitle}
         />
       )}
+      {isOpenFilterItem && filterItem.calendar && (
+        <CustomCalendar date={date} setDate={setDate} />
+      )}
     </div>
   );
 };
-
-/* const Container = styled.div`
-  height: min-content;
-`; */
 
 export default FilterButtonList;
