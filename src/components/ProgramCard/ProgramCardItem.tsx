@@ -5,18 +5,24 @@ import UnfavoriteButtonIcon from '@/assets/icons/unfavorite_button_icon.svg';
 import { B1Bold, B3, B3Bold, H3 } from '@/style/fonts/StyledFonts';
 import { ProgramMainInfoType } from '@/types';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ProgramCardItem = ({ program }: { program: ProgramMainInfoType }) => {
   // 프로그램 좋아요 했는지 여부 (임시)
   // TODO: favorite/undfavorite 버튼 클릭할 때마다 서버와 통신?
   const [favorite, setFavorite] = useState<boolean>(true);
+  const navigate = useNavigate();
 
   const handleFavorite = () => {
     setFavorite(!favorite);
   };
 
   return (
-    <Container>
+    <Container
+      onClick={() =>
+        navigate(`/detailProgram/${program.programName}/${program.id}`)
+      }
+    >
       {!favorite ? (
         <img
           className="favorite-button"
