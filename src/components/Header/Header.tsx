@@ -8,12 +8,12 @@ const Header = () => {
     <Container>
       <InnerContainer>
         <NavBarContainer>
-          {HeaderData.map(({ main, dropDowns }, index) => (
-            <NavBar key={index}>
+          {HeaderData.map(({ main, dropDowns }) => (
+            <NavBar key={main}>
               <H3 $fontColor="#15191D">{main}</H3>
               <Dropdown>
-                {dropDowns.map(({ title, link }, idx) => (
-                  <li key={idx}>
+                {dropDowns.map(({ title, link }, index) => (
+                  <li key={index}>
                     <Link to={link}>
                       <B1 $fontColor="#15191D">{title}</B1>
                     </Link>
@@ -44,8 +44,8 @@ const Container = styled.div`
   background-color: #fff;
 
   position: fixed;
-  z-index: 3;
   top: 0;
+  z-index: 4;
 `;
 
 const InnerContainer = styled.div`
