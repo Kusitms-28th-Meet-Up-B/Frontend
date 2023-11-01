@@ -48,8 +48,8 @@ const Container = styled.div`
 
   position: relative;
 
-  padding: 0 360px 260px;
   width: 100%;
+  padding: 0 360px 260px;
 `;
 
 const TextContainer = styled.div`
