@@ -6,3 +6,11 @@ export interface ProgramMainInfoType {
   remainDay: string;
   like: number;
 }
+
+export interface PostingType {
+  boardName: string;
+  title: string;
+  id: number;
+  nickName: string;
+  registerDate: string;
+}
