@@ -5,7 +5,7 @@ import SearchResult from './SearchResult';
 import FilterBar from './FilterBar';
 import { useEffect, useState } from 'react';
 import { FilterInputType } from '@/types';
-import { DEFUALT_FILTER_LIST } from '@/constants/Search';
+import { DEFAULT_FILTER_LIST } from '@/constants/Search';
 import ProgramSearchBar from './ProgramSearchBar';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
@@ -13,7 +13,7 @@ const Search = () => {
   const [searchParams] = useSearchParams();
   const [searchInput, setSearchInput] = useState<string>('');
   const [filterInput, setFilterInput] =
-    useState<FilterInputType>(DEFUALT_FILTER_LIST);
+    useState<FilterInputType>(DEFAULT_FILTER_LIST);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const Search = () => {
       newFilterInput[key] = searchParams.get(key);
     }
 
-    setFilterInput(newFilterInput);
+    setFilterInput({ ...newFilterInput });
 
     // TODO : Search API로 GET ()
     // 검색어는 keyword로 필터는 newFilterInput으로
@@ -54,8 +54,8 @@ const Search = () => {
           handleSubmit={handleSubmit}
         />
         <SearchResult
-          keyword={searchInput}
-          filter={filterInput}
+          keyword={searchParams.get('keyword')}
+          searchParams={searchParams}
           programCount={0}
           programList={[]}
         />

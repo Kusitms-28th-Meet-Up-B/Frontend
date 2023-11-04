@@ -4,35 +4,57 @@ import { FilterInputType, ProgramMainInfoType } from '@/types';
 import styled from 'styled-components';
 
 interface SearchResultProps {
-  type: string | undefined;
-  keyword: string;
-  filter: FilterInputType;
+  keyword: string | null;
+  searchParams: URLSearchParams;
   programCount: number;
   programList: ProgramMainInfoType[];
 }
 
 const SearchResult = ({
-  type,
   keyword,
-  filter,
+  searchParams,
   programCount,
   programList,
 }: SearchResultProps) => {
+  if (!keyword && searchParams.get('program')) {
+    return (
+      <>
+        <ResultHeader>
+          <H1 $fontColor="var(--color_gray900)">{`전체 `}</H1>
+          {searchParams.get('program') && (
+            <H1 $fontColor="var(--color_gray900)">
+              {searchParams.get('program')}
+            </H1>
+          )}
+          <H1 $fontColor="var(--color_sub3)">{` ${programCount}`}</H1>
+          <H1 $fontColor="var(--color_gray900)">{`건`}</H1>
+        </ResultHeader>
+        <ProgramCard programList={programList} />
+      </>
+    );
+  }
   return (
     <>
-      {type === 'program' ? (
-        <ResultHeader>
-          <H1 $fontColor="var(--color_gray900)">{`전체 ${filter.program}`}</H1>
-          <H1 $fontColor="var(--color_sub3)">{` ${programCount}`}</H1>
-          <H1 $fontColor="var(--color_gray900)">{`건`}</H1>
-        </ResultHeader>
-      ) : (
-        <ResultHeader>
-          <H1 $fontColor="var(--color_gray900)">{`'${keyword}' 검색 결과`}</H1>
-          <H1 $fontColor="var(--color_sub3)">{` ${programCount}`}</H1>
-          <H1 $fontColor="var(--color_gray900)">{`건`}</H1>
-        </ResultHeader>
-      )}
+      <ResultHeader>
+        {(searchParams.get('recruitStartDate') ||
+          searchParams.get('tripStartDate')) && (
+          <H1 $fontColor="var(--color_gray900)">{'선택하신 기간의 '}</H1>
+        )}
+        {searchParams.get('location') && (
+          <H1 $fontColor="var(--color_gray900)">{`${searchParams.get(
+            'location',
+          )} `}</H1>
+        )}
+        {searchParams.get('program') && (
+          <H1 $fontColor="var(--color_gray900)">{`${searchParams.get(
+            'program',
+          )} `}</H1>
+        )}
+        {keyword && <H1 $fontColor="var(--color_gray900)">{`${keyword} `}</H1>}
+        <H1 $fontColor="var(--color_gray900)">{`검색 결과`}</H1>
+        <H1 $fontColor="var(--color_sub3)">{` ${programCount}`}</H1>
+        <H1 $fontColor="var(--color_gray900)">{`건`}</H1>
+      </ResultHeader>
       <ProgramCard programList={programList} />
     </>
   );

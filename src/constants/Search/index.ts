@@ -45,7 +45,7 @@ export const FILTER_LIST: FilterListType[] = [
   },
 ];
 
-export const DEFUALT_FILTER_LIST: FilterInputType = {
+export const DEFAULT_FILTER_LIST: FilterInputType = {
   sort: null,
   location: null,
   program: null,
