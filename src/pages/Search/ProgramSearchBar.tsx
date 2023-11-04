@@ -4,11 +4,13 @@ import styled from 'styled-components';
 interface ProgramSearchBarProps {
   searchInput: string;
   setSearchInput: React.Dispatch<React.SetStateAction<string>>;
+  handleSubmit: () => void;
 }
 
 const ProgramSearchBar = ({
   searchInput,
   setSearchInput,
+  handleSubmit,
 }: ProgramSearchBarProps) => {
   return (
     <Container>
@@ -16,10 +18,7 @@ const ProgramSearchBar = ({
         placeHolder="어디로 떠나고 싶으신건가요?"
         searchInput={searchInput}
         setSearchInput={setSearchInput}
-        handleClick={() => {
-          // TODO: API 연동
-          setSearchInput('');
-        }}
+        handleSubmit={handleSubmit}
       />
     </Container>
   );

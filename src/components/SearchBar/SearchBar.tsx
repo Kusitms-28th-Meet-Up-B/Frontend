@@ -20,7 +20,7 @@ const SearchBar: React.FC<Props> = ({
   return (
     <Container
       onSubmit={e => {
-        e.preventDefault;
+        e.preventDefault();
         handleSubmit();
       }}
     >

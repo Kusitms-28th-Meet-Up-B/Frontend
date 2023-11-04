@@ -7,13 +7,15 @@ import { useEffect, useState } from 'react';
 import { FilterInputType } from '@/types';
 import { DEFUALT_FILTER_LIST } from '@/constants/Search';
 import ProgramSearchBar from './ProgramSearchBar';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const Search = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchInput, setSearchInput] = useState<string>('');
   const [filterInput, setFilterInput] =
     useState<FilterInputType>(DEFUALT_FILTER_LIST);
+  const [searchPath, setSearchPath] = useState<string>('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const keyword = searchParams.get('keyword');
@@ -29,6 +31,15 @@ const Search = () => {
     // TODO : Search API로 GET
   }, []);
 
+  /* const handleFilterInput = () => {
+    setFilterInput({});
+  }; */
+
+  const handleSubmit = () => {
+    console.log('test');
+    navigate(`/search?keyword=${searchInput}${searchPath}`);
+  };
+
   // TODO : 검색 API 연결 (useParams의 type 이용)
   // useParams의 type 종류 => program(카드로 이동한 경우) / search(검색어로 이동한 경우)
   // useSearchParams를 이용해서 검색어 및 키워드 보여줄 예정 (ex. /search/program?keyword=여행지원사업)
@@ -41,6 +52,7 @@ const Search = () => {
         <ProgramSearchBar
           searchInput={searchInput}
           setSearchInput={setSearchInput}
+          handleSubmit={handleSubmit}
         />
         <FilterBar filterInput={filterInput} setFilterInput={setFilterInput} />
         <SearchResult
