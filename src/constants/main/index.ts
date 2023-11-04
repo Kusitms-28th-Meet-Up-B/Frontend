@@ -18,14 +18,14 @@ export const NavData: NavDataType[] = [
     iconSrc: '',
     description: '여행도 다니고 스펙도 쌓고',
     title: '여행 공모전',
-    link: '/search/program?keyword=여행공모전',
+    link: '/search/program?keyword=여행 공모전',
     backgroundColor: '#FFA63E',
   },
   {
     iconSrc: '',
     description: '나도 인플루언서가 될 수 있어',
     title: '여행 대외활동',
-    link: '/search/program?keyword=여행대외활동',
+    link: '/search/program?keyword=여행 대외활동',
     backgroundColor: '#3EA2FF',
   },
 ];
