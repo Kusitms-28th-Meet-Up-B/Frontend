@@ -28,7 +28,7 @@ const SearchResult = ({
         </ResultHeader>
       ) : (
         <ResultHeader>
-          <H1 $fontColor="var(--color_gray900)">{`'${keyword}' 여행 프로그램`}</H1>
+          <H1 $fontColor="var(--color_gray900)">{`'${keyword}' 검색 결과`}</H1>
           <H1 $fontColor="var(--color_sub3)">{` ${programCount}`}</H1>
           <H1 $fontColor="var(--color_gray900)">{`건`}</H1>
         </ResultHeader>

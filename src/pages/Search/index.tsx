@@ -24,6 +24,8 @@ const Search = () => {
         ...filterInput,
         program: programKeyword,
       });
+    } else if (type === 'search' && programKeyword) {
+      setSearchInput(programKeyword);
     }
   }, []);
 
