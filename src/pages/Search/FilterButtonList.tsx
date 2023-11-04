@@ -29,6 +29,11 @@ const FilterButtonList = ({
   const [date, setDate] = useState<Value>([new Date(), new Date()]);
 
   useEffect(() => {
+    if (filterItem.enTitle === 'program' && filterInput.program !== '')
+      setCurrentFilterTitle(filterInput.program);
+  }, [filterInput]);
+
+  useEffect(() => {
     if (
       currentFilterTitle != undefined &&
       filterItem.title === '여행 프로그램'
