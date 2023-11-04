@@ -85,6 +85,7 @@ const FilterButtonList = ({
           setCurrentFilterTitle={setCurrentFilterTitle}
           filterInput={filterInput}
           setFilterInput={setFilterInput}
+          setIsOpenFilterItem={setIsOpenFilterItem}
         />
       )}
       {isOpenFilterItem && filterItem.calendar && (
@@ -93,6 +94,7 @@ const FilterButtonList = ({
           setDate={setDate}
           filterInput={filterInput}
           setFilterInput={setFilterInput}
+          setIsOpenFilterItem={setIsOpenFilterItem}
           fieldDate={
             filterItem.enTitle.includes('recruit')
               ? ['recruitStartDate', 'recruitEndDate']

@@ -9,6 +9,7 @@ interface CustomCalendarProps {
   setDate: React.Dispatch<React.SetStateAction<Value>>;
   filterInput: FilterInputType;
   setFilterInput: (input: FilterInputType) => void;
+  setIsOpenFilterItem: (isOpen: boolean) => void;
   fieldDate: [string, string];
 }
 
@@ -17,6 +18,7 @@ export const CustomCalendar = ({
   setDate,
   filterInput,
   setFilterInput,
+  setIsOpenFilterItem,
   fieldDate,
 }: CustomCalendarProps) => {
   return (
@@ -25,12 +27,18 @@ export const CustomCalendar = ({
         <Calendar
           defaultValue={date}
           onChange={value => {
-            setDate(value);
-            setFilterInput({
-              ...filterInput,
-              [fieldDate[0]]: value[0].toString(),
-              [fieldDate[1]]: value[1].toString(),
-            });
+            if (value) {
+              const dateValue = value as [Date, Date];
+              setDate(dateValue);
+              setFilterInput({
+                ...filterInput,
+                [fieldDate[0]]: dateValue[0].toString(),
+                [fieldDate[1]]: dateValue[1].toString(),
+              });
+              setTimeout(() => {
+                setIsOpenFilterItem(false);
+              }, 150);
+            }
           }}
           formatDay={(locale, date) => moment(date).format('D')}
           prevLabel={'◀'}

@@ -8,6 +8,7 @@ interface FilterItemProps {
   setCurrentFilterTitle: (title: string) => void;
   filterInput: FilterInputType;
   setFilterInput: (input: FilterInputType) => void;
+  setIsOpenFilterItem: (isOpen: boolean) => void;
 }
 const FilterItem = ({
   filterItem,
@@ -15,6 +16,7 @@ const FilterItem = ({
   setCurrentFilterTitle,
   filterInput,
   setFilterInput,
+  setIsOpenFilterItem,
 }: FilterItemProps) => {
   return (
     <Container>
@@ -25,6 +27,7 @@ const FilterItem = ({
           onClick={() => {
             setCurrentFilterTitle(item);
             setFilterInput({ ...filterInput, [filterItem.enTitle]: item });
+            setIsOpenFilterItem(false);
           }}
         >
           <B3
