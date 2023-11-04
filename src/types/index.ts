@@ -8,6 +8,17 @@ export interface ProgramMainInfoType {
   like: number;
 }
 
+export interface ProgramDetailInfoType extends ProgramMainInfoType {
+  location: string;
+  recruitStartDate: string;
+  recruitEndDate: string;
+  tripStartDate: string;
+  tripEndDate: string;
+  contact: string;
+  contactNumber: string;
+  programLink: string;
+}
+
 /** Search 페이지의 Filter 관련 type */
 export interface FilterListType {
   title: string;
