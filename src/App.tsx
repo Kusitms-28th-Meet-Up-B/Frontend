@@ -30,7 +30,7 @@ const route = createBrowserRouter([
         path: 'kakao/login',
         element: <KakaoRedir />,
       },
-      { path: 'search/:type', element: <Search /> },
+      { path: 'search', element: <Search /> },
       {
         path: 'detailProgram/:_programName/:_programId',
         element: <DetailProgram />,

@@ -10,8 +10,9 @@ const PageNav = () => {
   const navigate = useNavigate();
 
   const handleSearch = () => {
-    navigate(`/search/search?keyword=${searchInput}`);
+    navigate(`/search?keyword=${searchInput}`);
   };
+
   return (
     <Container>
       <SearchBarWrapper>
