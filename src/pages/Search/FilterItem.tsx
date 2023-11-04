@@ -31,6 +31,7 @@ const FilterItem = ({
             $fontColor={
               currentFilterTitle === item ? 'black' : 'var(--color_gray500)'
             }
+            $hoverColor="black"
           >
             {item}
           </B3>
