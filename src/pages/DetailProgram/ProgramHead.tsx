@@ -133,6 +133,7 @@ const BtnContainer = styled.div`
   img {
     width: 62px;
     height: 62px;
+    cursor: pointer;
   }
 `;
 
