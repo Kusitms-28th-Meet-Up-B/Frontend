@@ -46,14 +46,14 @@ export const FILTER_LIST: FilterListType[] = [
 ];
 
 export const DEFUALT_FILTER_LIST: FilterInputType = {
-  sort: '',
-  location: '',
-  program: '',
-  category: '',
-  recruitStartDate: '',
-  recruitEndDate: '',
-  tripStartDate: '',
-  tripEndDate: '',
+  sort: null,
+  location: null,
+  program: null,
+  category: null,
+  recruitStartDate: null,
+  recruitEndDate: null,
+  tripStartDate: null,
+  tripEndDate: null,
 };
 
 export const DETAILED_CATEGORY_LIST = [

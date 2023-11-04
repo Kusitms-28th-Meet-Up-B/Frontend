@@ -17,11 +17,11 @@ const FilterBar = ({ filterInput, setFilterInput }: FilterBarProps) => {
   return (
     <Container>
       <FilterButtonContainer>
-        {filterList.map(filter => (
+        {filterList.map(filterItem => (
           <FilterButtonList
-            key={filter.title}
+            key={filterItem.title}
             filterList={filterList}
-            filterItem={filter}
+            filterItem={filterItem}
             setFilterList={setFilterList}
             filterInput={filterInput}
             setFilterInput={setFilterInput}

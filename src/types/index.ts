@@ -29,14 +29,15 @@ export interface FilterListType {
 }
 
 export interface FilterInputType {
-  sort: string;
-  location: string;
-  program: string;
-  category: string;
-  recruitStartDate: string;
-  recruitEndDate: string;
-  tripStartDate: string;
-  tripEndDate: string;
+  [key: string]: string | null;
+  sort: string | null;
+  location: string | null;
+  program: string | null;
+  category: string | null;
+  recruitStartDate: string | null;
+  recruitEndDate: string | null;
+  tripStartDate: string | null;
+  tripEndDate: string | null;
 }
 
 /** Search 페이지의 CustomCalendar 관련 type */

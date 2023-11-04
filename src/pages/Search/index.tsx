@@ -7,26 +7,26 @@ import { useEffect, useState } from 'react';
 import { FilterInputType } from '@/types';
 import { DEFUALT_FILTER_LIST } from '@/constants/Search';
 import ProgramSearchBar from './ProgramSearchBar';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 const Search = () => {
-  const { type } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchInput, setSearchInput] = useState<string>('');
   const [filterInput, setFilterInput] =
     useState<FilterInputType>(DEFUALT_FILTER_LIST);
 
   useEffect(() => {
-    const programKeyword = searchParams.get('keyword');
+    const keyword = searchParams.get('keyword');
+    if (keyword) setSearchInput(keyword);
 
-    if (type === 'program' && programKeyword) {
-      setFilterInput({
-        ...filterInput,
-        program: programKeyword,
-      });
-    } else if (type === 'search' && programKeyword) {
-      setSearchInput(programKeyword);
+    let newFilterInput = filterInput;
+    for (const key in newFilterInput) {
+      newFilterInput[key] = searchParams.get(key);
     }
+
+    setFilterInput(newFilterInput);
+
+    // TODO : Search API로 GET
   }, []);
 
   // TODO : 검색 API 연결 (useParams의 type 이용)
@@ -44,7 +44,6 @@ const Search = () => {
         />
         <FilterBar filterInput={filterInput} setFilterInput={setFilterInput} />
         <SearchResult
-          type={type}
           keyword={searchInput}
           filter={filterInput}
           programCount={0}
