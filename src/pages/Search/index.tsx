@@ -36,7 +36,6 @@ const Search = () => {
   }; */
 
   const handleSubmit = () => {
-    console.log('test');
     navigate(`/search?keyword=${searchInput}${searchPath}`);
   };
 
@@ -54,7 +53,11 @@ const Search = () => {
           setSearchInput={setSearchInput}
           handleSubmit={handleSubmit}
         />
-        <FilterBar filterInput={filterInput} setFilterInput={setFilterInput} />
+        <FilterBar
+          filterInput={filterInput}
+          setFilterInput={setFilterInput}
+          handleSubmit={handleSubmit}
+        />
         <SearchResult
           keyword={searchInput}
           filter={filterInput}

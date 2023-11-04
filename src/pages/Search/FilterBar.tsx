@@ -9,9 +9,14 @@ import styled from 'styled-components';
 interface FilterBarProps {
   filterInput: FilterInputType;
   setFilterInput: (input: FilterInputType) => void;
+  handleSubmit: () => void;
 }
 
-const FilterBar = ({ filterInput, setFilterInput }: FilterBarProps) => {
+const FilterBar = ({
+  filterInput,
+  setFilterInput,
+  handleSubmit,
+}: FilterBarProps) => {
   const [filterList, setFilterList] = useState<FilterListType[]>(FILTER_LIST);
 
   return (
@@ -32,10 +37,7 @@ const FilterBar = ({ filterInput, setFilterInput }: FilterBarProps) => {
         $buttonColor="var(--color_sub3)"
         $buttonWidth="112px"
         $buttonHeight="40px"
-        onClick={() => {
-          // TODO: API 연결
-          console.log(filterInput);
-        }}
+        onClick={handleSubmit}
       >
         <B2Bold $fontColor="white">선택</B2Bold>
       </MainButton>
