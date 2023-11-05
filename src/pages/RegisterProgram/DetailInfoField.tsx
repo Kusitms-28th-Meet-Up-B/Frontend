@@ -2,11 +2,20 @@ import { DETAIL_INFO_PLACEHOLDER } from '@/constants/Register';
 import { H3 } from '@/style/fonts/StyledFonts';
 import styled from 'styled-components';
 
-const DetailInfoField = () => {
+interface DetailInfoFieldProps {
+  value: string;
+  onChange: () => void;
+}
+
+const DetailInfoField = ({ value, onChange }: DetailInfoFieldProps) => {
   return (
     <Container>
       <H3 $fontColor="var(--color_gray900)">상세 입력 내용</H3>
-      <textarea placeholder={DETAIL_INFO_PLACEHOLDER} />
+      <textarea
+        placeholder={DETAIL_INFO_PLACEHOLDER}
+        value={value}
+        onChange={onChange}
+      />
     </Container>
   );
 };
