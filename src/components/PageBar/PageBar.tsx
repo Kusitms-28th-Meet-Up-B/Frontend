@@ -31,12 +31,26 @@ const PageBar: React.FC<Props> = ({ page, setPage, maxPage }) => {
   const isMorePages = useCallback((): boolean => {
     if (page < 5) return maxPage > 9;
     return page + 4 < maxPage;
-  }, [maxPage]);
+  }, [maxPage, page]);
+
+  const movePage = useCallback(
+    (type: string): void => {
+      switch (type) {
+        case 'prev':
+          setPage(prev => Math.max(prev - 1, 1));
+          break;
+        case 'next':
+          setPage(prev => Math.min(prev + 1, maxPage));
+          break;
+      }
+    },
+    [maxPage],
+  );
 
   return (
     <Container>
       <AiOutlineDoubleLeft className="icon" />
-      <AiOutlineLeft className="icon" />
+      <AiOutlineLeft className="icon" onClick={() => movePage('prev')} />
       {renderPages().map(pageNumber => (
         <PageWrapper
           selected={page === pageNumber}
@@ -49,7 +63,7 @@ const PageBar: React.FC<Props> = ({ page, setPage, maxPage }) => {
         </PageWrapper>
       ))}
       {isMorePages() && <B2Bold $fontColor="#000">...</B2Bold>}
-      <AiOutlineRight className="icon" />
+      <AiOutlineRight className="icon" onClick={() => movePage('next')} />
       <AiOutlineDoubleRight className="icon" />
     </Container>
   );
