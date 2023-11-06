@@ -7,6 +7,7 @@ import Login from './pages/login/Login';
 import KakaoRedir from './pages/login/KakaoRedir';
 import Layout from './components/Header/Layout';
 import DetailProgram from './pages/DetailProgram';
+import DetailPosting from './pages/DetailPosting';
 
 const route = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const route = createBrowserRouter([
       {
         path: 'detailProgram/:_programName/:_programId',
         element: <DetailProgram />,
+      },
+      {
+        path: 'review/:id',
+        element: <DetailPosting title="지원 후기" />,
       },
     ],
   },
