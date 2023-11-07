@@ -24,4 +24,5 @@ export interface ButtonStyleType {
   $buttonColor: string;
   $buttonWidth: string;
   $buttonHeight: string;
+  $hoverTextColor?: string;
 }
