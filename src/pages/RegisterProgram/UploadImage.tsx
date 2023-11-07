@@ -5,7 +5,7 @@ import IconCamera from '@/assets/icons/icon-camera.svg';
 import IconClose from '@/assets/icons/icon-close.svg';
 
 interface UploadImageProps {
-  imageSrc: string | null;
+  photoUrl: string;
   inputRef: React.MutableRefObject<HTMLInputElement | null>;
   handleChangeUploadImage: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleCloseClick: () => void;
@@ -13,7 +13,7 @@ interface UploadImageProps {
 }
 
 const UploadImage = ({
-  imageSrc,
+  photoUrl,
   inputRef,
   handleChangeUploadImage,
   handleCloseClick,
@@ -21,7 +21,7 @@ const UploadImage = ({
 }: UploadImageProps) => {
   return (
     <Container>
-      {!imageSrc ? (
+      {!photoUrl ? (
         <UploadBox>
           <img alt="icon-camera" src={IconCamera} />
           <B3 $fontColor="var(--color_gray500)">이미지를 여기에 넣어주세요.</B3>
@@ -29,7 +29,7 @@ const UploadImage = ({
       ) : (
         <UploadImageBox>
           {/* TODO: src 수정하기 */}
-          <img alt="uploaded-image" src={''} height="480px" />
+          <img alt="uploaded-image" src={photoUrl} height="480px" />
           <img
             className="icon-close"
             alt="icon-close"
