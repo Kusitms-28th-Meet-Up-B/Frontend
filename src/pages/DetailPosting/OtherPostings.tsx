@@ -10,7 +10,7 @@ const OtherPostings = () => {
 
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
-  // 서버에서 데이터 불러와야 함(5개씩 페이지네이션)
+  // Todo: 서버에서 데이터 불러와야 함(5개씩 페이지네이션)
 
   const hanleClick = useCallback((id: number) => {
     navigate(`/${route}/${id}`);
@@ -22,7 +22,7 @@ const OtherPostings = () => {
       <PostingList>
         <PostingItem>
           <B2Bold $fontColor="#53575C" onClick={() => hanleClick(1)}>
-            {/* 추후에 서버에서 불러온 데이터로 교체 */}
+            {/* Todo: 추후에 서버에서 불러온 데이터로 교체 */}
             나홀로 갔다온 태안 3박4일 여행, 경비 절약한 방법...
           </B2Bold>
         </PostingItem>

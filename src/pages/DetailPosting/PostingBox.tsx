@@ -8,7 +8,7 @@ import { PostingDataType } from '@/types';
 import PostingNav from './PostingNav';
 
 const tempData: PostingDataType = {
-  // 서버에서 불러와야 할 데이터
+  // Todo: 서버에서 불러와야 할 데이터
   type: '여행 지원사업',
   title: '거제 한달살기 후기!',
   nickName: '체크재국',
