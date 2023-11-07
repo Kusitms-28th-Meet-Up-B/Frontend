@@ -3,18 +3,18 @@ import { H3 } from '@/style/fonts/StyledFonts';
 import styled from 'styled-components';
 
 interface DetailInfoFieldProps {
-  value: string;
-  onChange: () => void;
+  content: string;
+  setContent: (content: string) => void;
 }
 
-const DetailInfoField = ({ value, onChange }: DetailInfoFieldProps) => {
+const DetailInfoField = ({ content, setContent }: DetailInfoFieldProps) => {
   return (
     <Container>
       <H3 $fontColor="var(--color_gray900)">상세 입력 내용</H3>
       <textarea
         placeholder={DETAIL_INFO_PLACEHOLDER}
-        value={value}
-        onChange={onChange}
+        value={content}
+        onChange={e => setContent(e.target.value)}
       />
     </Container>
   );
