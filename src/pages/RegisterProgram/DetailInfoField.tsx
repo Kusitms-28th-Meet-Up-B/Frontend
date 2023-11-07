@@ -1,10 +1,11 @@
 import { DETAIL_INFO_PLACEHOLDER } from '@/constants/Register';
 import { H3 } from '@/style/fonts/StyledFonts';
+import { ProgramRegisterInfoType } from '@/types';
 import styled from 'styled-components';
 
 interface DetailInfoFieldProps {
-  content: string;
-  setContent: (content: string) => void;
+  content: ProgramRegisterInfoType;
+  setContent: (content: ProgramRegisterInfoType) => void;
 }
 
 const DetailInfoField = ({ content, setContent }: DetailInfoFieldProps) => {
@@ -13,8 +14,8 @@ const DetailInfoField = ({ content, setContent }: DetailInfoFieldProps) => {
       <H3 $fontColor="var(--color_gray900)">상세 입력 내용</H3>
       <textarea
         placeholder={DETAIL_INFO_PLACEHOLDER}
-        value={content}
-        onChange={e => setContent(e.target.value)}
+        value={content.description}
+        onChange={e => setContent({ ...content, description: e.target.value })}
       />
     </Container>
   );
