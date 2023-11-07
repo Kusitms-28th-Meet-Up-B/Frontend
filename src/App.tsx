@@ -1,5 +1,4 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { QueryClientProvider, QueryClient } from 'react-query';
 import Main from './pages/main/Main';
 import Map from './pages/map/Map';
 import { GlobalStyle } from './style/GlobalStyle';
@@ -39,13 +38,11 @@ const route = createBrowserRouter([
   },
 ]);
 
-const queryClient = new QueryClient();
-
 const App = () => (
-  <QueryClientProvider client={queryClient}>
+  <>
     <GlobalStyle />
     <RouterProvider router={route} />
-  </QueryClientProvider>
+  </>
 );
 
 export default App;
