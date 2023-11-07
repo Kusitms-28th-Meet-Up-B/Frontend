@@ -77,7 +77,7 @@ const Container = styled.div`
   align-items: center;
   gap: 40px;
 
-  padding-top: 135px;
+  padding-top: 120px;
   padding-bottom: 120px;
 
   .none-input {
