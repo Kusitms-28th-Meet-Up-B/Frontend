@@ -3,36 +3,22 @@ import { B3 } from '@/style/fonts/StyledFonts';
 import styled from 'styled-components';
 import IconCamera from '@/assets/icons/icon-camera.svg';
 import IconClose from '@/assets/icons/icon-close.svg';
-import { useState, useRef } from 'react';
 
-const UploadImage = () => {
-  const [imageSrc, setImageSrc]: any = useState(null);
-  const inputRef = useRef<HTMLInputElement | null>(null);
+interface UploadImageProps {
+  imageSrc: string | null;
+  inputRef: React.MutableRefObject<HTMLInputElement | null>;
+  handleChangeUploadImage: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleCloseClick: () => void;
+  handleUploadButtonClick: () => void;
+}
 
-  const handleChangeUploadImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files) {
-      return;
-    }
-
-    // TODO : 이미지 업로드하면 서버에 이미지 POST
-    // 서버에 이미지 등록 전
-    setImageSrc(e.target.files[0].name);
-    /* const formData = new FormData();
-    formData.append('image', e.target.files[0]);
-    // POST로 이미지 서버에 등록 */
-  };
-
-  const handleUploadButtonClick = () => {
-    if (!inputRef.current) {
-      return;
-    }
-    inputRef.current.click();
-  };
-
-  const handleCloseClick = () => {
-    setImageSrc(null);
-  };
-
+const UploadImage = ({
+  imageSrc,
+  inputRef,
+  handleChangeUploadImage,
+  handleCloseClick,
+  handleUploadButtonClick,
+}: UploadImageProps) => {
   return (
     <Container>
       {!imageSrc ? (
@@ -42,6 +28,7 @@ const UploadImage = () => {
         </UploadBox>
       ) : (
         <UploadImageBox>
+          {/* TODO: src 수정하기 */}
           <img alt="uploaded-image" src={''} height="480px" />
           <img
             className="icon-close"
