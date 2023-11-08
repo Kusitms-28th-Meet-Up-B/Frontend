@@ -1,6 +1,6 @@
 import ProgramCard from '@/components/ProgramCard/ProgramCard';
 import { H1 } from '@/style/fonts/StyledFonts';
-import { FilterInputType, ProgramMainInfoType } from '@/types';
+import { ProgramMainInfoType } from '@/types';
 import styled from 'styled-components';
 
 interface SearchResultProps {
