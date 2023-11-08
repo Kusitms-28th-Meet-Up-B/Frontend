@@ -7,7 +7,7 @@ import KakaoRedir from './pages/login/KakaoRedir';
 import Layout from './components/Header/Layout';
 import Board from './pages/board/Board';
 import DetailProgram from './pages/DetailProgram';
-import MyPosting from './pages/MyPosting';
+import MyPosting from './pages/user/MyPosting';
 
 const route = createBrowserRouter([
   {

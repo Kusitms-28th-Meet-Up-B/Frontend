@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import PostingList from '../board/PostingList';
-import { tempData } from '../board/Board';
+import PostingList from '../../board/PostingList';
+import { tempData } from '../../board/Board';
 import { useState } from 'react';
 import PageBar from '@/components/PageBar/PageBar';
 
