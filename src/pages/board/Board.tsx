@@ -30,6 +30,7 @@ export const tempData: PostingType[] = [
     id: 1,
     nickName: '닉네임',
     registerDate: '2023.10.13',
+    type: '여행 지원사업 후기',
   },
   {
     boardName: '이벤트',
@@ -38,6 +39,7 @@ export const tempData: PostingType[] = [
     id: 2,
     nickName: '닉네임',
     registerDate: '2023.10.13',
+    type: '여행 지원사업 후기',
   },
   {
     boardName: '이벤트',
@@ -46,6 +48,7 @@ export const tempData: PostingType[] = [
     id: 3,
     nickName: '닉네임',
     registerDate: '2023.10.13',
+    type: '여행 지원사업 후기',
   },
   {
     boardName: '이벤트',
@@ -54,6 +57,7 @@ export const tempData: PostingType[] = [
     id: 4,
     nickName: '닉네임',
     registerDate: '2023.10.13',
+    type: '여행 대외활동 후기',
   },
   {
     boardName: '이벤트',
@@ -62,6 +66,7 @@ export const tempData: PostingType[] = [
     id: 5,
     nickName: '닉네임',
     registerDate: '2023.10.13',
+    type: '여행 지원사업 후기',
   },
   {
     boardName: '이벤트',
@@ -70,6 +75,7 @@ export const tempData: PostingType[] = [
     id: 6,
     nickName: '닉네임',
     registerDate: '2023.10.13',
+    type: '여행 대외활동 후기',
   },
   {
     boardName: '이벤트',
@@ -78,6 +84,7 @@ export const tempData: PostingType[] = [
     id: 7,
     nickName: '닉네임',
     registerDate: '2023.10.13',
+    type: '여행 지원사업 후기',
   },
   {
     boardName: '이벤트',
@@ -86,6 +93,7 @@ export const tempData: PostingType[] = [
     id: 8,
     nickName: '닉네임',
     registerDate: '2023.10.13',
+    type: '여행 대외활동 후기',
   },
   {
     boardName: '이벤트',
@@ -94,6 +102,7 @@ export const tempData: PostingType[] = [
     id: 9,
     nickName: '닉네임',
     registerDate: '2023.10.13',
+    type: '여행 공모전 후기',
   },
   {
     boardName: '이벤트',
@@ -101,6 +110,7 @@ export const tempData: PostingType[] = [
     id: 10,
     nickName: '닉네임',
     registerDate: '2023.10.13',
+    type: '여행 공모전 후기',
   },
   {
     boardName: '이벤트',
@@ -109,6 +119,7 @@ export const tempData: PostingType[] = [
     id: 11,
     nickName: '닉네임',
     registerDate: '2023.10.13',
+    type: '여행 공모전 후기',
   },
 ];
 
@@ -124,6 +135,10 @@ const Board: React.FC<BoardProps> = ({ title, description, imageSrc }) => {
       setFilter(location.state.filter);
     }
   }, [location]);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [filter]);
 
   return (
     <Container>

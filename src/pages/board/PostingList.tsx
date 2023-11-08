@@ -1,6 +1,4 @@
-import SearchBar from '@/components/SearchBar/SearchBar';
 import { B2Bold, B3Bold } from '@/style/fonts/StyledFonts';
-import { useState } from 'react';
 import styled from 'styled-components';
 import Posting from './components/Posting';
 import { PostingType } from '@/types';
@@ -29,9 +27,13 @@ const PostingList: React.FC<Props> = ({ filter, postingList }) => {
       </TopBarContainer>
 
       <PostingContainer>
-        {postingList.map(data => (
-          <Posting {...data} key={data.id} />
-        ))}
+        {postingList
+          .filter(data => {
+            if (filter === '전체' || data.type === filter) return data;
+          })
+          .map(data => (
+            <Posting {...data} key={data.id} />
+          ))}
       </PostingContainer>
 
       <WritingButton>
