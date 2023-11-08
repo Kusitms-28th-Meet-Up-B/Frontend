@@ -66,9 +66,10 @@ const Search = () => {
 };
 
 const Container = styled.div`
-  text-align: center;
-  margin-top: 180px;
-  margin-bottom: 80px;
+  padding-top: 180px;
+  padding-bottom: 170px;
+  position: relative;
+  min-height: calc(var(--vh, 1vh) * 100 * 100 / 75 - 80px);
 `;
 
 export default Search;
