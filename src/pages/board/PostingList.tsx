@@ -11,18 +11,8 @@ interface Props {
 }
 
 const PostingList: React.FC<Props> = ({ filter, postingList }) => {
-  const [searchInput, setSearchInput] = useState<string>('');
   return (
     <Container>
-      <SearchBarWrapper>
-        <SearchBar
-          placeHolder={'검색어를 입력해 주세요'}
-          searchInput={searchInput}
-          setSearchInput={setSearchInput}
-          handleClick={() => {}}
-        />
-      </SearchBarWrapper>
-
       <TopBarContainer>
         <B2Bold $fontColor="#15191D" className="board_name">
           {'게시판명'}
@@ -60,14 +50,6 @@ const Container = styled.div`
   align-self: flex-start;
 
   width: 100%;
-`;
-
-const SearchBarWrapper = styled.div`
-  width: 543px;
-  flex-shrink: 0;
-  margin-bottom: 32px;
-
-  align-self: flex-start;
 `;
 
 const TopBarContainer = styled.div`

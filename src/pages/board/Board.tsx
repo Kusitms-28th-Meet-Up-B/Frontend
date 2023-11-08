@@ -6,6 +6,7 @@ import PostingList from './PostingList';
 import { PostingType } from '@/types';
 import PageBar from '@/components/PageBar/PageBar';
 import { useLocation } from 'react-router-dom';
+import SearchBar from '@/components/SearchBar/SearchBar';
 
 interface BoardProps {
   title: string;
@@ -20,7 +21,7 @@ const filterList: string[] = [
   '여행 공모전 후기',
 ];
 
-const tempData: PostingType[] = [
+export const tempData: PostingType[] = [
   // 임시 데이터 (API 연결되면 삭제 예정)
   {
     boardName: '이벤트',
@@ -114,6 +115,8 @@ const tempData: PostingType[] = [
 const Board: React.FC<BoardProps> = ({ title, description, imageSrc }) => {
   const [filter, setFilter] = useState<string>('전체'); // 전체가 디폴트
   const [page, setPage] = useState(1);
+  const [searchInput, setSearchInput] = useState<string>('');
+
   const location = useLocation();
 
   useEffect(() => {
@@ -130,6 +133,14 @@ const Board: React.FC<BoardProps> = ({ title, description, imageSrc }) => {
         imageSrc={imageSrc}
       />
       <Filter filter={filter} setFilter={setFilter} filterList={filterList} />
+      <SearchBarWrapper>
+        <SearchBar
+          placeHolder={'검색어를 입력해 주세요'}
+          searchInput={searchInput}
+          setSearchInput={setSearchInput}
+          handleClick={() => {}}
+        />
+      </SearchBarWrapper>
       <PostingList filter={filter} postingList={tempData} />
       <PageBar page={page} setPage={setPage} maxPage={20} />
     </Container>
@@ -145,4 +156,12 @@ const Container = styled.div`
   gap: 88px;
 
   padding: 0 260px;
+`;
+
+const SearchBarWrapper = styled.div`
+  width: 543px;
+  flex-shrink: 0;
+  margin-bottom: 32px;
+
+  align-self: flex-start;
 `;
