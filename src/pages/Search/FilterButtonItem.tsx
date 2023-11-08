@@ -10,7 +10,7 @@ interface FilterButtonStyle {
 
 interface FilterButtonItemProps {
   filterItem: FilterListType;
-  currentFilterTitle: string;
+  currentFilterTitle: string | null;
   isOpenFilterItem: boolean;
   setIsOpenFilterItem: (isOpen: boolean) => void;
 }

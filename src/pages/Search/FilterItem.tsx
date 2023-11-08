@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 interface FilterItemProps {
   filterItem: FilterListType;
-  currentFilterTitle: string;
+  currentFilterTitle: string | null;
   setCurrentFilterTitle: (title: string) => void;
   filterInput: FilterInputType;
   setFilterInput: (input: FilterInputType) => void;

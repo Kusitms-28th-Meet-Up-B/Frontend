@@ -21,7 +21,7 @@ const FilterButtonList = ({
   setFilterInput,
 }: FilterButtonListProps) => {
   const [isOpenFilterItem, setIsOpenFilterItem] = useState<boolean>(false);
-  const [currentFilterTitle, setCurrentFilterTitle] = useState<string>(
+  const [currentFilterTitle, setCurrentFilterTitle] = useState<string | null>(
     filterItem.title,
   );
   const filterRef = useRef<HTMLDivElement>(null);
@@ -29,8 +29,19 @@ const FilterButtonList = ({
   const [date, setDate] = useState<Value>([new Date(), new Date()]);
 
   useEffect(() => {
-    if (filterItem.enTitle === 'program' && filterInput.program) {
-      setCurrentFilterTitle(filterInput.program);
+    filterInput[filterItem.enTitle] &&
+      setCurrentFilterTitle(filterInput[filterItem.enTitle]);
+
+    if (filterItem.enTitle.includes('tripDate')) {
+      const start = filterInput.tripStartDate;
+      const end = filterInput.tripEndDate;
+      start && end && setDate([new Date(start), new Date(end)]);
+    }
+
+    if (filterItem.enTitle.includes('recruitDate')) {
+      const start = filterInput.recruitStartDate;
+      const end = filterInput.recruitEndDate;
+      start && end && setDate([new Date(start), new Date(end)]);
     }
   }, [filterInput]);
 
