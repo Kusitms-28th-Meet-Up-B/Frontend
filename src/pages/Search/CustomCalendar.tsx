@@ -32,8 +32,8 @@ export const CustomCalendar = ({
               setDate(dateValue);
               setFilterInput({
                 ...filterInput,
-                [fieldDate[0]]: dateValue[0].toString(),
-                [fieldDate[1]]: dateValue[1].toString(),
+                [fieldDate[0]]: moment(dateValue[0]).format('YYYY-MM-DD'),
+                [fieldDate[1]]: moment(dateValue[1]).format('YYYY-MM-DD'),
               });
               setTimeout(() => {
                 setIsOpenFilterItem(false);
