@@ -1,5 +1,5 @@
 import RoundedButton from '@/components/Button/RoundedButton';
-import { B3 } from '@/style/fonts/StyledFonts';
+import { B3, B4 } from '@/style/fonts/StyledFonts';
 import styled from 'styled-components';
 import IconCamera from '@/assets/icons/icon-camera.svg';
 import IconClose from '@/assets/icons/icon-close.svg';
@@ -10,6 +10,7 @@ interface UploadImageProps {
   handleChangeUploadImage: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleCloseClick: () => void;
   handleUploadButtonClick: () => void;
+  isPossibleSubmit: boolean;
 }
 
 const UploadImage = ({
@@ -18,14 +19,26 @@ const UploadImage = ({
   handleChangeUploadImage,
   handleCloseClick,
   handleUploadButtonClick,
+  isPossibleSubmit,
 }: UploadImageProps) => {
   return (
     <Container>
       {!photoUrl ? (
-        <UploadBox>
-          <img alt="icon-camera" src={IconCamera} />
-          <B3 $fontColor="var(--color_gray500)">이미지를 여기에 넣어주세요.</B3>
-        </UploadBox>
+        <div className="uploadbox-container">
+          <UploadBox>
+            <img alt="icon-camera" src={IconCamera} />
+            <B3 $fontColor="var(--color_gray500)">
+              이미지를 여기에 넣어주세요.
+            </B3>
+          </UploadBox>
+          <B4
+            $fontColor={
+              !isPossibleSubmit && photoUrl === '' ? 'red' : 'transparent'
+            }
+          >
+            이미지를 첨부해주세요.
+          </B4>
+        </div>
       ) : (
         <UploadImageBox>
           {/* TODO: src 수정하기 */}
@@ -62,13 +75,27 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
+  gap: 15px;
 
   padding-top: 120px;
   padding-bottom: 120px;
 
   .none-input {
     display: none;
+  }
+
+  .uploadbox-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    ${B4} {
+      -ms-user-select: none;
+      -moz-user-select: -moz-none;
+      -khtml-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+    }
   }
 `;
 
