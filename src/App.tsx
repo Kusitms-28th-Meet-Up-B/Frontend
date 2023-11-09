@@ -7,6 +7,7 @@ import KakaoRedir from './pages/login/KakaoRedir';
 import Layout from './components/Header/Layout';
 import Board from './pages/board/Board';
 import DetailProgram from './pages/DetailProgram';
+import SignUp from './pages/signup';
 
 const route = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const route = createBrowserRouter([
       {
         path: 'detailProgram/:_programName/:_programId',
         element: <DetailProgram />,
+      },
+      {
+        path: 'signup',
+        element: <SignUp />,
       },
     ],
   },
