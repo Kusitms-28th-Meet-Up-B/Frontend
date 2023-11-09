@@ -26,3 +26,20 @@ export interface ButtonStyleType {
   $buttonHeight: string;
   $hoverTextColor?: string;
 }
+
+/** Register(공고 등록) 관련 타입 */
+export interface ProgramRegisterInfoType {
+  [index: string]: string;
+  photoUrl: string;
+  programName: string;
+  location: string;
+  recruitStartDate: string;
+  recruitEndDate: string;
+  activeStartDate: string;
+  activeEndDate: string;
+  contact: string;
+  contactNumber: string;
+  programLink: string;
+  hashTag: string;
+  description: string;
+}
