@@ -1,3 +1,20 @@
+import { ProgramRegisterInfoType } from '@/types';
+
+export const DEFAULT_REQUIRED_CONTENT: ProgramRegisterInfoType = {
+  photoUrl: '',
+  programName: '',
+  location: '',
+  recruitStartDate: '',
+  recruitEndDate: '',
+  activeStartDate: '',
+  activeEndDate: '',
+  contact: '',
+  contactNumber: '',
+  programLink: '',
+  hashTag: '',
+  description: '',
+};
+
 const EXAMPLE_HEADER =
   '해당 공고에 대해 더 자세히 설명해주세요.\n\n\n예시)\n\n';
 
