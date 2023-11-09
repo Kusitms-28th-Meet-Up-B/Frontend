@@ -4,7 +4,7 @@ interface RoundedInputProps {
   placeholder: string;
   name: string;
   value: string;
-  onChange: () => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const RoundedInput = ({
@@ -27,6 +27,7 @@ const RoundedInput = ({
 
 const Wrapper = styled.div`
   width: 100%;
+  position: relative;
 
   input {
     width: 100%;
@@ -38,11 +39,15 @@ const Wrapper = styled.div`
     font-family: SUIT-Medium;
     font-size: 18px;
     font-style: normal;
-    line-height: 40%;
+    line-height: 140%;
   }
 
   input::placeholder {
     color: var(--color_gray400);
+  }
+
+  input:focus {
+    border-color: var(--color_gray500);
   }
 `;
 export default RoundedInput;
