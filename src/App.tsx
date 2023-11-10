@@ -9,7 +9,7 @@ import Search from './pages/Search';
 import Board from './pages/board/Board';
 import DetailProgram from './pages/DetailProgram';
 import MyPosting from './pages/user/MyPosting';
-import Profile from './pages/user/Profile/intdex';
+import Profile from './pages/user/Profile';
 
 const route = createBrowserRouter([
   {
