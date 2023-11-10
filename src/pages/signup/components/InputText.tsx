@@ -16,10 +16,10 @@ interface Props {
 
 const InputText: React.FC<Props> = ({
   title,
-  keyName,
+  keyName, // inputData 객체 내에 저장될 때의 key 이름
   inputData,
   setInputData,
-  isEssential,
+  isEssential, // 필수입력 여부
   placeholder,
   alertMessage = '',
   isAlert = false,

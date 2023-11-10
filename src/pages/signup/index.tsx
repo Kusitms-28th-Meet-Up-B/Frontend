@@ -12,10 +12,10 @@ import SignUpButton from './components/SignUpButton';
 import { checkIsOkToSignUp } from './functions';
 
 const SignUp = () => {
-  const [isGeneralUser, setIsGeneralUser] = useState<boolean>(true);
-  const [isOk, setIsOk] = useState<boolean>(false);
-  const [inputData, setInputData] = useState<InputType>({});
-  const [profile, setProfile] = useState<File | null>(null);
+  const [isGeneralUser, setIsGeneralUser] = useState<boolean>(true); // 일반회원 vs 기업회원
+  const [isOk, setIsOk] = useState<boolean>(false); // 회원가입 입력 형식에 맞게 입력했는지 확인하는 state (해당 state를 이용해서 회원가입 버튼 disabled)
+  const [inputData, setInputData] = useState<InputType>({}); // 입력 데이터를 모두 저장하는 state
+  const [profile, setProfile] = useState<File | null>(null); // 프로필 이미지 File을 저장하는 state
 
   const handleClickCheckBox = useCallback((val: boolean) => {
     setIsGeneralUser(val);
