@@ -16,6 +16,7 @@ const Container = styled.div`
   align-items: center;
   gap: 4px;
   width: 144px;
+  margin-bottom: 28px;
 `;
 
 export default FieldTitle;
