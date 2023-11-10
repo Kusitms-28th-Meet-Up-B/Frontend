@@ -1,7 +1,7 @@
 export const birthRegex = /^(19|20)\d{2}\.[0-1]\d\.[0-3]\d$/; // 생일 형식 정규표현식
 export const phoneRegex = /^010-\d{4}-\d{4}$/; // 전화번호 정규표현식
 export const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; // 이메일 정규표현식
-export const registrationNumberRegex = /^\d{3}-\d{2}-\d{5}$/;
+export const registrationNumberRegex = /^\d{3}-\d{2}-\d{5}$/; // 사업자 등록번호 정규표현식
 
 export const GeneralUserData = [
   [
