@@ -4,6 +4,7 @@ import { USER_INFO_TAG } from '@/constants/User/profile';
 import { UserInfoType } from '@/types';
 import { B1, B1Bold, B3Bold, B4 } from '@/style/fonts/StyledFonts';
 import MainButton from '@/components/Button/MainButton';
+import MyTitle from '@/components/Title/MyTitle';
 
 // 임시 데이터
 const userInfo: UserInfoType = {
@@ -18,7 +19,7 @@ const Profile = () => {
   return (
     <CommonInner>
       <Container>
-        <Title>회원정보</Title>
+        <MyTitle>회원정보</MyTitle>
         <div className="information-container">
           <MainButton
             $buttonColor="var(--color_sub3)"
@@ -29,7 +30,7 @@ const Profile = () => {
           </MainButton>
           <InfoContainer>
             {Object.keys(USER_INFO_TAG).map(key => (
-              <Information>
+              <Information key={key}>
                 <B1Bold $fontColor="var(--color_gray900)" className="title">
                   {USER_INFO_TAG[key]}
                 </B1Bold>
@@ -64,15 +65,6 @@ const Container = styled.div`
     gap: 15px;
     align-items: flex-end;
   }
-`;
-
-const Title = styled.div`
-  color: var(--color_gray-900);
-  font-family: Recipekorea;
-  font-size: 36px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 150%;
 `;
 
 const InfoContainer = styled.div`
