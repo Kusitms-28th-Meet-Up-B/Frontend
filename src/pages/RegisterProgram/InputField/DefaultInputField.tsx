@@ -2,64 +2,64 @@ import RoundedInput from '@/pages/RegisterProgram/Input/RoundedInput';
 import styled from 'styled-components';
 import FieldTitle from './FieldTitle';
 import { B4 } from '@/style/fonts/StyledFonts';
+import { INPUT_FIELD } from '@/constants/Register';
+import { ProgramRegisterInfoType } from '@/types';
 
 interface DefaultInputProps {
-  field: string;
-  placeholder: string;
-  value: string;
-  name: string;
+  title: string;
+  programContent: ProgramRegisterInfoType;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  alertMessage: string;
   isPossibleSubmit: boolean;
 }
 
 const DefaultInputField = ({
-  field,
-  placeholder,
-  value,
-  name,
+  title,
+  programContent,
   onChange,
-  alertMessage,
   isPossibleSubmit,
 }: DefaultInputProps) => {
   return (
-    <InnerContainer>
+    <Container>
       <TitleContainer>
-        <FieldTitle field={field} />
+        <FieldTitle field={INPUT_FIELD[title].title} />
       </TitleContainer>
       <InputContainer>
         <RoundedInput
-          placeholder={placeholder}
-          value={value}
-          name={name}
+          placeholder={INPUT_FIELD[title].placeholder}
+          value={programContent[title]}
+          name={title}
           onChange={onChange}
         />
-        {name === 'programName' && (
+        {title === 'programName' && (
           <B4
             $fontColor={
-              !isPossibleSubmit && (value === '' || value.length > 50)
+              !isPossibleSubmit &&
+              (programContent[title] === '' ||
+                programContent[title].length > 50)
                 ? 'red'
                 : 'transparent'
             }
           >
-            {alertMessage}
+            {INPUT_FIELD[title].alertMessage}
           </B4>
         )}
-        {name !== 'programName' && (
+        {title !== 'programName' && (
           <B4
             $fontColor={
-              !isPossibleSubmit && value === '' ? 'red' : 'transparent'
+              !isPossibleSubmit && programContent[title] === ''
+                ? 'red'
+                : 'transparent'
             }
           >
-            {alertMessage}
+            {INPUT_FIELD[title].alertMessage}
           </B4>
         )}
       </InputContainer>
-    </InnerContainer>
+    </Container>
   );
 };
 
-const InnerContainer = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: row;
 `;

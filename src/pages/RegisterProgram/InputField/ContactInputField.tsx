@@ -2,61 +2,55 @@ import RoundedInput from '@/pages/RegisterProgram/Input/RoundedInput';
 import styled from 'styled-components';
 import FieldTitle from './FieldTitle';
 import { B4 } from '@/style/fonts/StyledFonts';
+import { INPUT_FIELD } from '@/constants/Register';
+import { ProgramRegisterInfoType } from '@/types';
 
 // 어느 정도 정리 완료
 interface DefaultInputProps {
-  field: string;
-  contactPlaceholder: string;
-  numberPlaceholder: string;
-  contactValue: string;
-  numberValue: string;
-  contactName: string;
-  numberName: string;
+  mainTitle: string;
+  subTitle: string;
+  programContent: ProgramRegisterInfoType;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  alertMessage: string;
   isPossibleSubmit: boolean;
 }
 
 const ContactInputField = ({
-  field,
-  contactPlaceholder,
-  numberPlaceholder,
-  contactValue,
-  numberValue,
-  contactName,
-  numberName,
+  mainTitle,
+  subTitle,
+  programContent,
   onChange,
-  alertMessage,
   isPossibleSubmit,
 }: DefaultInputProps) => {
   return (
     <InnerContainer>
       <TitleContainer>
-        <FieldTitle field={field} />
+        <FieldTitle field={INPUT_FIELD[mainTitle].title} />
       </TitleContainer>
       <InputContainer>
         <div className="input-container">
           <RoundedInput
-            placeholder={contactPlaceholder}
-            value={contactValue}
-            name={contactName}
+            placeholder={INPUT_FIELD[mainTitle].placeholder}
+            value={programContent[mainTitle]}
+            name={mainTitle}
             onChange={onChange}
           />
           <RoundedInput
-            placeholder={numberPlaceholder}
-            value={numberValue}
-            name={numberName}
+            placeholder={INPUT_FIELD[subTitle].placeholder}
+            value={programContent[subTitle]}
+            name={subTitle}
             onChange={onChange}
           />
         </div>
         <B4
           $fontColor={
-            !isPossibleSubmit && (contactValue === '' || numberValue === '')
+            !isPossibleSubmit &&
+            (programContent[mainTitle] === '' ||
+              programContent[subTitle] === '')
               ? 'red'
               : 'transparent'
           }
         >
-          {alertMessage}
+          {INPUT_FIELD[mainTitle].alertMessage}
         </B4>
       </InputContainer>
     </InnerContainer>

@@ -2,75 +2,94 @@ import { B2, B4 } from '@/style/fonts/StyledFonts';
 import styled from 'styled-components';
 import DateInput from '../Input/DateInput';
 import FieldTitle from './FieldTitle';
+import { ProgramRegisterInfoType, Value } from '@/types';
+import { useState } from 'react';
+import moment from 'moment';
+import { INPUT_FIELD } from '@/constants/Register';
 
 interface DateInputProps {
-  field: string;
-  startPlaceholder: string;
-  endPlaceholder: string;
-  startValue: string;
-  endValue: string;
-  startName: string;
-  endName: string;
-  onChange: (name: string, value: string) => void;
-  alertStartMessage: string;
-  alertEndMessage: string;
+  startTitle: string;
+  endTitle: string;
+  programContent: ProgramRegisterInfoType;
+  setProgramContent: (content: ProgramRegisterInfoType) => void;
   isPossibleSubmit: boolean;
 }
 
 const DateInputField = ({
-  field,
-  startPlaceholder,
-  endPlaceholder,
-  startValue,
-  endValue,
-  startName,
-  endName,
-  onChange,
-  alertStartMessage,
-  alertEndMessage,
+  startTitle,
+  endTitle,
+  programContent,
+  setProgramContent,
   isPossibleSubmit,
 }: DateInputProps) => {
+  const [startDate, setStartDate] = useState<Value>([new Date(), new Date()]);
+  const [endDate, setEndDate] = useState<Value>([new Date(), new Date()]);
+
+  const handleStartCalenderChange = (value: Value) => {
+    const dateValue = value as Date;
+    setStartDate(dateValue);
+    setProgramContent({
+      ...programContent,
+      [startTitle]: moment(dateValue).format('YYYY-MM-DD'),
+    });
+  };
+
+  const handleEndCalenderChange = (value: Value) => {
+    const dateValue = value as Date;
+    setEndDate(dateValue);
+    setProgramContent({
+      ...programContent,
+      [endTitle]: moment(dateValue).format('YYYY-MM-DD'),
+    });
+  };
+
   return (
     <InnerContainer>
       <TitleContainer>
-        <FieldTitle field={field} />
+        <FieldTitle field={INPUT_FIELD[startTitle].title} />
       </TitleContainer>
       <InputContainer>
-        <div className="input-container">
+        <InputInnerContainer>
           <DateInput
-            placeholder={startPlaceholder}
-            value={startValue}
-            name={startName}
-            onChange={() => onChange(startName, startValue)}
+            placeholder={INPUT_FIELD[startTitle].placeholder}
+            value={programContent[startTitle]}
+            date={startDate}
+            handleCalendarChange={handleStartCalenderChange}
           />
           <B4
             $fontColor={
-              !isPossibleSubmit && startValue === '' ? 'red' : 'transparent'
+              !isPossibleSubmit && programContent[startTitle] === ''
+                ? 'red'
+                : 'transparent'
             }
           >
-            {alertStartMessage}
+            {INPUT_FIELD[startTitle].alertMessage}
           </B4>
-        </div>
+        </InputInnerContainer>
         <B2 $fontColor="var(--color_gray900)">-</B2>
-        <div className="input-container">
+        <InputInnerContainer>
           <DateInput
-            placeholder={endPlaceholder}
-            value={endValue}
-            name={endName}
-            onChange={() => onChange(endName, endValue)}
+            placeholder={INPUT_FIELD[endTitle].placeholder}
+            value={programContent[endTitle]}
+            date={endDate}
+            handleCalendarChange={handleEndCalenderChange}
           />
           <B4
             $fontColor={
-              !isPossibleSubmit && endValue === '' ? 'red' : 'transparent'
+              !isPossibleSubmit && programContent[endTitle] === ''
+                ? 'red'
+                : 'transparent'
             }
           >
-            {alertEndMessage}
+            {INPUT_FIELD[endTitle].alertMessage}
           </B4>
-        </div>
+        </InputInnerContainer>
       </InputContainer>
     </InnerContainer>
   );
 };
+
+export default DateInputField;
 
 const InnerContainer = styled.div`
   display: flex;
@@ -90,16 +109,17 @@ const InputContainer = styled.div`
   align-items: center;
   gap: 24px;
 
-  .input-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
   ${B2} {
     margin-bottom: 20px;
   }
+`;
+
+const InputInnerContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
 
   ${B4} {
     -ms-user-select: none;
@@ -109,5 +129,3 @@ const InputContainer = styled.div`
     user-select: none;
   }
 `;
-
-export default DateInputField;

@@ -2,6 +2,7 @@ import { HiOutlineChevronDown } from 'react-icons/hi2';
 import styled from 'styled-components';
 import LocationDropdown from './LocationDropdown';
 import { useEffect, useRef, useState } from 'react';
+import { INPUT_FIELD } from '@/constants/Register';
 
 interface DefaultInputProps {
   selectedLocation: string;
@@ -37,7 +38,7 @@ const DropdownInput = ({
     >
       <DropdownTitle>
         {selectedLocation === ''
-          ? '여행 지역을 선택해주세요.'
+          ? INPUT_FIELD.location.placeholder
           : selectedLocation}
       </DropdownTitle>
       <DropdownContainer>
@@ -45,7 +46,7 @@ const DropdownInput = ({
           <LocationDropdown
             dropdownTitle={
               selectedLocation === ''
-                ? '여행 지역을 선택해주세요.'
+                ? INPUT_FIELD.location.placeholder
                 : selectedLocation
             }
             onDropdownClick={onDropdownClick}

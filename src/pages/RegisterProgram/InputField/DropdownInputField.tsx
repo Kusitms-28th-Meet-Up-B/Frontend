@@ -2,38 +2,40 @@ import styled from 'styled-components';
 import DropdownInput from '../Input/DropdownInput';
 import FieldTitle from './FieldTitle';
 import { B4 } from '@/style/fonts/StyledFonts';
+import { ProgramRegisterInfoType } from '@/types';
+import { INPUT_FIELD } from '@/constants/Register';
 
 interface DropdownInputProps {
-  field: string;
-  selectedLocation: string;
+  title: string;
+  programContent: ProgramRegisterInfoType;
   onDropdownClick: (location: string) => void;
-  alertMessage: string;
   isPossibleSubmit: boolean;
 }
 
 const DropdownInputField = ({
-  field,
-  selectedLocation,
+  title,
+  programContent,
   onDropdownClick,
-  alertMessage,
   isPossibleSubmit,
 }: DropdownInputProps) => {
   return (
     <InnerContainer>
       <TitleContainer>
-        <FieldTitle field={field} />
+        <FieldTitle field={INPUT_FIELD[title].title} />
       </TitleContainer>
       <InputContainer>
         <DropdownInput
-          selectedLocation={selectedLocation}
+          selectedLocation={programContent[title]}
           onDropdownClick={onDropdownClick}
         />
         <B4
           $fontColor={
-            !isPossibleSubmit && selectedLocation === '' ? 'red' : 'transparent'
+            !isPossibleSubmit && programContent[title] === ''
+              ? 'red'
+              : 'transparent'
           }
         >
-          {alertMessage}
+          {INPUT_FIELD[title].alertMessage}
         </B4>
       </InputContainer>
     </InnerContainer>
