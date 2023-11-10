@@ -9,6 +9,7 @@ import Search from './pages/Search';
 import Board from './pages/board/Board';
 import DetailProgram from './pages/DetailProgram';
 import MyPosting from './pages/user/MyPosting';
+import WishList from './pages/user/WishList';
 
 const route = createBrowserRouter([
   {
@@ -54,6 +55,7 @@ const route = createBrowserRouter([
             path: 'posting',
             element: <MyPosting />,
           },
+          { path: 'wishlist', element: <WishList /> },
         ],
       },
     ],
