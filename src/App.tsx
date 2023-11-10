@@ -6,6 +6,7 @@ import Login from './pages/login/Login';
 import KakaoRedir from './pages/login/KakaoRedir';
 import Layout from './components/Header/Layout';
 import Search from './pages/Search';
+import Board from './pages/board/Board';
 import DetailProgram from './pages/DetailProgram';
 
 const route = createBrowserRouter([
@@ -30,6 +31,16 @@ const route = createBrowserRouter([
         element: <KakaoRedir />,
       },
       { path: 'search', element: <Search /> },
+      {
+        path: 'review',
+        element: (
+          <Board
+            title="지원후기"
+            description="여행 지원사업/대외활동/공모전의 지원후기를 볼 수 있는 페이지입니다."
+            imageSrc=""
+          />
+        ),
+      },
       {
         path: 'detailProgram/:_programName/:_programId',
         element: <DetailProgram />,
