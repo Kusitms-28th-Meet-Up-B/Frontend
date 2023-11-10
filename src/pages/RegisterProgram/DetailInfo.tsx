@@ -8,14 +8,16 @@ interface DetailInfoFieldProps {
   setContent: (content: ProgramRegisterInfoType) => void;
 }
 
-const DetailInfoField = ({ content, setContent }: DetailInfoFieldProps) => {
+const DetailInfo = ({ content, setContent }: DetailInfoFieldProps) => {
   return (
     <Container>
       <H3 $fontColor="var(--color_gray900)">상세 입력 내용</H3>
       <textarea
         placeholder={DETAIL_INFO_PLACEHOLDER}
         value={content.description}
-        onChange={e => setContent({ ...content, description: e.target.value })}
+        onChange={e => {
+          setContent({ ...content, description: e.target.value });
+        }}
       />
     </Container>
   );
@@ -46,6 +48,10 @@ const Container = styled.div`
   textarea::placeholder {
     color: var(--color_gray400);
   }
+
+  textarea:focus {
+    border-color: var(--color_gray500);
+  }
 `;
 
-export default DetailInfoField;
+export default DetailInfo;
