@@ -1,11 +1,12 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { QueryClientProvider, QueryClient } from 'react-query';
 import Main from './pages/main/Main';
 import Map from './pages/map/Map';
 import { GlobalStyle } from './style/GlobalStyle';
 import Login from './pages/login/Login';
 import KakaoRedir from './pages/login/KakaoRedir';
 import Layout from './components/Header/Layout';
+import Search from './pages/Search';
+import Board from './pages/board/Board';
 import DetailProgram from './pages/DetailProgram';
 
 const route = createBrowserRouter([
@@ -29,6 +30,17 @@ const route = createBrowserRouter([
         path: 'kakao/login',
         element: <KakaoRedir />,
       },
+      { path: 'search', element: <Search /> },
+      {
+        path: 'review',
+        element: (
+          <Board
+            title="지원후기"
+            description="여행 지원사업/대외활동/공모전의 지원후기를 볼 수 있는 페이지입니다."
+            imageSrc=""
+          />
+        ),
+      },
       {
         path: 'detailProgram/:_programName/:_programId',
         element: <DetailProgram />,
@@ -37,13 +49,11 @@ const route = createBrowserRouter([
   },
 ]);
 
-const queryClient = new QueryClient();
-
 const App = () => (
-  <QueryClientProvider client={queryClient}>
+  <>
     <GlobalStyle />
     <RouterProvider router={route} />
-  </QueryClientProvider>
+  </>
 );
 
 export default App;
