@@ -59,3 +59,8 @@ export interface ButtonStyleType {
   $buttonWidth: string;
   $buttonHeight: string;
 }
+
+/** 회원정보 관련 type */
+export interface UserInfoType {
+  [key: string]: string;
+}
