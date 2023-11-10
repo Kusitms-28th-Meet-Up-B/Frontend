@@ -7,6 +7,7 @@ import { Value } from '@/types';
 interface CustomRangeCalendarProps {
   date: Value;
   handleCalendarChange: (value: Value) => void;
+  setIsOpen?: (isOpen: boolean) => void;
 }
 
 export const CustomRangeCalendar = ({
@@ -14,7 +15,7 @@ export const CustomRangeCalendar = ({
   handleCalendarChange,
 }: CustomRangeCalendarProps) => {
   return (
-    <Container>
+    <Container $position={false}>
       {
         <Calendar
           defaultValue={date}
@@ -35,12 +36,40 @@ export const CustomRangeCalendar = ({
   );
 };
 
-const Container = styled.div`
+export const CustomPickCalendar = ({
+  date,
+  handleCalendarChange,
+  setIsOpen,
+}: CustomRangeCalendarProps) => {
+  return (
+    <Container $position={true}>
+      {
+        <Calendar
+          value={date}
+          onChange={value => {
+            handleCalendarChange(value);
+            setTimeout(() => {
+              setIsOpen && setIsOpen(false);
+            }, 150);
+          }}
+          formatDay={(locale, date) => moment(date).format('D')}
+          prevLabel={'◀'}
+          prev2Label={null}
+          nextLabel={'▶'}
+          next2Label={null}
+        />
+      }
+    </Container>
+  );
+};
+
+const Container = styled.div<{ $position: boolean }>`
   border-radius: 20px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
   margin-top: 12px;
   position: absolute;
   z-index: 10;
+  ${props => props.$position && `top: 67px; right: 0;`}
 
   .react-calendar {
     width: 320px;
@@ -119,7 +148,7 @@ const Container = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 0;
+        ${props => (props.$position ? `padding: 2px;` : `padding: 0;`)}
 
         abbr {
           /* B4Bold */
@@ -150,13 +179,22 @@ const Container = styled.div`
         }
       }
 
-      .react-calendar__tile--rangeEnd abbr {
-        border-radius: 0% 50% 50% 0%;
-      }
+      ${props =>
+        props.$position
+          ? `
+          .react-calendar__tile--rangeEnd abbr {
+            border-radius: 50%;
+          }
+          `
+          : `
+            .react-calendar__tile--rangeEnd abbr {
+              border-radius: 0% 50% 50% 0%;
+            }
 
-      .react-calendar__tile--rangeStart abbr {
-        border-radius: 50% 0% 0% 50%;
-      }
+            .react-calendar__tile--rangeStart abbr {
+              border-radius: 50% 0% 0% 50%;
+            }
+          `}
     }
   }
 `;
