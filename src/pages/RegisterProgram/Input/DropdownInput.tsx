@@ -36,7 +36,7 @@ const DropdownInput = ({
       ref={dropdownRef}
       onClick={() => setIsOpenDropdown(!isOpenDropdown)}
     >
-      <DropdownTitle>
+      <DropdownTitle $active={selectedLocation !== ''}>
         {selectedLocation === ''
           ? INPUT_FIELD.location.placeholder
           : selectedLocation}
@@ -75,14 +75,15 @@ const Container = styled.div`
   }
 `;
 
-const DropdownTitle = styled.div`
+const DropdownTitle = styled.div<{ $active: boolean }>`
   width: 100%;
   position: relative;
   border-radius: 40px;
   border: 1px solid var(--color_gray200);
   padding: 20px 36px;
 
-  color: var(--color_gray400);
+  color: ${props =>
+    props.$active ? 'var(--color_gray900)' : 'var(--color_gray400)'};
   font-family: SUIT-Medium;
   font-size: 18px;
   font-style: normal;
