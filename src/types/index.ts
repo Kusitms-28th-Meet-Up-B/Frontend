@@ -76,3 +76,9 @@ export interface ProgramRegisterInfoType {
   hashTag: string;
   description: string;
 }
+
+export interface ProgramRegisterFieldType {
+  [key: string]: {
+    [key: string]: string;
+  };
+}

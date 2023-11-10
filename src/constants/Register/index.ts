@@ -1,4 +1,4 @@
-import { ProgramRegisterInfoType } from '@/types';
+import { ProgramRegisterFieldType, ProgramRegisterInfoType } from '@/types';
 
 export const DEFAULT_REQUIRED_CONTENT: ProgramRegisterInfoType = {
   photoUrl: '',
@@ -34,6 +34,59 @@ export const LOCATION_LIST = [
   '전라남도',
   '제주도',
 ];
+
+export const INPUT_FIELD: ProgramRegisterFieldType = {
+  programName: {
+    title: '제목',
+    placeholder: '공고 제목을 입력해주세요.',
+    alertMessage: '제목은 50자 이내로 입력해주세요.',
+  },
+  location: {
+    title: '지역',
+    placeholder: '여행 지역을 선택해주세요.',
+    alertMessage: '여행 지역을 선택해주세요.',
+  },
+  recruitStartDate: {
+    title: '모집기간',
+    placeholder: '모집 시작일을 선택해주세요.',
+    alertMessage: '모집 시작일을 입력해주세요.',
+  },
+  recruitEndDate: {
+    title: '모집기간',
+    placeholder: '모집 마감일을 선택해주세요.',
+    alertMessage: '모집 마감일을 입력해주세요.',
+  },
+  activeStartDate: {
+    title: '활동기간',
+    placeholder: '활동 시작일을 선택해주세요.',
+    alertMessage: '활동 시작일을 입력해주세요.',
+  },
+  activeEndDate: {
+    title: '활동기간',
+    placeholder: '활동 마감일을 선택해주세요.',
+    alertMessage: '활동 마감일을 입력해주세요.',
+  },
+  contact: {
+    title: '문의처',
+    placeholder: '문의처명을 입력해주세요.',
+    alertMessage: '문의처명을 입력해주세요.',
+  },
+  contactNumber: {
+    title: '',
+    placeholder: '전화번호 또는 이메일을 입력해주세요.',
+    alertMessage: '',
+  },
+  programLink: {
+    title: '신청링크',
+    placeholder: '신청할 수 있는 링크를 입력해주세요.',
+    alertMessage: '신청링크를 입력해주세요.',
+  },
+  hashTag: {
+    title: '해시태그',
+    placeholder: '해당 공고를 소개하는 #해시태그를 입력해주세요. (쉼표로 구분)',
+    alertMessage: '해시태그를 입력해주세요.',
+  },
+};
 
 const EXAMPLE_HEADER =
   '해당 공고에 대해 더 자세히 설명해주세요.\n\n\n예시)\n\n';
