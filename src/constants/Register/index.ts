@@ -88,6 +88,12 @@ export const INPUT_FIELD: ProgramRegisterFieldType = {
   },
 };
 
+export const ALERT_MESSAGE = {
+  cancel: '작성을 취소하시겠습니까?\n저장하지 않은 내용은 사라집니다.',
+  register: '공고를 등록하시겠습니까?',
+  draft: '임시 저장하시겠습니까?',
+};
+
 const EXAMPLE_HEADER =
   '해당 공고에 대해 더 자세히 설명해주세요.\n\n\n예시)\n\n';
 
