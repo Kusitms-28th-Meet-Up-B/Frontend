@@ -13,6 +13,7 @@ import { checkIsOkToSignUp } from './functions';
 
 const SignUp = () => {
   const [isGeneralUser, setIsGeneralUser] = useState<boolean>(true);
+  const [isOk, setIsOk] = useState<boolean>(false);
   const [inputData, setInputData] = useState<InputType>({});
   const [profile, setProfile] = useState<File | null>(null);
 
@@ -25,6 +26,10 @@ const SignUp = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [isGeneralUser]);
+
+  useEffect(() => {
+    setIsOk(checkIsOkToSignUp(isGeneralUser, inputData));
+  }, [inputData]);
 
   return (
     <Container>
@@ -74,9 +79,7 @@ const SignUp = () => {
       </InputContainer>
 
       {/* 회원가입 버튼 */}
-      <SignUpButton
-        isOkToSubmit={checkIsOkToSignUp(isGeneralUser, inputData)}
-      />
+      <SignUpButton isOkToSubmit={isOk} />
     </Container>
   );
 };

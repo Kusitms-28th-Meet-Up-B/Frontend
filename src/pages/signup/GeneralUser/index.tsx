@@ -36,7 +36,10 @@ const GeneralUser: React.FC<SignUpProps> = ({
                 alertMessage={info?.alertMessage ? info?.alertMessage : ''}
                 isAlert={
                   info?.checkIsAlert && inputData[info.keyName]
-                    ? info?.checkIsAlert(inputData[info.keyName] || '')
+                    ? info?.checkIsAlert(
+                        inputData[info.keyName] || '',
+                        inputData?.password || '',
+                      )
                     : false
                 }
               />

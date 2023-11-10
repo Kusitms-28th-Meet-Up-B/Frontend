@@ -24,6 +24,9 @@ export const GeneralUserData = [
       placeholder: '닉네임을 입력해주세요.',
       keyName: 'nickname',
       isEssential: true,
+      alertMessage: '닉네임은 2자 이상, 20자 이하로 생성이 가능합니다.',
+      checkIsAlert: (val: string): boolean =>
+        !(val.length >= 2 && val.length <= 20),
     },
   ],
   [
@@ -32,18 +35,25 @@ export const GeneralUserData = [
       placeholder: '사용할 아이디를 입력해주세요.',
       keyName: 'id',
       isEssential: true,
+      alertMessage: 'id는 2자 이상, 20자 이하로 생성이 가능합니다.',
+      checkIsAlert: (val: string): boolean =>
+        !(val.length >= 2 && val.length <= 20),
     },
     {
       title: '비밀번호',
       placeholder: '사용할 비밀번호를 입력해주세요.',
       keyName: 'password',
       isEssential: true,
+      alertMessage: '비밀번호는 6글자 이상으로 설정해주세요.',
+      checkIsAlert: (val: string): boolean => !(val.length >= 6),
     },
     {
       title: '비밀번호 확인',
       placeholder: '비밀번호를 다시 입력해주세요.',
       keyName: 'repassword',
       isEssential: true,
+      alertMessage: '비밀번호가 일치하지 않습니다.',
+      checkIsAlert: (val1: string, val2: string): boolean => !(val1 === val2),
     },
   ],
   [
@@ -102,18 +112,25 @@ export const CorporationData = [
       placeholder: '사용할 아이디를 입력해주세요.',
       keyName: 'id',
       isEssential: true,
+      alertMessage: 'id는 2자 이상 20자 이하로 생성이 가능합니다.',
+      checkIsAlert: (val: string): boolean =>
+        !(val.length >= 2 && val.length <= 20),
     },
     {
       title: '비밀번호',
       placeholder: '사용할 비밀번호를 입력해주세요.',
       keyName: 'password',
       isEssential: true,
+      alertMessage: '비밀번호는 6글자 이상으로 설정해주세요.',
+      checkIsAlert: (val: string): boolean => !(val.length >= 6),
     },
     {
       title: '비밀번호 확인',
       placeholder: '비밀번호를 다시 입력해주세요.',
       keyName: 'repassword',
       isEssential: true,
+      alertMessage: '비밀번호가 일치하지 않습니다.',
+      checkIsAlert: (val1: string, val2: string): boolean => !(val1 === val2),
     },
   ],
   [
