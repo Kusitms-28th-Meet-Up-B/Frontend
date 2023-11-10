@@ -2,24 +2,16 @@ import Calendar from 'react-calendar';
 import styled from 'styled-components';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment';
-import { FilterInputType, Value } from '@/types';
+import { Value } from '@/types';
 
 interface CustomCalendarProps {
   date: Value;
-  setDate: React.Dispatch<React.SetStateAction<Value>>;
-  filterInput: FilterInputType;
-  setFilterInput: (input: FilterInputType) => void;
-  setIsOpenFilterItem: (isOpen: boolean) => void;
-  fieldDate: [string, string];
+  handleCalendarChange: (value: Value) => void;
 }
 
 export const CustomCalendar = ({
   date,
-  setDate,
-  filterInput,
-  setFilterInput,
-  setIsOpenFilterItem,
-  fieldDate,
+  handleCalendarChange,
 }: CustomCalendarProps) => {
   return (
     <Container>
@@ -27,18 +19,7 @@ export const CustomCalendar = ({
         <Calendar
           defaultValue={date}
           onChange={value => {
-            if (value) {
-              const dateValue = value as [Date, Date];
-              setDate(dateValue);
-              setFilterInput({
-                ...filterInput,
-                [fieldDate[0]]: moment(dateValue[0]).format('YYYY-MM-DD'),
-                [fieldDate[1]]: moment(dateValue[1]).format('YYYY-MM-DD'),
-              });
-              setTimeout(() => {
-                setIsOpenFilterItem(false);
-              }, 150);
-            }
+            handleCalendarChange(value);
           }}
           formatDay={(locale, date) => moment(date).format('D')}
           prevLabel={'◀'}
@@ -59,6 +40,7 @@ const Container = styled.div`
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
   margin-top: 12px;
   position: absolute;
+  z-index: 10;
 
   .react-calendar {
     width: 320px;
