@@ -4,15 +4,15 @@ import 'react-calendar/dist/Calendar.css';
 import moment from 'moment';
 import { Value } from '@/types';
 
-interface CustomCalendarProps {
+interface CustomRangeCalendarProps {
   date: Value;
   handleCalendarChange: (value: Value) => void;
 }
 
-export const CustomCalendar = ({
+export const CustomRangeCalendar = ({
   date,
   handleCalendarChange,
-}: CustomCalendarProps) => {
+}: CustomRangeCalendarProps) => {
   return (
     <Container>
       {

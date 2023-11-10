@@ -3,8 +3,8 @@ import { useState, useEffect, useRef } from 'react';
 import { DETAILED_CATEGORY_LIST } from '@/constants/Search';
 import FilterButtonItem from './FilterButtonItem';
 import FilterItem from './FilterItem';
-import { CustomCalendar } from '../../components/Calendar/CustomCalendar';
 import moment from 'moment';
+import { CustomRangeCalendar } from '@/components/Calendar/CustomCalendar';
 
 interface FilterButtonListProps {
   filterList: FilterListType[];
@@ -125,7 +125,7 @@ const FilterButtonList = ({
         />
       )}
       {isOpenFilterItem && filterItem.calendar && (
-        <CustomCalendar
+        <CustomRangeCalendar
           date={date}
           handleCalendarChange={handleCalendarChange}
         />
