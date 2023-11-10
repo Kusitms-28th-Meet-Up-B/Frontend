@@ -15,6 +15,26 @@ export const DEFAULT_REQUIRED_CONTENT: ProgramRegisterInfoType = {
   description: '',
 };
 
+export const LOCATION_LIST = [
+  '서울',
+  '인천',
+  '대전',
+  '대구',
+  '광주',
+  '부산',
+  '울산',
+  '세종특별자치시',
+  '경기도',
+  '강원특별자치도',
+  '충청북도',
+  '충청남도',
+  '경상북도',
+  '경상남도',
+  '전라북도',
+  '전라남도',
+  '제주도',
+];
+
 const EXAMPLE_HEADER =
   '해당 공고에 대해 더 자세히 설명해주세요.\n\n\n예시)\n\n';
 
