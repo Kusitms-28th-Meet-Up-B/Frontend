@@ -12,7 +12,7 @@ interface Props {
 
 const InputFile: React.FC<Props> = ({
   title,
-  profile,
+  profile, // 프로필 사진 파일을 저장하는 state
   setProfile,
   isEssential,
   placeholder,
@@ -45,11 +45,12 @@ const InputFile: React.FC<Props> = ({
           onChange={handleChange}
           accept="image/*"
         />
-        <FakeInput>
+        <HiddenInput>
           <B3 $fontColor="#AEB3B8">
             {profile ? profile?.name : '프로필 사진을 업로드해 주세요.'}
           </B3>
-        </FakeInput>
+        </HiddenInput>
+        {/* Todo: 추후에 삭제 버튼 추가 */}
         <SelectFileButton onClick={handleClick}>
           <B3Bold $fontColor="#fff">파일 찾기</B3Bold>
         </SelectFileButton>
@@ -79,7 +80,7 @@ const Title = styled.div`
   gap: 5px;
 `;
 
-const FakeInput = styled.div`
+const HiddenInput = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
