@@ -14,6 +14,7 @@ export interface PostingType {
   id: number;
   nickName: string;
   registerDate: string;
+  type: string;
 }
 
 export interface ProgramDetailInfoType extends ProgramMainInfoType {
@@ -81,4 +82,27 @@ export interface ProgramRegisterFieldType {
   [key: string]: {
     [key: string]: string;
   };
+}
+
+/* 포스팅 상세 관련 타입 */
+export interface PostingType {
+  type: string;
+  title: string;
+  nickName: string;
+  content: string;
+  hashTags: string[];
+  registeredDate: string;
+  attatchment: string;
+  isLike: boolean;
+  setIsLike: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export interface PostingDataType {
+  type: string;
+  title: string;
+  nickName: string;
+  content: string;
+  hashTags: string[];
+  registeredDate: string;
+  attatchment: string;
 }

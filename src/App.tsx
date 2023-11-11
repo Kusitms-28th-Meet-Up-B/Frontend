@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import Main from './pages/main/Main';
 import Map from './pages/map/Map';
 import { GlobalStyle } from './style/GlobalStyle';
@@ -9,6 +9,8 @@ import Search from './pages/Search';
 import Board from './pages/board/Board';
 import DetailProgram from './pages/DetailProgram';
 import RegisterProgram from './pages/RegisterProgram';
+import DetailPosting from './pages/DetailPosting';
+import MyPosting from './pages/user/MyPosting';
 
 const route = createBrowserRouter([
   {
@@ -47,6 +49,20 @@ const route = createBrowserRouter([
         element: <DetailProgram />,
       },
       { path: 'register', element: <RegisterProgram /> },
+      {
+        path: 'review/:id',
+        element: <DetailPosting title="지원 후기" />,
+      },
+      {
+        path: 'user',
+        element: <Outlet />,
+        children: [
+          {
+            path: 'posting',
+            element: <MyPosting />,
+          },
+        ],
+      },
     ],
   },
 ]);
