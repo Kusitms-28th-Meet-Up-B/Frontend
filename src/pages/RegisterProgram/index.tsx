@@ -16,6 +16,9 @@ const RegisterProgram = () => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const navigate = useNavigate();
 
+  // TODO: 임시 저장 글이 있는지 확인
+  // TODO: 임시 저장한 글이 있고 사용자가 글 불러오기를 선택하면 input 값에 넣어주기
+
   const handleChangeUploadImage = (
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
