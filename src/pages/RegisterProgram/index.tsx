@@ -91,6 +91,8 @@ const RegisterProgram = () => {
       if (window.confirm(ALERT_MESSAGE.register)) {
         // TODO: 공고 등록 API 연결
       }
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
