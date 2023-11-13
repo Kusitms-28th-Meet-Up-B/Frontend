@@ -9,6 +9,7 @@ import Search from './pages/Search';
 import Board from './pages/board/Board';
 import DetailProgram from './pages/DetailProgram';
 import SignUp from './pages/signup';
+import DetailPosting from './pages/DetailPosting';
 import MyPosting from './pages/user/MyPosting';
 
 const route = createBrowserRouter([
@@ -50,6 +51,10 @@ const route = createBrowserRouter([
       {
         path: 'signup',
         element: <SignUp />,
+      },
+      {
+        path: 'review/:id',
+        element: <DetailPosting title="지원 후기" />,
       },
       {
         path: 'user',

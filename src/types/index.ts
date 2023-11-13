@@ -70,3 +70,26 @@ export interface SignUpProps {
   profile: File | null;
   setProfile: React.Dispatch<React.SetStateAction<File | null>>;
 }
+
+/* 포스팅 상세 관련 타입 */
+export interface PostingType {
+  type: string;
+  title: string;
+  nickName: string;
+  content: string;
+  hashTags: string[];
+  registeredDate: string;
+  attatchment: string;
+  isLike: boolean;
+  setIsLike: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export interface PostingDataType {
+  type: string;
+  title: string;
+  nickName: string;
+  content: string;
+  hashTags: string[];
+  registeredDate: string;
+  attatchment: string;
+}
