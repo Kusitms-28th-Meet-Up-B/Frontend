@@ -2,9 +2,10 @@ import { CommonInner } from '@/style/common';
 import styled from 'styled-components';
 import { USER_INFO_TAG } from '@/constants/User/profile';
 import { UserInfoType } from '@/types';
-import { B1, B1Bold, B3Bold, B4 } from '@/style/fonts/StyledFonts';
+import { B1, B1Bold, B3Bold } from '@/style/fonts/StyledFonts';
 import MainButton from '@/components/Button/MainButton';
 import UserTitle from '@/components/Title/UserTitle';
+import AuthBadge from './AuthBadge';
 
 // 임시 데이터
 const userInfo: UserInfoType = {
@@ -36,11 +37,7 @@ const Profile = () => {
                 </B1Bold>
                 <div className="content">
                   <B1 $fontColor="var(--color_gray900)">{userInfo[key]}</B1>
-                  {key === 'email' && (
-                    <AuthTag>
-                      <B4 $fontColor="var(--color_sub2)">인증완료</B4>
-                    </AuthTag>
-                  )}
+                  {key === 'email' && <AuthBadge />}
                 </div>
               </Information>
             ))}
@@ -94,12 +91,6 @@ const Information = styled.div`
     align-items: center;
     gap: 8px;
   }
-`;
-
-const AuthTag = styled.div`
-  background-color: #ffeccf;
-  padding: 4px 16px;
-  border-radius: 20px;
 `;
 
 export default Profile;
