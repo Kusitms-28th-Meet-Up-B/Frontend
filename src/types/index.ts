@@ -67,6 +67,8 @@ export interface ProgramRegisterInfoType {
   photoUrl: string;
   programName: string;
   location: string;
+  mainCategory: string;
+  subCategory: string;
   recruitStartDate: string;
   recruitEndDate: string;
   activeStartDate: string;

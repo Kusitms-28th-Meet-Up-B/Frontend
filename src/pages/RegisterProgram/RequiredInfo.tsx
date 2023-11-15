@@ -5,6 +5,7 @@ import DropdownInputField from './InputField/DropdownInputField';
 import DefaultInputField from './InputField/DefaultInputField';
 import ContactInputField from './InputField/ContactInputField';
 import DateInputField from './InputField/DateInputField';
+import CategoryInputField from './InputField/CategoryInputField';
 
 interface RequiredInfoFieldProps {
   programContent: ProgramRegisterInfoType;
@@ -26,9 +27,13 @@ const RequiredInfo = ({
     setProgramContent({ ...programContent, [name]: value });
   };
 
-  const handleDropdownClick = (location: string) => {
-    setProgramContent({ ...programContent, location: location });
+  const handleDropdownClick = (field: string, item: string) => {
+    setProgramContent({ ...programContent, [field]: item });
   };
+
+  /* const handeCategoryDropdownClick = (location: string) => {
+    setProgramContent({ ...programContent, location: location });
+  }; */
 
   return (
     <Container>
@@ -42,6 +47,13 @@ const RequiredInfo = ({
         />
         <DropdownInputField
           title="location"
+          programContent={programContent}
+          onDropdownClick={handleDropdownClick}
+          isPossibleSubmit={isPossibleSubmit}
+        />
+        <CategoryInputField
+          mainTitle="mainCategory"
+          subTitle="subCategory"
           programContent={programContent}
           onDropdownClick={handleDropdownClick}
           isPossibleSubmit={isPossibleSubmit}

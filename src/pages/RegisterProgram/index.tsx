@@ -102,6 +102,7 @@ const RegisterProgram = () => {
   const handleDraft = () => {
     if (window.confirm(ALERT_MESSAGE.draft)) {
       console.log('확인');
+      console.log(programContent);
       // TODO: 임시 저장 API 연결
     }
   };

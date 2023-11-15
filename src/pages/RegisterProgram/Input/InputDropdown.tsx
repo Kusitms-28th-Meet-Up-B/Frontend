@@ -1,26 +1,29 @@
-import { LOCATION_LIST } from '@/constants/Register';
 import styled from 'styled-components';
 
-interface LocationDropdownProps {
+interface InputDropdownProps {
+  field: string;
+  dropdownItemList: string[];
   dropdownTitle: string;
-  onDropdownClick: (location: string) => void;
+  onDropdownClick: (field: string, item: string) => void;
 }
 
-const LocationDropdown = ({
+const InputDropdown = ({
+  field,
+  dropdownItemList,
   dropdownTitle,
   onDropdownClick,
-}: LocationDropdownProps) => {
+}: InputDropdownProps) => {
   return (
     <Container>
       <span>{dropdownTitle}</span>
       <hr />
-      {LOCATION_LIST.map(location => (
+      {dropdownItemList.map(item => (
         <span
-          key={location}
-          className={`location-item ${dropdownTitle === location && 'active'}`}
-          onClick={() => onDropdownClick(location)}
+          key={item}
+          className={`dropdown-item ${dropdownTitle === item && 'active'}`}
+          onClick={() => onDropdownClick(field, item)}
         >
-          {location}
+          {item}
         </span>
       ))}
     </Container>
@@ -55,7 +58,7 @@ const Container = styled.div`
     line-height: 140%;
   }
 
-  .location-item {
+  .dropdown-item {
     &:hover {
       color: var(--color_gray900);
     }
@@ -65,4 +68,4 @@ const Container = styled.div`
     color: var(--color_gray900);
   }
 `;
-export default LocationDropdown;
+export default InputDropdown;

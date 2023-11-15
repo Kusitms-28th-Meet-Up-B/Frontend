@@ -4,6 +4,8 @@ export const DEFAULT_REQUIRED_CONTENT: ProgramRegisterInfoType = {
   photoUrl: '',
   programName: '',
   location: '',
+  mainCategory: '',
+  subCategory: '',
   recruitStartDate: '',
   recruitEndDate: '',
   activeStartDate: '',
@@ -45,6 +47,16 @@ export const INPUT_FIELD: ProgramRegisterFieldType = {
     title: '지역',
     placeholder: '여행 지역을 선택해주세요.',
     alertMessage: '여행 지역을 선택해주세요.',
+  },
+  mainCategory: {
+    title: '카테고리',
+    placeholder: '해당하는 카테고리를 선택해주세요.',
+    alertMessage: '카테고리를 모두 선택해주세요.',
+  },
+  subCategory: {
+    title: '',
+    placeholder: '해당하는 세부 카테고리를 선택해주세요.',
+    alertMessage: '',
   },
   recruitStartDate: {
     title: '모집기간',
@@ -118,3 +130,11 @@ export const DETAIL_INFO_PLACEHOLDER =
   EXAMPLE_APPLY +
   EXAMPLE_DETAIL +
   EXAMPLE_RESULT;
+
+export const SUB_CATEGORY_LIST: {
+  [key: string]: string[];
+} = {
+  여행지원사업: ['지자체 한달살이', '팸투어', '기타'],
+  '여행 공모전': ['여행코스 기획전', '여행사진 공모전', '기타'],
+  '여행 대외활동': ['기자단', '서포터즈', '기타'],
+};

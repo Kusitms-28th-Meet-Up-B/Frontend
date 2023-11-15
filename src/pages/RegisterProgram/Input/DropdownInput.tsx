@@ -1,15 +1,19 @@
 import { HiOutlineChevronDown } from 'react-icons/hi2';
 import styled from 'styled-components';
-import LocationDropdown from './LocationDropdown';
+import InputDropdown from './InputDropdown';
 import { useEffect, useRef, useState } from 'react';
 import { INPUT_FIELD } from '@/constants/Register';
 
 interface DefaultInputProps {
+  field: string;
+  dropdownItemList: string[];
   selectedLocation: string;
-  onDropdownClick: (location: string) => void;
+  onDropdownClick: (field: string, item: string) => void;
 }
 
 const DropdownInput = ({
+  field,
+  dropdownItemList,
   selectedLocation,
   onDropdownClick,
 }: DefaultInputProps) => {
@@ -34,19 +38,23 @@ const DropdownInput = ({
   return (
     <Container
       ref={dropdownRef}
-      onClick={() => setIsOpenDropdown(!isOpenDropdown)}
+      onClick={() => {
+        if (dropdownItemList) setIsOpenDropdown(!isOpenDropdown);
+      }}
     >
       <DropdownTitle $active={selectedLocation !== ''}>
         {selectedLocation === ''
-          ? INPUT_FIELD.location.placeholder
+          ? INPUT_FIELD[field].placeholder
           : selectedLocation}
       </DropdownTitle>
       <DropdownContainer>
         {isOpenDropdown && (
-          <LocationDropdown
+          <InputDropdown
+            field={field}
+            dropdownItemList={dropdownItemList}
             dropdownTitle={
               selectedLocation === ''
-                ? INPUT_FIELD.location.placeholder
+                ? INPUT_FIELD[field].placeholder
                 : selectedLocation
             }
             onDropdownClick={onDropdownClick}
@@ -91,7 +99,6 @@ const DropdownTitle = styled.div<{ $active: boolean }>`
 `;
 
 const DropdownContainer = styled.div`
-  background-color: red;
   position: absolute;
   top: 0;
   left: 0;

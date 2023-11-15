@@ -3,12 +3,12 @@ import DropdownInput from '../Input/DropdownInput';
 import FieldTitle from './FieldTitle';
 import { B4 } from '@/style/fonts/StyledFonts';
 import { ProgramRegisterInfoType } from '@/types';
-import { INPUT_FIELD } from '@/constants/Register';
+import { INPUT_FIELD, LOCATION_LIST } from '@/constants/Register';
 
 interface DropdownInputProps {
   title: string;
   programContent: ProgramRegisterInfoType;
-  onDropdownClick: (location: string) => void;
+  onDropdownClick: (field: string, item: string) => void;
   isPossibleSubmit: boolean;
 }
 
@@ -25,6 +25,8 @@ const DropdownInputField = ({
       </TitleContainer>
       <InputContainer>
         <DropdownInput
+          field={title}
+          dropdownItemList={LOCATION_LIST}
           selectedLocation={programContent[title]}
           onDropdownClick={onDropdownClick}
         />
