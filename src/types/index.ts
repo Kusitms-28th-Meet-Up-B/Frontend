@@ -60,7 +60,30 @@ export interface ButtonStyleType {
   $buttonHeight: string;
 }
 
-/** 회원정보 관련 type */
+/* 포스팅 상세 관련 타입 */
+export interface PostingType {
+  type: string;
+  title: string;
+  nickName: string;
+  content: string;
+  hashTags: string[];
+  registeredDate: string;
+  attatchment: string;
+  isLike: boolean;
+  setIsLike: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export interface PostingDataType {
+  type: string;
+  title: string;
+  nickName: string;
+  content: string;
+  hashTags: string[];
+  registeredDate: string;
+  attatchment: string;
+}
+
+/** 마이페이지 / 회원정보 관련 type */
 export interface UserInfoType {
   [key: string]: string;
 }
