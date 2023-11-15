@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-const MyTitle = ({ children }: { children: React.ReactNode }) => {
+const UserTitle = ({ children }: { children: React.ReactNode }) => {
   return <Wrapper>{children}</Wrapper>;
 };
 
-export default MyTitle;
+export default UserTitle;
 
 const Wrapper = styled.div`
   color: var(--color_gray-900);

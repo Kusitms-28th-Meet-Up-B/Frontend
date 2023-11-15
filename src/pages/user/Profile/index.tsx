@@ -4,7 +4,7 @@ import { USER_INFO_TAG } from '@/constants/User/profile';
 import { UserInfoType } from '@/types';
 import { B1, B1Bold, B3Bold, B4 } from '@/style/fonts/StyledFonts';
 import MainButton from '@/components/Button/MainButton';
-import MyTitle from '@/components/Title/MyTitle';
+import UserTitle from '@/components/Title/UserTitle';
 
 // 임시 데이터
 const userInfo: UserInfoType = {
@@ -19,7 +19,7 @@ const Profile = () => {
   return (
     <CommonInner>
       <Container>
-        <MyTitle>회원정보</MyTitle>
+        <UserTitle>회원정보</UserTitle>
         <div className="information-container">
           <MainButton
             $buttonColor="var(--color_sub3)"
