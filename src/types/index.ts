@@ -59,3 +59,11 @@ export interface ButtonStyleType {
   $buttonWidth: string;
   $buttonHeight: string;
 }
+
+/** 갈래말래 관련 type */
+export interface WishlistFilterType {
+  [key: string]: string;
+  location: string;
+  program: string;
+  progress: string;
+}
