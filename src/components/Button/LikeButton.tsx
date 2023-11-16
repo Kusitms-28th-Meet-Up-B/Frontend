@@ -11,16 +11,20 @@ interface Props {
 
 const LikeButton: React.FC<Props> = ({ isLike, setIsLike, type }) => {
   // Todo: 인자로 id 전달받아서 서버에 찜 목록에 등록하는 API 연결
-  const handleClick = useCallback(() => {
-    switch (type) {
-      case 'program':
-        setIsLike(prev => !prev);
-        break;
-      case 'posting':
-        setIsLike(prev => !prev);
-        break;
-    }
-  }, [isLike]);
+  const handleClick = useCallback(
+    (event: React.MouseEvent) => {
+      event.stopPropagation();
+      switch (type) {
+        case 'program':
+          setIsLike(prev => !prev);
+          break;
+        case 'posting':
+          setIsLike(prev => !prev);
+          break;
+      }
+    },
+    [isLike],
+  );
 
   return (
     <Wrapper>
@@ -39,6 +43,8 @@ const Wrapper = styled.div`
   img {
     width: 100%;
     height: 100%;
+    border-radius: 50%;
+    background-color: green;
     cursor: pointer;
   }
 `;
