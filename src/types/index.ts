@@ -60,6 +60,29 @@ export interface ButtonStyleType {
   $buttonHeight: string;
 }
 
+/* 포스팅 상세 관련 타입 */
+export interface PostingType {
+  type: string;
+  title: string;
+  nickName: string;
+  content: string;
+  hashTags: string[];
+  registeredDate: string;
+  attatchment: string;
+  isLike: boolean;
+  setIsLike: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export interface PostingDataType {
+  type: string;
+  title: string;
+  nickName: string;
+  content: string;
+  hashTags: string[];
+  registeredDate: string;
+  attatchment: string;
+}
+
 /** 갈래말래 관련 type */
 export interface WishlistFilterType {
   [key: string]: string;
