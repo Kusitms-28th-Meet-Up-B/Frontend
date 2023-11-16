@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import DetailInfo from './DetailInfo';
 import RequiredInfo from './RequiredInfo';
 import UploadImage from './UploadImage';
@@ -20,8 +20,24 @@ const RegisterProgram = () => {
   const navigate = useNavigate();
   const formData = new FormData();
 
+  useEffect(() => {
+    /**
+     * TODO: 페이지 시작하자마자 임시 저장한 글이 있는지 확인
+     *
+     * 임시저장한 글이 있을 때
+     * if (window.confirm('기존에 작성하던 공고를 불러오시겠습니까?')) {
+     *   photoFile, photoName, programContent 내용 업데이트
+     * } else {
+     *   임시저장한 글 삭제하는 API 호출
+     * }
+     */
+
+    if (window.confirm(ALERT_MESSAGE.draft)) {
+      // TODO: 임시 저장 API 연결
+    }
+  }, []);
+
   // TODO: 임시 저장 글이 있는지 확인
-  // TODO: 임시 저장한 글이 있고 사용자가 글 불러오기를 선택하면 input 값에 넣어주기
 
   const handleChangeUploadImage = (
     event: React.ChangeEvent<HTMLInputElement>,
