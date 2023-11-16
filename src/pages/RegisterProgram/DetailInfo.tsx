@@ -16,7 +16,7 @@ const DetailInfo = ({ content, setContent }: DetailInfoFieldProps) => {
         placeholder={DETAIL_INFO_PLACEHOLDER}
         value={content.description}
         onChange={e => {
-          setContent({ ...content, description: e.target.value });
+          setContent({ ...content, body: e.target.value });
         }}
       />
     </Container>

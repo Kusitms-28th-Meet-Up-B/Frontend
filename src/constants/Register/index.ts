@@ -1,20 +1,19 @@
 import { ProgramRegisterFieldType, ProgramRegisterInfoType } from '@/types';
 
 export const DEFAULT_REQUIRED_CONTENT: ProgramRegisterInfoType = {
-  photoUrl: '',
   programName: '',
   location: '',
-  mainCategory: '',
-  subCategory: '',
+  programType: '',
+  programDetailType: '',
   recruitStartDate: '',
   recruitEndDate: '',
   activeStartDate: '',
   activeEndDate: '',
   contact: '',
-  contactNumber: '',
-  programLink: '',
-  hashTag: '',
-  description: '',
+  contactPhone: '',
+  link: '',
+  hashtag: '',
+  body: '',
 };
 
 export const LOCATION_LIST = [
@@ -48,12 +47,12 @@ export const INPUT_FIELD: ProgramRegisterFieldType = {
     placeholder: '여행 지역을 선택해주세요.',
     alertMessage: '여행 지역을 선택해주세요.',
   },
-  mainCategory: {
+  programType: {
     title: '카테고리',
     placeholder: '해당하는 카테고리를 선택해주세요.',
     alertMessage: '카테고리를 모두 선택해주세요.',
   },
-  subCategory: {
+  programDetailType: {
     title: '',
     placeholder: '해당하는 세부 카테고리를 선택해주세요.',
     alertMessage: '',
@@ -83,17 +82,17 @@ export const INPUT_FIELD: ProgramRegisterFieldType = {
     placeholder: '문의처명을 입력해주세요.',
     alertMessage: '문의처명을 입력해주세요.',
   },
-  contactNumber: {
+  contactPhone: {
     title: '',
     placeholder: '전화번호 또는 이메일을 입력해주세요.',
     alertMessage: '',
   },
-  programLink: {
+  link: {
     title: '신청링크',
     placeholder: '신청할 수 있는 링크를 입력해주세요.',
     alertMessage: '신청링크를 입력해주세요.',
   },
-  hashTag: {
+  hashtag: {
     title: '해시태그',
     placeholder: '해당 공고를 소개하는 #해시태그를 입력해주세요. (쉼표로 구분)',
     alertMessage: '해시태그를 입력해주세요.',

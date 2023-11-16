@@ -64,20 +64,19 @@ export interface ButtonStyleType {
 /** Register(공고 등록) 관련 타입 */
 export interface ProgramRegisterInfoType {
   [index: string]: string;
-  photoUrl: string;
   programName: string;
   location: string;
-  mainCategory: string;
-  subCategory: string;
+  programType: string;
+  programDetailType: string;
   recruitStartDate: string;
   recruitEndDate: string;
   activeStartDate: string;
   activeEndDate: string;
   contact: string;
-  contactNumber: string;
-  programLink: string;
-  hashTag: string;
-  description: string;
+  contactPhone: string;
+  link: string;
+  hashtag: string;
+  body: string;
 }
 
 export interface ProgramRegisterFieldType {

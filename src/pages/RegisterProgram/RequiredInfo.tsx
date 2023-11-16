@@ -52,8 +52,8 @@ const RequiredInfo = ({
           isPossibleSubmit={isPossibleSubmit}
         />
         <CategoryInputField
-          mainTitle="mainCategory"
-          subTitle="subCategory"
+          mainTitle="programType"
+          subTitle="programDetailType"
           programContent={programContent}
           onDropdownClick={handleDropdownClick}
           isPossibleSubmit={isPossibleSubmit}
@@ -74,19 +74,19 @@ const RequiredInfo = ({
         />
         <ContactInputField
           mainTitle="contact"
-          subTitle="contactNumber"
+          subTitle="contactPhone"
           programContent={programContent}
           onChange={handleContactInputChange}
           isPossibleSubmit={isPossibleSubmit}
         />
         <DefaultInputField
-          title="programLink"
+          title="link"
           programContent={programContent}
           onChange={handleDefaultInputChange}
           isPossibleSubmit={isPossibleSubmit}
         />
         <DefaultInputField
-          title="hashTag"
+          title="hashtag"
           programContent={programContent}
           onChange={handleDefaultInputChange}
           isPossibleSubmit={isPossibleSubmit}
