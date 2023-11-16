@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import FavoriteIcon from '@/assets/icons/favorite_icon.svg';
-import FavoriteButtonIcon from '@/assets/icons/favorite_button_icon.svg';
-import UnfavoriteButtonIcon from '@/assets/icons/unfavorite_button_icon.svg';
 import { B1Bold, B3, B3Bold, H3 } from '@/style/fonts/StyledFonts';
 import { ProgramMainInfoType } from '@/types';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import LikeButton from '../Button/LikeButton';
+import Temp from '@/assets/temp/poster.jpg'; // 이미지 데이터 넣기 전에 임시로 사용
 
 const ProgramCardItem = ({ program }: { program: ProgramMainInfoType }) => {
   // 프로그램 좋아요 했는지 여부 (임시)
@@ -13,32 +13,20 @@ const ProgramCardItem = ({ program }: { program: ProgramMainInfoType }) => {
   const [favorite, setFavorite] = useState<boolean>(true);
   const navigate = useNavigate();
 
-  const handleFavorite = () => {
-    setFavorite(!favorite);
-  };
-
   return (
     <Container
       onClick={() =>
         navigate(`/detailProgram/${program.programName}/${program.id}`)
       }
     >
-      {!favorite ? (
-        <img
-          className="favorite-button"
-          alt="favorite-button-icon"
-          src={FavoriteButtonIcon}
-          onClick={handleFavorite}
-        />
-      ) : (
-        <img
-          className="favorite-button"
-          alt="unfavorite-button-icon"
-          src={UnfavoriteButtonIcon}
-          onClick={handleFavorite}
-        />
-      )}
-      <img className="poster" alt="program-poster" src={program.photoUrl} />
+      <div className="favorite-button">
+        <LikeButton isLike={favorite} setIsLike={setFavorite} type="program" />
+      </div>
+      <img
+        className="poster"
+        alt="program-poster"
+        src={program.photoUrl ? program.photoUrl : Temp}
+      />
       <ProgramInfoContainer>
         <B1Bold $fontColor="var(--color_sub3)">{program.remainDay}</B1Bold>
         <H3 $fontColor="var(--color_gray900)">{program.programName}</H3>
@@ -68,7 +56,6 @@ const Container = styled.div`
     position: absolute;
     right: 17px;
     top: 18px;
-    cursor: pointer;
   }
 
   .poster {
