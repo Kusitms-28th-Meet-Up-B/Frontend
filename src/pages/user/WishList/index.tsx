@@ -47,8 +47,8 @@ const WishList = () => {
           handleChangeFilterInput={handleChangeFilterInput}
           handleSubmit={handleSubmit}
         />
+        {data && <ProgramCard programList={data} />}
       </Container>
-      {data && <ProgramCard programList={data} />}
     </CommonInner>
   );
 };

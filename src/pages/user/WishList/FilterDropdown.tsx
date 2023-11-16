@@ -5,6 +5,7 @@ interface FilterDropdownProps {
   filterItemTitle: string;
   filterItemInput: string;
   dropdownList: string[];
+  buttonWidth: number;
   handleChangeFilterInput: (itemTitle: string, itemInput: string) => void;
 }
 
@@ -12,10 +13,11 @@ const FilterDropdown = ({
   filterItemTitle,
   filterItemInput,
   dropdownList,
+  buttonWidth,
   handleChangeFilterInput,
 }: FilterDropdownProps) => {
   return (
-    <Container>
+    <Container $buttonWidth={buttonWidth}>
       {dropdownList.map(item => (
         <div
           key={item}
@@ -40,12 +42,14 @@ const FilterDropdown = ({
 
 export default FilterDropdown;
 
-const Container = styled.div`
+const Container = styled.div<{ $buttonWidth: number }>`
   background-color: white;
   padding: 3px 0px;
   margin-top: 12px;
   border-radius: 20px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+  position: absolute;
+  width: ${props => props.$buttonWidth && `${props.$buttonWidth}px`};
 
   .filter-item {
     margin: 18px 21px;

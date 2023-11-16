@@ -39,7 +39,7 @@ const FilterItem = ({
   }, [isOpenDropdown]);
 
   return (
-    <div style={{ height: 'min-content' }} ref={filterRef}>
+    <div ref={filterRef}>
       <FilterItemButton
         filterItemTitle={filterItem.title}
         filterItemInput={filterInput[filterItemTitle]}
@@ -52,6 +52,7 @@ const FilterItem = ({
           filterItemInput={filterInput[filterItemTitle]}
           dropdownList={filterItem.itemList}
           filterItemTitle={filterItemTitle}
+          buttonWidth={filterItem.buttonWidth}
           handleChangeFilterInput={handleChangeFilterInput}
         />
       )}
