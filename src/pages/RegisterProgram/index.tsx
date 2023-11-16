@@ -7,14 +7,18 @@ import ButtonList from './ButtonList';
 import styled from 'styled-components';
 import { ALERT_MESSAGE, DEFAULT_REQUIRED_CONTENT } from '@/constants/Register';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const RegisterProgram = () => {
+  const [photoFile, setPhotoFile] = useState('');
+  const [photoName, setPhotoName] = useState<File | null>(null);
   const [programContent, setProgramContent] = useState(
     DEFAULT_REQUIRED_CONTENT,
   );
   const [isPossibleSubmit, setIsPossibleSubmit] = useState<boolean>(true);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const navigate = useNavigate();
+  const formData = new FormData();
 
   // TODO: 임시 저장 글이 있는지 확인
   // TODO: 임시 저장한 글이 있고 사용자가 글 불러오기를 선택하면 input 값에 넣어주기
@@ -25,41 +29,18 @@ const RegisterProgram = () => {
     if (!event.target.files) {
       return;
     }
-    // TODO : 이미지 업로드하면 서버에 이미지 POST
-    console.log(event.target.files[0].name);
     let reader = new FileReader();
 
     reader.onload = function (event) {
       if (event.target) {
-        const image = event.target.result?.toString();
-        setProgramContent({
-          ...programContent,
-          photoUrl: image ? image : '',
-        });
+        const image = event.target.result?.toString()
+          ? event.target.result?.toString()
+          : '';
+        setPhotoFile(image);
       }
     };
-
     reader.readAsDataURL(event.target.files[0]);
-
-    // 관련 함수 예시 미리 적어둠.
-    /* const formData = new FormData();
-    formData.append('image', e.target.files[0]);
-
-    axios({
-      baseURL: API_HOST,
-      url: '/images/:username/thumbnail',
-      method: 'POST',
-      data: formData,
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    })
-      .then(response => {
-        console.log(response.data);
-      })
-      .catch(error => {
-        console.error(error);
-      }); */
+    setPhotoName(event.target.files[0]);
   };
 
   const handleUploadButtonClick = () => {
@@ -68,7 +49,8 @@ const RegisterProgram = () => {
   };
 
   const handleImageCloseClick = () => {
-    setProgramContent({ ...programContent, photoUrl: '' });
+    setPhotoFile('');
+    setPhotoName(null);
   };
 
   const handleCancel = () => {
@@ -87,12 +69,27 @@ const RegisterProgram = () => {
     });
 
     result = result && programContent.programName.length <= 50;
+    result = result && photoName !== null;
     setIsPossibleSubmit(result);
     console.log(result);
 
     if (result) {
       if (window.confirm(ALERT_MESSAGE.register)) {
-        // TODO: 공고 등록 API 연결
+        // TODO: 공고 등록 API 연결 (진행 중)
+        photoName && formData.append('photo', photoName);
+        formData.append('model', JSON.stringify(programContent));
+        axios
+          .post('http://52.78.13.36/manager/save', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          })
+          .then(response => {
+            console.log(response.data);
+          })
+          .catch(error => {
+            console.error(error);
+          });
       }
     } else {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -101,8 +98,6 @@ const RegisterProgram = () => {
 
   const handleDraft = () => {
     if (window.confirm(ALERT_MESSAGE.draft)) {
-      console.log('확인');
-      console.log(programContent);
       // TODO: 임시 저장 API 연결
     }
   };
@@ -111,7 +106,7 @@ const RegisterProgram = () => {
     <Container>
       <CommonInner>
         <UploadImage
-          photoUrl={programContent.photoUrl}
+          photoFile={photoFile}
           inputRef={inputRef}
           handleChangeUploadImage={handleChangeUploadImage}
           handleCloseClick={handleImageCloseClick}
