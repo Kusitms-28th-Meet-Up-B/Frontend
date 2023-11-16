@@ -17,15 +17,8 @@ const WishList = () => {
   const handleSubmit = () => {
     // TODO: 데이터 다시 GET */
     console.log(filterInput);
-    test();
-  };
 
-  const handleChangeFilterInput = (itemTitle: string, itemInput: string) => {
-    setFilterInput({ ...filterInput, [itemTitle]: itemInput });
-  };
-
-  /////////////////////////
-  const test = () => {
+    // UI 확인을 위해 임시로 넣은 API
     axios
       .get('http://52.78.13.36/programs/recent')
       .then(response => {
@@ -36,7 +29,10 @@ const WishList = () => {
         console.error(error);
       });
   };
-  /////////////////////////
+
+  const handleChangeFilterInput = (itemTitle: string, itemInput: string) => {
+    setFilterInput({ ...filterInput, [itemTitle]: itemInput });
+  };
 
   return (
     <CommonInner>
