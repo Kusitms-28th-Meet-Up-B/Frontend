@@ -1,4 +1,5 @@
 import MainButton from '@/components/Button/MainButton';
+import { B2Bold } from '@/style/fonts/StyledFonts';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -28,7 +29,7 @@ const AdminProfile = (profile: AdminProfileProps) => {
         $buttonHeight="57px"
         onClick={() => navigate('/admin/register')}
       >
-        <ButtonText>공고 등록</ButtonText>
+        <B2Bold $fontColor="white">공고 등록</B2Bold>
       </MainButton>
     </Container>
   );
@@ -80,13 +81,4 @@ const Profile = styled.div`
     font-style: normal;
     line-height: 150%; /* 30px */
   }
-`;
-
-const ButtonText = styled.pre`
-  color: white;
-  font-family: SUIT-Regular;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 140%; /* 25.2px */
 `;
