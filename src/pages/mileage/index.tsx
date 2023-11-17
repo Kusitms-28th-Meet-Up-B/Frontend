@@ -82,6 +82,7 @@ const Mileage = () => {
 
   return (
     <Container>
+      {/* 페이지 소개 */}
       <Introduce />
       {/* 마일리지 잔액 */}
       <MyMileage point={point} />
