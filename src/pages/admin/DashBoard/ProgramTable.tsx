@@ -31,7 +31,7 @@ const ProgramTable = ({ noDataText, programList }: ProgramTableProps) => {
           <td width="120px">찜</td>
           <td width="120px">시작일</td>
           <td width="120px">마감일</td>
-          <td width="32px">삭제</td>
+          <td width="32px">{programList.length > 0 ? '삭제' : ''}</td>
         </TableLine>
       </thead>
       {programList.length > 0 ? (
@@ -55,7 +55,11 @@ const ProgramTable = ({ noDataText, programList }: ProgramTableProps) => {
           ))}
         </tbody>
       ) : (
-        <Text>{noDataText}</Text>
+        <Text>
+          <tr>
+            <td>{noDataText}</td>
+          </tr>
+        </Text>
       )}
     </TableContainer>
   );
@@ -95,7 +99,7 @@ const TableLine = styled.tr`
   }
 `;
 
-const Text = styled.div`
+const Text = styled.tbody`
   display: flex;
   justify-content: center;
   align-items: center;
