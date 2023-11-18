@@ -33,11 +33,16 @@ const Search = () => {
 
   const handleSubmit = () => {
     let searchPath = '';
+    let apiData = DEFAULT_FILTER_LIST;
     for (const key in filterInput) {
       if (filterInput[key]) searchPath += `&${key}=${filterInput[key]}`;
+      if (filterInput[key] && filterInput[key] !== '전체')
+        apiData[key] = filterInput[key];
     }
     navigate(`/search?keyword=${searchInput}${searchPath}`);
-    // TODO: 데이터 다시 GET
+    // TODO: 데이터 다시 GET (apiData를 보내줄거임)
+    console.log(filterInput);
+    console.log(apiData);
   };
 
   return (
