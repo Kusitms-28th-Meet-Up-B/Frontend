@@ -38,9 +38,8 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
 
-  width: 100%;
-  padding: 0 360px;
-
+  width: 1440px;
+  margin: auto;
   gap: 120px;
 `;
 
