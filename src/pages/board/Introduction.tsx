@@ -1,4 +1,4 @@
-import { B2, H1 } from '@/style/fonts/StyledFonts';
+import { B2 } from '@/style/fonts/StyledFonts';
 import React from 'react';
 import styled from 'styled-components';
 
