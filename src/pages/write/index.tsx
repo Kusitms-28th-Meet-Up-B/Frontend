@@ -76,6 +76,8 @@ const Write = () => {
           {...DropDownData}
           selected={selected}
           setSelected={setSelected}
+          position="relative"
+          size="lg"
         />
         <StyledInput
           value={title}
