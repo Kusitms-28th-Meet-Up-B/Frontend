@@ -47,6 +47,14 @@ const route = createBrowserRouter([
         ),
       },
       {
+        path: 'detailProgram/:_programName/:_programId',
+        element: <DetailProgram />,
+      },
+      {
+        path: 'signup',
+        element: <SignUp />,
+      },
+      {
         path: 'review/:id',
         element: <DetailPosting title="지원 후기" />,
       },
