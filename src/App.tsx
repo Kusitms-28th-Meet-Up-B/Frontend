@@ -11,6 +11,7 @@ import DetailProgram from './pages/DetailProgram';
 import DetailPosting from './pages/DetailPosting';
 import MyPosting from './pages/user/MyPosting';
 import Write from './pages/write';
+import Mileage from './pages/mileage';
 
 const route = createBrowserRouter([
   {
@@ -65,6 +66,10 @@ const route = createBrowserRouter([
             element: <MyPosting />,
           },
         ],
+      },
+      {
+        path: 'mileage',
+        element: <Mileage />,
       },
     ],
   },
