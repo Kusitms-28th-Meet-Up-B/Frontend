@@ -31,7 +31,8 @@ const MapCard: React.FC<Props> = ({
     navigate(`/detailProgram/${programName}/${id}`);
   };
 
-  const handleClose = () => {
+  const handleClose = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setIsModalOpen(false);
     setSelected(-1);
   };
@@ -103,6 +104,7 @@ const CloseButton = styled.div`
   top: 10px;
   right: 10px;
 
+  z-index: 3;
   cursor: pointer;
 
   img {
