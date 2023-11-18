@@ -11,6 +11,8 @@ import DetailProgram from './pages/DetailProgram';
 import SignUp from './pages/signup';
 import DetailPosting from './pages/DetailPosting';
 import MyPosting from './pages/user/MyPosting';
+import Write from './pages/write';
+import Mileage from './pages/mileage';
 
 const route = createBrowserRouter([
   {
@@ -57,6 +59,14 @@ const route = createBrowserRouter([
         element: <DetailPosting title="지원 후기" />,
       },
       {
+        path: 'write',
+        element: <Write />,
+      },
+      {
+        path: 'detailProgram/:_programName/:_programId',
+        element: <DetailProgram />,
+      },
+      {
         path: 'user',
         element: <Outlet />,
         children: [
@@ -65,6 +75,10 @@ const route = createBrowserRouter([
             element: <MyPosting />,
           },
         ],
+      },
+      {
+        path: 'mileage',
+        element: <Mileage />,
       },
     ],
   },

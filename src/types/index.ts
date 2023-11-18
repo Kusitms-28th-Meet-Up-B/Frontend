@@ -72,7 +72,7 @@ export interface SignUpProps {
 }
 
 /* 포스팅 상세 관련 타입 */
-export interface PostingType {
+export interface PostingDetailType {
   type: string;
   title: string;
   nickName: string;
@@ -92,4 +92,18 @@ export interface PostingDataType {
   hashTags: string[];
   registeredDate: string;
   attatchment: string;
+}
+
+export interface MileageHistoryType {
+  id: number;
+  date: string;
+  time: string;
+  type: string;
+  detail: string;
+  usage: number;
+}
+
+export interface TipDataType {
+  title: string;
+  content: string[];
 }
