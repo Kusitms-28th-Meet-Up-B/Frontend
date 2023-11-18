@@ -9,9 +9,11 @@ const ProgramCard = ({
 }) => {
   return (
     <Container>
-      {programList.map(program => (
-        <ProgramCardItem key={program.id} program={program} />
-      ))}
+      {programList &&
+        programList.length > 0 &&
+        programList.map(program => (
+          <ProgramCardItem key={program.id} program={program} />
+        ))}
     </Container>
   );
 };
