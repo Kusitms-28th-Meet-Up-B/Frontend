@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import { B1Bold, B3 } from '../../../style/fonts/StyledFonts';
 import LikeButton from '@/components/Button/LikeButton';
 
+import CloseIcon from '@/assets/icons/icon-close.svg';
+
 interface Props {
   id: number;
   photoUrl: string;
@@ -52,7 +54,7 @@ const MapCard: React.FC<Props> = ({
         <LikeButton isLike={isLike} setIsLike={setIsLike} type="program" />
       </BottomContainer>
       <CloseButton onClick={handleClose}>
-        <img src="/src/assets/icons/icon-close.svg" alt="close" />
+        <img src={CloseIcon} alt="close" />
       </CloseButton>
     </Container>
   );
