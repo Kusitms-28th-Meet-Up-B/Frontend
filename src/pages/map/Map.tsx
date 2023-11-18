@@ -9,6 +9,7 @@ import { useQuery } from 'react-query';
 import { fetchMapMarker } from '@/apis/map';
 import Loading from '@/components/Loading/Loading';
 import { handleClickSearchProgram } from '@/functions';
+import { useNavigate } from 'react-router-dom';
 
 interface markerDataType {
   id: number;
@@ -28,6 +29,7 @@ const MapPage = () => {
     cacheTime: 500005,
     staleTime: 500000,
   });
+  const navigate = useNavigate();
 
   const cardRef = useRef(null);
 
@@ -67,7 +69,7 @@ const MapPage = () => {
           setSearchInput={setSearchInput}
           placeHolder="관심있는 여행지가 있으신가요?"
           handleSubmit={() =>
-            handleClickSearchProgram(searchInput, setSearchInput)
+            handleClickSearchProgram(searchInput, setSearchInput, navigate)
           }
         />
       </SearchBarWrapper>
