@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+import Naver from '@/assets/icons/icon-naver.svg';
+import Kakao from '@/assets/icons/icon-kakao.svg';
+import Google from '@/assets/icons/icon-google.svg';
+
 const SocialLogin = () => {
   const REST_API_KEY = import.meta.env.VITE_KAKAO_REST_API_KEY; //REST API KEY
   const REDIRECT_URI = `${window.location.origin}/kakao/login`; //REDIRECT URI
@@ -15,15 +19,15 @@ const SocialLogin = () => {
     <SocialLoginContainer>
       {/* 네이버 로그인 */}
       <SocialLoginButton>
-        <img src="/src/assets/icons/icon-naver.svg" alt="naver" />
+        <img src={Naver} alt="naver" />
       </SocialLoginButton>
       {/* 카카오 로그인 */}
       <SocialLoginButton onClick={handleKakaoLogin}>
-        <img src="/src/assets/icons/icon-kakao.svg" alt="kakao" />
+        <img src={Kakao} alt="kakao" />
       </SocialLoginButton>
       {/* 구글 로그인 */}
       <SocialLoginButton>
-        <img src="/src/assets/icons/icon-google.svg" alt="google" />
+        <img src={Google} alt="google" />
       </SocialLoginButton>
     </SocialLoginContainer>
   );
