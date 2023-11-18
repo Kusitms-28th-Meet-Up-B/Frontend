@@ -46,7 +46,7 @@ const MapPage = () => {
 
   const handleClickSearch = () => {
     // 검색 후 페이지 이동
-    navigate(`/search?keywork=${searchInput}`);
+    navigate(`/search?keyword=${searchInput}`);
     setSearchInput('');
   };
 
