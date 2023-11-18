@@ -58,10 +58,46 @@ export interface ButtonStyleType {
   $buttonColor: string;
   $buttonWidth: string;
   $buttonHeight: string;
+  $hoverTextColor?: string;
+}
+
+/** Register(공고 등록) 관련 타입 */
+export interface ProgramRegisterInfoType {
+  [index: string]: string;
+  programName: string;
+  location: string;
+  programType: string;
+  programDetailType: string;
+  recruitStartDate: string;
+  recruitEndDate: string;
+  activeStartDate: string;
+  activeEndDate: string;
+  contact: string;
+  contactPhone: string;
+  link: string;
+  hashtag: string;
+  body: string;
+}
+
+export interface ProgramRegisterFieldType {
+  [key: string]: {
+    [key: string]: string;
+  };
+}
+
+export interface InputType {
+  [key: string]: string | null;
+}
+
+export interface SignUpProps {
+  inputData: InputType;
+  setInputData: React.Dispatch<React.SetStateAction<InputType>>;
+  profile: File | null;
+  setProfile: React.Dispatch<React.SetStateAction<File | null>>;
 }
 
 /* 포스팅 상세 관련 타입 */
-export interface PostingType {
+export interface PostingDetailType {
   type: string;
   title: string;
   nickName: string;
@@ -81,4 +117,18 @@ export interface PostingDataType {
   hashTags: string[];
   registeredDate: string;
   attatchment: string;
+}
+
+export interface MileageHistoryType {
+  id: number;
+  date: string;
+  time: string;
+  type: string;
+  detail: string;
+  usage: number;
+}
+
+export interface TipDataType {
+  title: string;
+  content: string[];
 }
