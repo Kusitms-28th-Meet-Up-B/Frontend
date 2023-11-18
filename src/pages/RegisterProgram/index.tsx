@@ -31,10 +31,9 @@ const RegisterProgram = () => {
      *   임시저장한 글 삭제하는 API 호출
      * }
      */
-
-    if (window.confirm(ALERT_MESSAGE.draft)) {
+    /* if (window.confirm(ALERT_MESSAGE.draft)) {
       // TODO: 임시 저장 API 연결
-    }
+    } */
   }, []);
 
   // TODO: 임시 저장 글이 있는지 확인
