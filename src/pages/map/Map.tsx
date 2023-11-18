@@ -8,7 +8,7 @@ import useOnClickOutside from '@/hooks/useOnClickOutside';
 import { useQuery } from 'react-query';
 import { fetchMapMarker } from '@/apis/map';
 import Loading from '@/components/Loading/Loading';
-import { useNavigate } from 'react-router-dom';
+import { handleClickSearchProgram } from '@/functions';
 
 interface markerDataType {
   id: number;
@@ -28,7 +28,6 @@ const MapPage = () => {
     cacheTime: 500005,
     staleTime: 500000,
   });
-  const navigate = useNavigate();
 
   const cardRef = useRef(null);
 
@@ -43,12 +42,6 @@ const MapPage = () => {
       document.body.style.overflow = 'auto';
     };
   }, []);
-
-  const handleClickSearch = () => {
-    // 검색 후 페이지 이동
-    navigate(`/search?keyword=${searchInput}`);
-    setSearchInput('');
-  };
 
   if (isLoading) return <Loading />;
 
@@ -73,7 +66,9 @@ const MapPage = () => {
           searchInput={searchInput}
           setSearchInput={setSearchInput}
           placeHolder="관심있는 여행지가 있으신가요?"
-          handleSubmit={handleClickSearch}
+          handleSubmit={() =>
+            handleClickSearchProgram(searchInput, setSearchInput)
+          }
         />
       </SearchBarWrapper>
 
