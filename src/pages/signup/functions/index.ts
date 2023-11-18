@@ -7,6 +7,8 @@ import {
 import { InputType } from '@/types';
 
 export const CheckDuplicate = (keyName: string, value: string): boolean => {
+  keyName;
+  value;
   try {
     // 서버에 중복 검사 요청
     // 중복이면 true, 아니면 false
