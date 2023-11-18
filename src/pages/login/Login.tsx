@@ -1,9 +1,12 @@
-import { B2Bold, B3, H1 } from '@/style/fonts/StyledFonts';
 import { useState } from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+
+import Axios from '@/apis';
+import { B2Bold, B3, H1 } from '@/style/fonts/StyledFonts';
 import SocialLogin from './SocialLogin';
 import LoginNavLink from './LoginNavLink';
-import Axios from '@/apis';
+import { onLoginSuccess } from './functions';
 
 interface UserInputType {
   id: string;
@@ -16,14 +19,15 @@ const Login = () => {
     password: '',
   });
   const [isError, setIsError] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
-      const res = await Axios.post('/auth/login', {
-        loginId: userInput.id,
-        loginPw: userInput.password,
+      const res = await Axios.post('/auth/login', null, {
+        params: { loginId: userInput.id, loginPassword: userInput.password },
       });
-      console.log(res);
+      onLoginSuccess(res);
+      navigate('/');
     } catch (e) {
       // 비밀번호 불일치시 메시지
       setIsError(true);
