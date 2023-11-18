@@ -1,4 +1,4 @@
-import { FilterInputType, FilterListType, Value } from '@/types';
+import { FilterInputType, FilterListType } from '@/types';
 import { useState, useEffect, useRef } from 'react';
 import { DETAILED_CATEGORY_LIST } from '@/constants/Search';
 import FilterButtonItem from './FilterButtonItem';
@@ -27,7 +27,7 @@ const FilterButtonList = ({
   );
   const filterRef = useRef<HTMLDivElement>(null);
 
-  const [date, setDate] = useState<Value>([new Date(), new Date()]);
+  const [date, setDate] = useState<[Date, Date]>([new Date(), new Date()]);
 
   useEffect(() => {
     filterInput[filterItem.enTitle] &&
@@ -88,7 +88,7 @@ const FilterButtonList = ({
     };
   }, [isOpenFilterItem]);
 
-  const handleCalendarChange = (value: Value) => {
+  const handleCalendarChange = (value: [Date, Date]) => {
     if (value) {
       const fieldDate = filterItem.enTitle.includes('recruit')
         ? ['recruitStartDate', 'recruitEndDate']

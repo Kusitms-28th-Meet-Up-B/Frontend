@@ -1,14 +1,13 @@
 import CalendarIcon from '@/assets/icons/calendar_icon.svg';
 import { CustomPickCalendar } from '@/components/Calendar/CustomCalendar';
-import { Value } from '@/types';
 import styled from 'styled-components';
 import { useState, useRef, useEffect } from 'react';
 
 interface DefaultInputProps {
   placeholder: string;
   value: string;
-  date: Value;
-  handleCalendarChange: (value: Value) => void;
+  date: Date;
+  handleCalendarChange: (value: Date) => void;
 }
 
 const DateInput = ({

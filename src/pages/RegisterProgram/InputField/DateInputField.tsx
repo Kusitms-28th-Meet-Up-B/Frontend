@@ -22,8 +22,8 @@ const DateInputField = ({
   setProgramContent,
   isPossibleSubmit,
 }: DateInputProps) => {
-  const [startDate, setStartDate] = useState<Value>([new Date(), new Date()]);
-  const [endDate, setEndDate] = useState<Value>([new Date(), new Date()]);
+  const [startDate, setStartDate] = useState<Date>(new Date());
+  const [endDate, setEndDate] = useState<Date>(new Date());
 
   const handleStartCalenderChange = (value: Value) => {
     const dateValue = value as Date;

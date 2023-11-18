@@ -2,11 +2,16 @@ import Calendar from 'react-calendar';
 import styled from 'styled-components';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment';
-import { Value } from '@/types';
 
 interface CustomRangeCalendarProps {
-  date: Value;
-  handleCalendarChange: (value: Value) => void;
+  date: [Date, Date];
+  handleCalendarChange: (value: [Date, Date]) => void;
+  setIsOpen?: (isOpen: boolean) => void;
+}
+
+interface CustomPickCalendarProps {
+  date: Date;
+  handleCalendarChange: (value: Date) => void;
   setIsOpen?: (isOpen: boolean) => void;
 }
 
@@ -20,9 +25,10 @@ export const CustomRangeCalendar = ({
         <Calendar
           defaultValue={date}
           onChange={value => {
-            handleCalendarChange(value);
+            const dateValue = value as [Date, Date];
+            handleCalendarChange(dateValue);
           }}
-          formatDay={(locale, date) => moment(date).format('D')}
+          formatDay={(_, date) => moment(date).format('D')}
           prevLabel={'◀'}
           prev2Label={null}
           nextLabel={'▶'}
@@ -40,19 +46,20 @@ export const CustomPickCalendar = ({
   date,
   handleCalendarChange,
   setIsOpen,
-}: CustomRangeCalendarProps) => {
+}: CustomPickCalendarProps) => {
   return (
     <Container $position={true}>
       {
         <Calendar
           value={date}
           onChange={value => {
-            handleCalendarChange(value);
+            const dateValue = value as Date;
+            handleCalendarChange(dateValue);
             setTimeout(() => {
               setIsOpen && setIsOpen(false);
             }, 150);
           }}
-          formatDay={(locale, date) => moment(date).format('D')}
+          formatDay={(_, date) => moment(date).format('D')}
           prevLabel={'◀'}
           prev2Label={null}
           nextLabel={'▶'}
