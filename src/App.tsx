@@ -51,7 +51,6 @@ const route = createBrowserRouter([
         path: 'detailProgram/:_programName/:_programId',
         element: <DetailProgram />,
       },
-      { path: 'register', element: <RegisterProgram /> },
       {
         path: 'signup',
         element: <SignUp />,
@@ -81,6 +80,11 @@ const route = createBrowserRouter([
       {
         path: 'mileage',
         element: <Mileage />,
+      },
+      {
+        path: 'admin',
+        element: <Outlet />,
+        children: [{ path: 'register', element: <RegisterProgram /> }],
       },
     ],
   },
