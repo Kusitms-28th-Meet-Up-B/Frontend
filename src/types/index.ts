@@ -132,3 +132,12 @@ export interface TipDataType {
   title: string;
   content: string[];
 }
+
+/** 갈래 소개 관련 타입 */
+export interface GallaeIntroduction {
+  [key: string]: {
+    title: string;
+    subTitle: string;
+    content: string[];
+  };
+}
