@@ -1,17 +1,18 @@
 import { CommonInner } from '@/style/common';
 import MakerImage from '@/assets/about/maker.png';
 import styled from 'styled-components';
+import { MAKER } from '@/constants/About';
 
 const Maker = () => {
   return (
     <CommonInner>
       <Container>
         <TitleContainer>
-          <Title>갈래와 함께하는 사람들</Title>
+          <Title>{MAKER.title}</Title>
           <Description>
             <div className="description">
-              <span className="highlight">여행에 진심인 8명</span>
-              <span>이 한 팀에 모였습니다.</span>
+              <span className="highlight">{MAKER.highlight}</span>
+              <span>{MAKER.content}</span>
             </div>
             <Line />
           </Description>
