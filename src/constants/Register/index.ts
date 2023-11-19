@@ -103,6 +103,7 @@ export const ALERT_MESSAGE = {
   cancel: '작성을 취소하시겠습니까?\n저장하지 않은 내용은 사라집니다.',
   register: '공고를 등록하시겠습니까?',
   draft: '임시 저장하시겠습니까?',
+  getDraft: '기존에 작성하던 공고를 불러오시겠습니까?',
 };
 
 const EXAMPLE_HEADER =

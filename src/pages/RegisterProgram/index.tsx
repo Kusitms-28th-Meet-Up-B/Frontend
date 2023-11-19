@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import { ALERT_MESSAGE, DEFAULT_REQUIRED_CONTENT } from '@/constants/Register';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { ManagerAPI, useFindTempProgram } from '@/apis/manager';
 
 const RegisterProgram = () => {
   const [photoFile, setPhotoFile] = useState('');
@@ -19,24 +20,27 @@ const RegisterProgram = () => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const navigate = useNavigate();
   const formData = new FormData();
+  const { data: tempData } = useFindTempProgram();
 
   useEffect(() => {
-    /**
-     * TODO: 페이지 시작하자마자 임시 저장한 글이 있는지 확인
-     *
-     * 임시저장한 글이 있을 때
-     * if (window.confirm('기존에 작성하던 공고를 불러오시겠습니까?')) {
-     *   photoFile, photoName, programContent 내용 업데이트
-     * } else {
-     *   임시저장한 글 삭제하는 API 호출
-     * }
-     */
-    /* if (window.confirm(ALERT_MESSAGE.draft)) {
-      // TODO: 임시 저장 API 연결
-    } */
-  }, []);
+    let isTemp = false;
 
-  // TODO: 임시 저장 글이 있는지 확인
+    if (tempData !== undefined) {
+      Object.keys(tempData).map(data => {
+        if (tempData[data] !== null) isTemp = true;
+      });
+    }
+
+    if (isTemp) {
+      if (window.confirm(ALERT_MESSAGE.getDraft)) {
+        setPhotoFile(tempData.photoUrl);
+        setPhotoName(tempData.photoUrl);
+        setProgramContent(tempData);
+      } else {
+        ManagerAPI.deleteTempProgram();
+      }
+    }
+  }, [tempData]);
 
   const handleChangeUploadImage = (
     event: React.ChangeEvent<HTMLInputElement>,
