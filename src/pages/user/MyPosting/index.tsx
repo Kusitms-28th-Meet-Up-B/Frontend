@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import PostingList from '../../board/PostingList';
+// import PostingList from '../../board/PostingList';
 import { useState } from 'react';
 import PageBar from '@/components/PageBar/PageBar';
 

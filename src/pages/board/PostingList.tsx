@@ -28,9 +28,7 @@ const PostingList: React.FC<Props> = ({ postingList }) => {
       </TopBarContainer>
 
       <PostingContainer>
-        {postingList.map(data => (
-          <Posting {...data} key={data.id} />
-        ))}
+        {postingList?.map(data => <Posting {...data} key={data.id} />)}
       </PostingContainer>
 
       <WritingButton

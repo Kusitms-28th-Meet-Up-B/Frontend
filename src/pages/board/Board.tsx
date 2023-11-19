@@ -35,7 +35,7 @@ const Board: React.FC<BoardProps> = ({ title, description, imageSrc }) => {
   const location = useLocation();
 
   const { isLoading, data } = useQuery(
-    [`${boardType}`, page],
+    [`${boardType}`, filter, page],
     fetchBoardData(boardType, filter, page, 10),
     {
       cacheTime: 500005,
