@@ -56,6 +56,7 @@ const Board: React.FC<BoardProps> = ({ title, description, imageSrc }) => {
   if (isLoading) return <Loading />;
 
   const postingData = data?.data?.result?.reviews;
+  const maxPage = data?.data?.result?.totalSize;
 
   return (
     <Container>
@@ -74,7 +75,7 @@ const Board: React.FC<BoardProps> = ({ title, description, imageSrc }) => {
         />
       </SearchBarWrapper>
       <PostingList postingList={postingData} />
-      <PageBar page={page} setPage={setPage} maxPage={20} />
+      <PageBar page={page} setPage={setPage} maxPage={maxPage} />
     </Container>
   );
 };
