@@ -21,21 +21,21 @@ const LOCATION_LIST = [
 ];
 
 export const DEFAULT_WISHLIST_FILTER_LIST: WishlistFilterType = {
-  location: '',
-  program: '',
-  progress: '',
+  region: '',
+  programType: '',
+  programStatus: '',
 };
 
 export const WISHLIST_FILTER_LIST: {
   [key: string]: { title: string; itemList: string[]; buttonWidth: number };
 } = {
-  location: { title: '지역', itemList: LOCATION_LIST, buttonWidth: 164 },
-  program: {
+  region: { title: '지역', itemList: LOCATION_LIST, buttonWidth: 164 },
+  programType: {
     title: '여행 프로그램',
-    itemList: ['여행지원사업', '여행 공모전', '여행 대외활동'],
+    itemList: ['여행 지원사업', '여행 공모전', '여행 대외활동'],
     buttonWidth: 184,
   },
-  progress: {
+  programStatus: {
     title: '진행 상태',
     itemList: ['모집 중', '모집 마감'],
     buttonWidth: 184,

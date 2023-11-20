@@ -153,7 +153,7 @@ export interface UserInfoType {
 /** 갈래말래 관련 type */
 export interface WishlistFilterType {
   [key: string]: string;
-  location: string;
-  program: string;
-  progress: string;
+  region: string;
+  programType: string;
+  programStatus: string;
 }

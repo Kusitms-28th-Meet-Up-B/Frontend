@@ -54,6 +54,7 @@ const FilterItem = ({
           filterItemTitle={filterItemTitle}
           buttonWidth={filterItem.buttonWidth}
           handleChangeFilterInput={handleChangeFilterInput}
+          setIsOpenDropdown={setIsOpenDropdown}
         />
       )}
     </div>

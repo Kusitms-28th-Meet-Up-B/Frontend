@@ -7,6 +7,7 @@ interface FilterDropdownProps {
   dropdownList: string[];
   buttonWidth: number;
   handleChangeFilterInput: (itemTitle: string, itemInput: string) => void;
+  setIsOpenDropdown: (isOpen: boolean) => void;
 }
 
 const FilterDropdown = ({
@@ -15,6 +16,7 @@ const FilterDropdown = ({
   dropdownList,
   buttonWidth,
   handleChangeFilterInput,
+  setIsOpenDropdown,
 }: FilterDropdownProps) => {
   return (
     <Container $buttonWidth={buttonWidth}>
@@ -24,6 +26,7 @@ const FilterDropdown = ({
           className="filter-item"
           onClick={() => {
             handleChangeFilterInput(filterItemTitle, item);
+            setIsOpenDropdown(false);
           }}
         >
           <B3
