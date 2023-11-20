@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -23,6 +23,13 @@ const PostingBox = () => {
     fetchPostingDetail(postingType, postingId),
   );
 
+  useEffect(() => {
+    const likeCheck = data?.data?.result?.likeCheck;
+    if (likeCheck) {
+      setIsLike(likeCheck);
+    }
+  }, [data?.data?.result?.likeCheck]);
+
   if (isLoading) return <Loading />;
 
   const postingData: PostingDataType = data?.data?.result;
@@ -36,7 +43,6 @@ const PostingBox = () => {
           fileName={postingData.fileName as string}
         />
       )}
-      {/* Todo: 서버에서 이전 다음 글의 id 받아오기 */}
       <PostingNav
         prevId={postingData?.previousId || postingId}
         nextId={postingData?.nextId || postingId}
