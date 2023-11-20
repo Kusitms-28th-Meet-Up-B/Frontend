@@ -89,34 +89,44 @@ export interface InputType {
   [key: string]: string | null;
 }
 
+export interface DupCheckType {
+  loginId: boolean;
+  nickName: boolean;
+}
+
 export interface SignUpProps {
   inputData: InputType;
   setInputData: React.Dispatch<React.SetStateAction<InputType>>;
   profile: File | null;
   setProfile: React.Dispatch<React.SetStateAction<File | null>>;
+  setIsDuplicated: React.Dispatch<React.SetStateAction<DupCheckType>>;
 }
 
 /* 포스팅 상세 관련 타입 */
 export interface PostingDetailType {
-  type: string;
+  id: number;
+  category: string;
   title: string;
-  nickName: string;
-  content: string;
-  hashTags: string[];
-  registeredDate: string;
-  attatchment: string;
+  writer: string;
+  body: string;
+  hashtag: string;
+  createdDate: string;
+  fileName: string | null;
+  fileUrl: string | null;
   isLike: boolean;
   setIsLike: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface PostingDataType {
-  type: string;
+  id: number;
+  category: string;
   title: string;
-  nickName: string;
-  content: string;
-  hashTags: string[];
-  registeredDate: string;
-  attatchment: string;
+  writer: string;
+  body: string;
+  hashtag: string;
+  createdDate: string;
+  fileName: string | null;
+  fileUrl: string | null;
 }
 
 export interface MileageHistoryType {

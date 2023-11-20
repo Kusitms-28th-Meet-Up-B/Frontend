@@ -4,16 +4,16 @@ import styled from 'styled-components';
 import UserIcon from '@/assets/icons/user-icon.svg';
 import LikeButton from '@/components/Button/LikeButton';
 
-import { B1, B1Bold, B3, B3Bold, H2 } from '@/style/fonts/StyledFonts';
+import { B1Bold, B3, B3Bold, H2 } from '@/style/fonts/StyledFonts';
 import { PostingDetailType } from '@/types';
 
 const Posting: React.FC<PostingDetailType> = ({
-  type,
+  category,
   title,
-  nickName,
-  content,
-  hashTags,
-  registeredDate,
+  writer,
+  body,
+  hashtag,
+  createdDate,
   isLike,
   setIsLike,
 }) => {
@@ -21,11 +21,11 @@ const Posting: React.FC<PostingDetailType> = ({
     <TextContainer>
       <PostingInfoContainer>
         <LeftBox>
-          <B3Bold $fontColor="#FF7D2C">{type}</B3Bold>
+          <B3Bold $fontColor="#FF7D2C">{category}</B3Bold>
           <H2 $fontColor="#100f0f">{title}</H2>
           <UserInfo>
             <img src={UserIcon} />
-            <B3 $fontColor="#15191D">{nickName}</B3>
+            <B3 $fontColor="#15191D">{writer}</B3>
           </UserInfo>
         </LeftBox>
         <LikeButtonWrapper>
@@ -34,14 +34,14 @@ const Posting: React.FC<PostingDetailType> = ({
       </PostingInfoContainer>
       <Seperator />
       <MainContent>
-        <B1 $fontColor="#15191D">{content}</B1>
+        <div dangerouslySetInnerHTML={{ __html: body }}></div>
         <TagContainer>
-          {hashTags.map(tag => (
-            <B1Bold $fontColor="#AEB3B8">{`#${tag}`}</B1Bold>
-          ))}
+          {hashtag
+            ?.split(',')
+            ?.map(tag => <B1Bold $fontColor="#AEB3B8">{`${tag}`}</B1Bold>)}
         </TagContainer>
         <RegisterData>
-          <B3Bold $fontColor="#15191D">{`등록일 : ${registeredDate}`}</B3Bold>
+          <B3Bold $fontColor="#15191D">{`등록일 : ${createdDate}`}</B3Bold>
         </RegisterData>
       </MainContent>
     </TextContainer>

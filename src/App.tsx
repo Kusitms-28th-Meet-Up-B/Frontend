@@ -39,13 +39,49 @@ const route = createBrowserRouter([
       { path: 'search', element: <Search /> },
       {
         path: 'review',
-        element: (
-          <Board
-            title="지원후기"
-            description="여행 지원사업/대외활동/공모전의 지원후기를 볼 수 있는 페이지입니다."
-            imageSrc=""
-          />
-        ),
+        children: [
+          {
+            index: true,
+            element: (
+              <Board
+                title="지원후기"
+                description="여행 지원사업/대외활동/공모전의 지원후기를 볼 수 있는 페이지입니다."
+                imageSrc=""
+              />
+            ),
+          },
+          {
+            path: ':id',
+            element: <DetailPosting title="지원 후기" />,
+          },
+          {
+            path: 'write',
+            element: <Write />,
+          },
+        ],
+      },
+      {
+        path: 'archive',
+        children: [
+          {
+            index: true,
+            element: (
+              <Board
+                title="자료실"
+                description="지원서 예시자료, 보고서 예시자료, 전문가의 꿀팁 등을 볼 수 있는 페이지입니다."
+                imageSrc=""
+              />
+            ),
+          },
+          {
+            path: ':id',
+            element: <DetailPosting title="자료실" />,
+          },
+          {
+            path: 'write',
+            element: <Write />,
+          },
+        ],
       },
       {
         path: 'detailProgram/:_programName/:_programId',
@@ -56,14 +92,7 @@ const route = createBrowserRouter([
         path: 'signup',
         element: <SignUp />,
       },
-      {
-        path: 'review/:id',
-        element: <DetailPosting title="지원 후기" />,
-      },
-      {
-        path: 'write',
-        element: <Write />,
-      },
+
       {
         path: 'detailProgram/:_programName/:_programId',
         element: <DetailProgram />,
