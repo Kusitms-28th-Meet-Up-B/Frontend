@@ -2,10 +2,13 @@
 export interface ProgramMainInfoType {
   id: number;
   hashTag: string[];
-  photoUrl: string;
+  photoUrl: string | null;
   programName: string;
   remainDay: string;
   like: number;
+  latitude: number | null;
+  longitude: number | null;
+  userLikeCheck: boolean;
 }
 
 export interface PostingType {

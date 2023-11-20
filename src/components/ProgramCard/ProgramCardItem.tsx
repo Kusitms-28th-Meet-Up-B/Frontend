@@ -1,20 +1,16 @@
 import styled from 'styled-components';
 import FavoriteIcon from '@/assets/icons/favorite_icon.svg';
-import FavoriteButtonIcon from '@/assets/icons/favorite_button_icon.svg';
-import UnfavoriteButtonIcon from '@/assets/icons/unfavorite_button_icon.svg';
 import { B1Bold, B3, B3Bold, H3 } from '@/style/fonts/StyledFonts';
 import { ProgramMainInfoType } from '@/types';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import LikeButton from '../Button/LikeButton';
 
 const ProgramCardItem = ({ program }: { program: ProgramMainInfoType }) => {
-  // 프로그램 좋아요 했는지 여부 (임시)
-  // TODO: favorite/undfavorite 버튼 클릭할 때마다 서버와 통신?
-  const [favorite, setFavorite] = useState<boolean>(true);
   const navigate = useNavigate();
 
   const handleFavorite = () => {
-    setFavorite(!favorite);
+    console.log('클릭');
+    // TODO: 좋아요 및 좋아요 취소 API 연결
   };
 
   return (
@@ -23,22 +19,23 @@ const ProgramCardItem = ({ program }: { program: ProgramMainInfoType }) => {
         navigate(`/detailProgram/${program.programName}/${program.id}`)
       }
     >
-      {!favorite ? (
-        <img
-          className="favorite-button"
-          alt="favorite-button-icon"
-          src={FavoriteButtonIcon}
-          onClick={handleFavorite}
+      <LikeButtonWrapper>
+        <LikeButton
+          isLike={program.userLikeCheck}
+          setIsLike={handleFavorite}
+          type="program"
         />
+      </LikeButtonWrapper>
+      {program.photoUrl === null ? (
+        <div className="default-poster">
+          <div className="text">
+            <span>이미지가 없어요!</span>
+            <span>클릭하여 상세내용을 확인해보세요!</span>
+          </div>
+        </div>
       ) : (
-        <img
-          className="favorite-button"
-          alt="unfavorite-button-icon"
-          src={UnfavoriteButtonIcon}
-          onClick={handleFavorite}
-        />
+        <img className="poster" alt="program-poster" src={program.photoUrl} />
       )}
-      <img className="poster" alt="program-poster" src={program.photoUrl} />
       <ProgramInfoContainer>
         <B1Bold $fontColor="var(--color_sub3)">{program.remainDay}</B1Bold>
         <H3 $fontColor="var(--color_gray900)">{program.programName}</H3>
@@ -64,18 +61,38 @@ const Container = styled.div`
   position: relative;
   cursor: pointer;
 
-  .favorite-button {
-    position: absolute;
-    right: 17px;
-    top: 18px;
-    cursor: pointer;
-  }
-
   .poster {
     width: 323px;
     height: 400px;
     border-radius: 20px;
     //object-fit: cover;
+  }
+
+  .default-poster {
+    width: 323px;
+    height: 400px;
+    border-radius: 20px;
+    background-color: #d3d3d3;
+
+    .text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      position: absolute;
+      top: 254px;
+      left: 50%;
+      transform: translate(-50%, 0);
+      width: max-content;
+    }
+
+    span {
+      color: var(--grey-600, #666b6f);
+      font-family: SUIT-Medium;
+      font-size: 16px;
+      font-style: normal;
+      line-height: 140%; /* 22.4px */
+    }
   }
 `;
 
@@ -103,6 +120,12 @@ const ProgramInfoContainer = styled.div`
       height: 16px;
     }
   }
+`;
+
+const LikeButtonWrapper = styled.div`
+  position: absolute;
+  right: 17px;
+  top: 18px;
 `;
 
 export default ProgramCardItem;
