@@ -2,6 +2,7 @@ import MainButton from '@/components/Button/MainButton';
 import { B2Bold } from '@/style/fonts/StyledFonts';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import DEFAULT_PROFILE from '@/assets/image/default-profile-image.png';
 
 interface AdminProfileProps {
   image: string;
@@ -16,7 +17,10 @@ const AdminProfile = (profile: AdminProfileProps) => {
     <Container>
       <ProfileContainer>
         <ProfileImage>
-          <img alt="profil-image" src={profile.image} />
+          <img
+            alt="profil-image"
+            src={profile.image !== '' ? profile.image : DEFAULT_PROFILE}
+          />
         </ProfileImage>
         <Profile>
           <div>{profile.organization}</div>

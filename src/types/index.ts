@@ -147,5 +147,6 @@ export interface UserInfoType {
   nickName: string;
   email: string;
   name: string;
+  imageUrl: string;
   phoneNumber: string;
 }

@@ -25,6 +25,7 @@ const Header = () => {
       phoneNumber: '',
       name: '',
       nickName: '',
+      imageUrl: '',
     });
     setTimeout(() => {
       setIsLogined(false);

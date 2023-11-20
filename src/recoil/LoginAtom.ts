@@ -15,6 +15,7 @@ export const UserAtom = atom<UserInfoType>({
     nickName: '',
     email: '',
     name: '',
+    imageUrl: '',
     phoneNumber: '',
   },
   effects_UNSTABLE: [persistAtom],

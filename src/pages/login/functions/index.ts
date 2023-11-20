@@ -47,6 +47,7 @@ export const onLoginSuccess = (
       email,
       name,
       phoneNumber,
+      imageUrl,
     } = res?.data?.result;
 
     const currentTime = new Date();
@@ -69,6 +70,7 @@ export const onLoginSuccess = (
         email,
         name,
         phoneNumber,
+        imageUrl,
       });
     }
   }

@@ -1,13 +1,8 @@
 import styled from 'styled-components';
-import TEMPIMAGE from '@/assets/temp/한국관광공사_Symbol_jpg.jpg';
 import AdminProfile from './AdminProfile';
 import ProgramBox from './ProgramBox';
-
-const TEMP_ADMIN_PROFILE = {
-  image: TEMPIMAGE,
-  organization: '체크관광공사',
-  email: 'check@travel.com',
-};
+import { useRecoilValue } from 'recoil';
+import { UserAtom } from '@/recoil/LoginAtom';
 
 const DATA = [
   {
@@ -53,14 +48,16 @@ const DATA = [
 ];
 
 const DashBoard = () => {
+  const userData = useRecoilValue(UserAtom);
+
   return (
     <Container>
       <Title>공고 목록</Title>
       <InnerContainer>
         <AdminProfile
-          image={TEMP_ADMIN_PROFILE.image}
-          organization={TEMP_ADMIN_PROFILE.organization}
-          email={TEMP_ADMIN_PROFILE.email}
+          image={userData.imageUrl === null ? '' : userData.imageUrl}
+          organization={userData.nickName}
+          email={userData.email}
         />
         <ProgramContainer>
           <ProgramBox
