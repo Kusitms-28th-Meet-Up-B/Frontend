@@ -99,19 +99,26 @@ const RegisterProgram = () => {
     result = result && programContent.programName.length <= 50;
     result = result && photoName !== null;
     setIsPossibleSubmit(result);
-    console.log(result);
-    console.log(programContent);
+
+    const tagString = programContent['hashtag']
+      .replace(/#/g, '')
+      .replace(/ /g, '');
 
     if (result) {
       if (window.confirm(ALERT_MESSAGE.register)) {
         photoName && formData.append('photo', photoName);
 
         Object.keys(programContent).map(key => {
-          if (programContent[key] !== '')
+          if (programContent[key] !== '' && key === 'hashtag') {
+            return formData.append(key, tagString);
+          }
+          if (programContent[key] !== '' && key !== 'hashtag')
             return formData.append(key, programContent[key]);
         });
 
-        ManagerAPI.postSaveProgram(formData).then(data => console.log(data));
+        ManagerAPI.postSaveProgram(formData).then(data =>
+          navigate(`/detailProgram/${programContent['programName']}/${data}`),
+        );
       }
     } else {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -129,9 +136,7 @@ const RegisterProgram = () => {
 
       Object.keys(programContent).map(key => console.log(formData.get(key)));
 
-      ManagerAPI.postTempSaveProgram(formData)
-        .then(data => console.log(data))
-        .catch(err => console.log(err));
+      ManagerAPI.postTempSaveProgram(formData);
     }
   };
 
