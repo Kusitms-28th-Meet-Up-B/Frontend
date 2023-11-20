@@ -16,11 +16,9 @@ interface BoardProps {
   imageSrc: string;
 }
 
-const filterList: string[] = [
-  '전체',
-  '여행 지원사업 후기',
-  '여행 대외활동 후기',
-  '여행 공모전 후기',
+const filterList: string[][] = [
+  ['전체', '여행 지원사업 후기', '여행 대외활동 후기', '여행 공모전 후기'],
+  ['전체', '지원서 예시자료', '보고서 예시자료'],
 ];
 
 const Board: React.FC<BoardProps> = ({ title, description, imageSrc }) => {
@@ -29,8 +27,8 @@ const Board: React.FC<BoardProps> = ({ title, description, imageSrc }) => {
   const [searchInput, setSearchInput] = useState<string>('');
 
   const boardType: string = window.location.pathname.includes('review')
-    ? 'review'
-    : 'archive';
+    ? 'reviews'
+    : 'archives';
 
   const location = useLocation();
 
@@ -55,7 +53,7 @@ const Board: React.FC<BoardProps> = ({ title, description, imageSrc }) => {
 
   if (isLoading) return <Loading />;
 
-  const postingData = data?.data?.result?.reviews;
+  const postingData = data?.data?.result[boardType];
   const maxPage = data?.data?.result?.totalSize;
 
   return (
@@ -65,7 +63,11 @@ const Board: React.FC<BoardProps> = ({ title, description, imageSrc }) => {
         description={description}
         imageSrc={imageSrc}
       />
-      <Filter filter={filter} setFilter={setFilter} filterList={filterList} />
+      <Filter
+        filter={filter}
+        setFilter={setFilter}
+        filterList={filterList[boardType === 'reviews' ? 0 : 1]}
+      />
       <SearchBarWrapper>
         <SearchBar
           placeHolder={'검색어를 입력해 주세요'}
