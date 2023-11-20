@@ -1,8 +1,8 @@
 import Axios from '..';
 
 export const fetchPostingDetail = (postingType: string, id: number) => () =>
-  Axios.get(`/${postingType}/${id}/detail`, {
+  Axios.get(`/${postingType}/detail`, {
     params: {
-      id,
+      [`${postingType === 'reviews' ? 'review' : 'archive'}Id`]: id,
     },
   });
