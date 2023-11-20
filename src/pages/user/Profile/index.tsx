@@ -1,22 +1,16 @@
 import { CommonInner } from '@/style/common';
 import styled from 'styled-components';
 import { USER_INFO_TAG } from '@/constants/User/profile';
-import { UserInfoType } from '@/types';
 import { B1, B1Bold, B3Bold } from '@/style/fonts/StyledFonts';
 import MainButton from '@/components/Button/MainButton';
 import UserTitle from '@/components/Title/UserTitle';
 import AuthBadge from './AuthBadge';
-
-// 임시 데이터
-const userInfo: UserInfoType = {
-  name: '안재국',
-  nickName: '체크재국',
-  id: 2,
-  phoneNumber: '010-1234-5678',
-  email: 'checkjk@gmail.com',
-};
+import { useRecoilValue } from 'recoil';
+import { UserAtom } from '@/recoil/LoginAtom';
 
 const Profile = () => {
+  const userInfo = useRecoilValue(UserAtom);
+
   return (
     <CommonInner>
       <Container>

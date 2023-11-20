@@ -145,8 +145,10 @@ export interface GallaeIntroduction {
 export interface UserInfoType {
   [key: string]: string | number;
   id: number;
+  loginId: string;
   nickName: string;
   email: string;
   name: string;
+  imageUrl: string;
   phoneNumber: string;
 }
