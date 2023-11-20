@@ -9,12 +9,11 @@ export interface ProgramMainInfoType {
 }
 
 export interface PostingType {
-  boardName: string;
+  category: string;
   title: string;
   id: number;
-  nickName: string;
-  registerDate: string;
-  type: string;
+  writer: string;
+  createdDate: string;
 }
 
 export interface ProgramDetailInfoType extends ProgramMainInfoType {
@@ -140,4 +139,13 @@ export interface GallaeIntroduction {
     subTitle: string;
     content: string[];
   };
+}
+
+// 사용자 정보 관련 타입
+export interface UserInfoType {
+  id: number;
+  nickName: string;
+  email: string;
+  name: string;
+  phoneNumber: string;
 }
