@@ -28,9 +28,11 @@ export const ProgramAPI = {
 
 export const useGetProgramDetailInfo = (programId: number) => {
   return useQuery(
-    'getProgramDetailInfo',
+    ['getProgramDetailInfo', programId],
     () => ProgramAPI.getProgramDetailInfo(programId),
     {
+      cacheTime: 500000,
+      staleTime: 500005,
       onSuccess: () => {},
       onError: () => {},
     },
