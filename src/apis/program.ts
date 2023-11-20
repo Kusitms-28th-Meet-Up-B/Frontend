@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query';
 import Axios from '.';
 
-interface Test {
+interface FilterType {
   [key: string]: string | number | undefined;
   programName?: string;
   orderCriteria?: string;
@@ -20,7 +20,7 @@ export const ProgramAPI = {
     const response = await Axios.get(`/programs/program?id=${programId}`);
     return response.data;
   },
-  getSearchProgram: async (apiData: Test | null) => {
+  getSearchProgram: async (apiData: FilterType | null) => {
     const response = await Axios.get(`/programs/filters`, { params: apiData });
     return response.data.result.programs;
   },
@@ -39,7 +39,7 @@ export const useGetProgramDetailInfo = (programId: number) => {
   );
 };
 
-export const useGetSearchProgram = (apiData: Test | null) => {
+export const useGetSearchProgram = (apiData: FilterType | null) => {
   return useQuery(
     ['getSearchProgram', apiData],
     () => ProgramAPI.getSearchProgram(apiData),
