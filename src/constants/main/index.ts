@@ -10,8 +10,8 @@ export const NavData: NavDataType[] = [
   {
     iconSrc: '',
     description: '저렴한 가격으로 떠나는 여행',
-    title: '여행지원사업',
-    link: '/search?keyword=&programType=여행지원사업',
+    title: '여행 지원사업',
+    link: '/search?keyword=&programType=여행 지원사업',
     backgroundColor: '#AD99FF',
   },
   {

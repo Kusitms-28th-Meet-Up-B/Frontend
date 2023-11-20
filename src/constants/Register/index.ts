@@ -134,7 +134,7 @@ export const DETAIL_INFO_PLACEHOLDER =
 export const SUB_CATEGORY_LIST: {
   [key: string]: string[];
 } = {
-  여행지원사업: ['지자체 한달살이', '팸투어', '기타'],
+  '여행 지원사업': ['지자체 한달살이', '팸투어', '기타'],
   '여행 공모전': ['여행코스 기획전', '여행사진 공모전', '기타'],
   '여행 대외활동': ['기자단', '서포터즈', '기타'],
 };

@@ -21,7 +21,7 @@ export const FILTER_LIST: FilterListType[] = [
     enTitle: 'programType',
     buttonSize: 'large',
     calendar: false,
-    items: ['전체', '여행지원사업', '여행 공모전', '여행 대외활동'],
+    items: ['전체', '여행 지원사업', '여행 공모전', '여행 대외활동'],
   },
   {
     title: '세부 카테고리',
@@ -60,7 +60,7 @@ export const DEFAULT_FILTER_LIST: FilterInputType = {
 export const DETAILED_CATEGORY_LIST = [
   { program: '전체', items: ['전체'] },
   {
-    program: '여행지원사업',
+    program: '여행 지원사업',
     items: ['전체', '지자체 한달살이', '팸투어', '기타'],
   },
   {
