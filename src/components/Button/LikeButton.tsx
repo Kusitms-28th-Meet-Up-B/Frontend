@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import LikeIcon from '/src/assets/icons/favorite_button2_icon.svg';
-import UnLikeIcon from '/src/assets/icons/unfavorite_button2_icon.svg';
+import LikeIcon from '@/assets/icons/favorite_button2_icon.svg';
+import UnLikeIcon from '@/assets/icons/unfavorite_button2_icon.svg';
 import { useCallback } from 'react';
 
 interface Props {
@@ -12,8 +12,8 @@ interface Props {
 const LikeButton: React.FC<Props> = ({ isLike, setIsLike, type }) => {
   // Todo: 인자로 id 전달받아서 서버에 찜 목록에 등록하는 API 연결
   const handleClick = useCallback(
-    (event: React.MouseEvent) => {
-      event.stopPropagation();
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
       switch (type) {
         case 'program':
           setIsLike(prev => !prev);
@@ -40,6 +40,7 @@ const LikeButton: React.FC<Props> = ({ isLike, setIsLike, type }) => {
 export default LikeButton;
 
 const Wrapper = styled.div`
+  z-index: 3;
   img {
     width: 100%;
     height: 100%;

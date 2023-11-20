@@ -2,13 +2,14 @@ import { B2Bold, B3Bold } from '@/style/fonts/StyledFonts';
 import styled from 'styled-components';
 import Posting from './components/Posting';
 import { PostingType } from '@/types';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
-  filter: string;
   postingList: PostingType[];
 }
 
-const PostingList: React.FC<Props> = ({ filter, postingList }) => {
+const PostingList: React.FC<Props> = ({ postingList }) => {
+  const navigate = useNavigate();
   return (
     <Container>
       <TopBarContainer>
@@ -27,16 +28,14 @@ const PostingList: React.FC<Props> = ({ filter, postingList }) => {
       </TopBarContainer>
 
       <PostingContainer>
-        {postingList
-          .filter(data => {
-            if (filter === '전체' || data.type === filter) return data;
-          })
-          .map(data => (
-            <Posting {...data} key={data.id} />
-          ))}
+        {postingList?.map(data => <Posting {...data} key={data.id} />)}
       </PostingContainer>
 
-      <WritingButton>
+      <WritingButton
+        onClick={() => {
+          navigate('/write');
+        }}
+      >
         <B3Bold $fontColor="#fff">글쓰기</B3Bold>
       </WritingButton>
     </Container>

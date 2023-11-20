@@ -3,14 +3,20 @@ import Main from './pages/main/Main';
 import Map from './pages/map/Map';
 import { GlobalStyle } from './style/GlobalStyle';
 import Login from './pages/login/Login';
-import KakaoRedir from './pages/login/KakaoRedir';
+import KakaoRedir from './pages/login/redir/KakaoRedir';
 import Layout from './components/Header/Layout';
 import Search from './pages/Search';
 import Board from './pages/board/Board';
 import DetailProgram from './pages/DetailProgram';
+import RegisterProgram from './pages/RegisterProgram';
+import SignUp from './pages/signup';
 import DetailPosting from './pages/DetailPosting';
 import MyPosting from './pages/user/MyPosting';
 import WishList from './pages/user/WishList';
+import Write from './pages/write';
+import Mileage from './pages/mileage';
+import Gallae from './pages/about/Gallae';
+import Maker from './pages/about/Maker';
 
 const route = createBrowserRouter([
   {
@@ -48,9 +54,22 @@ const route = createBrowserRouter([
         path: 'detailProgram/:_programName/:_programId',
         element: <DetailProgram />,
       },
+      { path: 'register', element: <RegisterProgram /> },
+      {
+        path: 'signup',
+        element: <SignUp />,
+      },
       {
         path: 'review/:id',
         element: <DetailPosting title="지원 후기" />,
+      },
+      {
+        path: 'write',
+        element: <Write />,
+      },
+      {
+        path: 'detailProgram/:_programName/:_programId',
+        element: <DetailProgram />,
       },
       {
         path: 'user',
@@ -61,6 +80,21 @@ const route = createBrowserRouter([
             element: <MyPosting />,
           },
           { path: 'wishlist', element: <WishList /> },
+        ],
+      },
+      {
+        path: 'mileage',
+        element: <Mileage />,
+      },
+      {
+        path: 'about',
+        element: <Outlet />,
+        children: [
+          {
+            path: 'gallae',
+            element: <Gallae />,
+          },
+          { path: 'maker', element: <Maker /> },
         ],
       },
     ],
