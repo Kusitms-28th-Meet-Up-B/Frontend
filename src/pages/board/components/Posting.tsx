@@ -10,7 +10,7 @@ const Posting: React.FC<PostingType> = ({
   title,
   id,
   writer,
-  createdDate,
+  createdAt,
 }) => {
   const navigate = useNavigate();
 
@@ -19,11 +19,11 @@ const Posting: React.FC<PostingType> = ({
   };
 
   const truncDate = useCallback(() => {
-    const newDate = new Date(createdDate);
+    const newDate = new Date(createdAt);
     return `${newDate.getFullYear()}-${
       newDate.getMonth() + 1
     }-${newDate.getDate()}`;
-  }, [createdDate]);
+  }, [createdAt]);
 
   return (
     <Container>
