@@ -26,7 +26,8 @@ const Board: React.FC<BoardProps> = ({ title, description, imageSrc }) => {
   const [page, setPage] = useState(1);
   const [searchInput, setSearchInput] = useState<string>('');
 
-  const boardType: string = window.location.pathname.includes('review')
+  const currentPath = window.location.pathname;
+  const boardType: string = currentPath.includes('review')
     ? 'reviews'
     : 'archives';
 

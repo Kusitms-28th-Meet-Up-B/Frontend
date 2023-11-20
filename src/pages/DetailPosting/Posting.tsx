@@ -6,8 +6,12 @@ import LikeButton from '@/components/Button/LikeButton';
 
 import { B1Bold, B3, B3Bold, H2 } from '@/style/fonts/StyledFonts';
 import { PostingDetailType } from '@/types';
+import { useRecoilValue } from 'recoil';
+import { UserAtom } from '@/recoil/LoginAtom';
+import EditDelete from '../write/components/EditDelete';
 
 const Posting: React.FC<PostingDetailType> = ({
+  id,
   category,
   title,
   writer,
@@ -17,6 +21,10 @@ const Posting: React.FC<PostingDetailType> = ({
   isLike,
   setIsLike,
 }) => {
+  const userInfo = useRecoilValue(UserAtom);
+  const currentPath = window.location.pathname;
+  const writeType = currentPath.includes('review') ? 'review' : 'archive';
+
   return (
     <TextContainer>
       <PostingInfoContainer>
@@ -28,9 +36,14 @@ const Posting: React.FC<PostingDetailType> = ({
             <B3 $fontColor="#15191D">{writer}</B3>
           </UserInfo>
         </LeftBox>
-        <LikeButtonWrapper>
-          <LikeButton isLike={isLike} setIsLike={setIsLike} type="posting" />
-        </LikeButtonWrapper>
+        <RightBox>
+          {userInfo.nickName === writer && (
+            <EditDelete writeType={writeType} id={id} />
+          )}
+          <LikeButtonWrapper>
+            <LikeButton isLike={isLike} setIsLike={setIsLike} type="posting" />
+          </LikeButtonWrapper>
+        </RightBox>
       </PostingInfoContainer>
       <Seperator />
       <MainContent>
@@ -55,6 +68,7 @@ const TextContainer = styled.div`
   flex-direction: column;
 
   width: 100%;
+  height: 100%;
   padding: 44px 40px 36px;
   margin-top: 80px;
 
@@ -67,6 +81,7 @@ const PostingInfoContainer = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+  height: 100%;
 `;
 
 const LeftBox = styled.div`
@@ -76,10 +91,18 @@ const LeftBox = styled.div`
   gap: 8px;
 `;
 
+const RightBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: relative;
+`;
+
 const LikeButtonWrapper = styled.div`
   width: 48px;
   height: 48px;
 
+  position: absolute;
+  bottom: 0;
   align-self: flex-end;
 `;
 
