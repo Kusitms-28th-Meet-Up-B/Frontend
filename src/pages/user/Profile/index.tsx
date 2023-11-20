@@ -10,8 +10,8 @@ import AuthBadge from './AuthBadge';
 // 임시 데이터
 const userInfo: UserInfoType = {
   name: '안재국',
-  nickname: '체크재국',
-  id: 'travelmaker',
+  nickName: '체크재국',
+  id: 2,
   phoneNumber: '010-1234-5678',
   email: 'checkjk@gmail.com',
 };

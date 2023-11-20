@@ -9,12 +9,11 @@ export interface ProgramMainInfoType {
 }
 
 export interface PostingType {
-  boardName: string;
+  category: string;
   title: string;
   id: number;
-  nickName: string;
-  registerDate: string;
-  type: string;
+  writer: string;
+  createdDate: string;
 }
 
 export interface ProgramDetailInfoType extends ProgramMainInfoType {
@@ -58,10 +57,46 @@ export interface ButtonStyleType {
   $buttonColor: string;
   $buttonWidth: string;
   $buttonHeight: string;
+  $hoverTextColor?: string;
+}
+
+/** Register(공고 등록) 관련 타입 */
+export interface ProgramRegisterInfoType {
+  [index: string]: string;
+  programName: string;
+  location: string;
+  programType: string;
+  programDetailType: string;
+  recruitStartDate: string;
+  recruitEndDate: string;
+  activeStartDate: string;
+  activeEndDate: string;
+  contact: string;
+  contactPhone: string;
+  link: string;
+  hashtag: string;
+  body: string;
+}
+
+export interface ProgramRegisterFieldType {
+  [key: string]: {
+    [key: string]: string;
+  };
+}
+
+export interface InputType {
+  [key: string]: string | null;
+}
+
+export interface SignUpProps {
+  inputData: InputType;
+  setInputData: React.Dispatch<React.SetStateAction<InputType>>;
+  profile: File | null;
+  setProfile: React.Dispatch<React.SetStateAction<File | null>>;
 }
 
 /* 포스팅 상세 관련 타입 */
-export interface PostingType {
+export interface PostingDetailType {
   type: string;
   title: string;
   nickName: string;
@@ -83,7 +118,35 @@ export interface PostingDataType {
   attatchment: string;
 }
 
-/** 마이페이지 / 회원정보 관련 type */
+export interface MileageHistoryType {
+  id: number;
+  date: string;
+  time: string;
+  type: string;
+  detail: string;
+  usage: number;
+}
+
+export interface TipDataType {
+  title: string;
+  content: string[];
+}
+
+/** 갈래 소개 관련 타입 */
+export interface GallaeIntroduction {
+  [key: string]: {
+    title: string;
+    subTitle: string;
+    content: string[];
+  };
+}
+
+// 사용자 정보 관련 타입
 export interface UserInfoType {
-  [key: string]: string;
+  [key: string]: string | number;
+  id: number;
+  nickName: string;
+  email: string;
+  name: string;
+  phoneNumber: string;
 }
