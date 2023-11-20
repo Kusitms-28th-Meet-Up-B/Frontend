@@ -1,4 +1,5 @@
 import { FilterInputType, FilterListType } from '@/types';
+import { LOCATION_LIST } from '../Register';
 
 export const FILTER_LIST: FilterListType[] = [
   {
@@ -13,7 +14,7 @@ export const FILTER_LIST: FilterListType[] = [
     enTitle: 'location',
     buttonSize: 'small',
     calendar: false,
-    items: ['전국', '수도권', '충청도', '전라도', '강원도', '경상도', '제주도'],
+    items: LOCATION_LIST,
   },
   {
     title: '여행 프로그램',

@@ -31,8 +31,6 @@ export const useGetProgramDetailInfo = (programId: number) => {
     'getProgramDetailInfo',
     () => ProgramAPI.getProgramDetailInfo(programId),
     {
-      cacheTime: 500000,
-      staleTime: 500005,
       onSuccess: () => {},
       onError: () => {},
     },

@@ -57,14 +57,11 @@ const Search = () => {
 
     setFilterInput({ ...newFilterInput });
 
-    // TODO : Search API로 GET ()
-    // 검색어는 keyword로 필터는 newFilterInput으로
     setApiData(newApiData);
-  }, []);
+  }, [searchParams]);
 
   useEffect(() => {
     if (apiData) {
-      //console.log('test 중입니다.');
       getSearchRefetch();
     }
   }, [apiData]);
@@ -93,7 +90,7 @@ const Search = () => {
         <SearchResult
           keyword={searchParams.get('keyword')}
           searchParams={searchParams}
-          programCount={0}
+          programCount={searchData ? searchData.length : 0}
           programList={searchData}
         />
         <MapButton />
