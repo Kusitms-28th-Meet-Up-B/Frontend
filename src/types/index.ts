@@ -150,3 +150,16 @@ export interface UserInfoType {
   name: string;
   phoneNumber: string;
 }
+
+// 수정시 데이터 미리 불러오는 함수 관련 타입
+export interface setEditDataFunctionType {
+  (
+    writeType: string,
+    id: string,
+    setInputFile: React.Dispatch<React.SetStateAction<File | undefined>>,
+    setSelected: React.Dispatch<React.SetStateAction<string>>,
+    setContent: React.Dispatch<React.SetStateAction<string>>,
+    setTags: React.Dispatch<React.SetStateAction<string[] | undefined>>,
+    setTitle: React.Dispatch<React.SetStateAction<string>>,
+  ): void;
+}
