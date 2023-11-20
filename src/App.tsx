@@ -14,6 +14,8 @@ import DetailPosting from './pages/DetailPosting';
 import MyPosting from './pages/user/MyPosting';
 import Write from './pages/write';
 import Mileage from './pages/mileage';
+import Gallae from './pages/about/Gallae';
+import Maker from './pages/about/Maker';
 
 const route = createBrowserRouter([
   {
@@ -64,10 +66,6 @@ const route = createBrowserRouter([
         element: <Write />,
       },
       {
-        path: 'detailProgram/:_programName/:_programId',
-        element: <DetailProgram />,
-      },
-      {
         path: 'user',
         element: <Outlet />,
         children: [
@@ -85,6 +83,17 @@ const route = createBrowserRouter([
         path: 'admin',
         element: <Outlet />,
         children: [{ path: 'register', element: <RegisterProgram /> }],
+      },
+      {
+        path: 'about',
+        element: <Outlet />,
+        children: [
+          {
+            path: 'gallae',
+            element: <Gallae />,
+          },
+          { path: 'maker', element: <Maker /> },
+        ],
       },
     ],
   },
