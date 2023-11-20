@@ -126,6 +126,8 @@ export interface PostingDataType {
   createdDate: string;
   fileName: string | null;
   fileUrl: string | null;
+  previousId: number;
+  nextId: number;
 }
 
 export interface MileageHistoryType {
