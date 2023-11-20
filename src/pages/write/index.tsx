@@ -12,6 +12,7 @@ import { B3 } from '@/style/fonts/StyledFonts';
 import { imageHandler, isOkToPost } from './functions';
 import { DropDownData } from '@/constants/write';
 import InputFile from './components/InputFile';
+import { postBoardData } from '@/apis/write';
 
 Quill.register('modules/imageResize', ImageResize); // 이미지 사이즈 변경 모듈 등록
 
@@ -23,6 +24,10 @@ const Write = () => {
   const [inputTag, setInputTag] = useState<string>(''); //입력중인 태그
   const [tags, setTags] = useState<string[]>(); // 현재까지 입력된 태그 리스트
   const [inputFile, setInputFile] = useState<File>();
+
+  const writeType = window.location.pathname.includes('review')
+    ? 'review'
+    : 'archive';
 
   const navigate = useNavigate();
 
@@ -39,8 +44,8 @@ const Write = () => {
       window.alert('입력되지 않은 내용이 있습니다.');
       return;
     }
-    // Todo: 서버에 요청
-  }, []);
+    postBoardData(writeType, selected, title, content, tags, inputFile);
+  }, [selected, title, content, tags, inputFile]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -73,7 +78,7 @@ const Write = () => {
       <Title>글쓰기</Title>
       <MainContainer>
         <DropDown
-          {...DropDownData}
+          {...DropDownData[`${writeType === 'review' ? 0 : 1}`]}
           selected={selected}
           setSelected={setSelected}
           position="relative"
