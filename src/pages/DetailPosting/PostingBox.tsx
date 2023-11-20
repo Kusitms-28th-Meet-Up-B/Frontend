@@ -11,7 +11,8 @@ import { fetchPostingDetail } from '@/apis/posting';
 import Loading from '@/components/Loading/Loading';
 
 const PostingBox = () => {
-  const { id: postingId } = useParams();
+  const { id } = useParams();
+  const postingId = parseInt(id as string, 10);
   const [isLike, setIsLike] = useState(false);
   const postingType: string = window.location.pathname.includes('review')
     ? 'reviews'
@@ -19,7 +20,7 @@ const PostingBox = () => {
 
   const { isLoading, data } = useQuery(
     [postingType, 'detail', postingId],
-    fetchPostingDetail(postingType, parseInt(postingId as string, 10)),
+    fetchPostingDetail(postingType, postingId),
   );
 
   if (isLoading) return <Loading />;
@@ -36,7 +37,10 @@ const PostingBox = () => {
         />
       )}
       {/* Todo: 서버에서 이전 다음 글의 id 받아오기 */}
-      <PostingNav prevId={2} nextId={3} />
+      <PostingNav
+        prevId={postingData?.previousId || postingId}
+        nextId={postingData?.nextId || postingId}
+      />
     </Container>
   );
 };
