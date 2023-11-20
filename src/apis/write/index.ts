@@ -1,14 +1,6 @@
 import { setEditDataFunctionType } from '@/types';
 import Axios from '..';
 
-export const toBase64 = (file: File) =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = e => resolve(e.target?.result);
-    reader.onerror = error => reject(error);
-  });
-
 export const postBoardData = async (
   writeType: string,
   selected: string,
@@ -18,8 +10,6 @@ export const postBoardData = async (
   inputFile: File | undefined,
   nickName: string,
 ) => {
-  // const convertedFile = inputFile ? await toBase64(inputFile) : null;
-
   const postData = new FormData();
   postData.append('category', selected);
   postData.append('writer', nickName);
@@ -28,7 +18,7 @@ export const postBoardData = async (
   postData.append('body', content);
   postData.append('hashTags', tags?.join(',') || '');
 
-  if (writeType === 'review') {
+  if (writeType === 'reviews') {
     // 지원 후기
     try {
       await Axios.post('/reviews/saveReview', postData, {
@@ -40,7 +30,7 @@ export const postBoardData = async (
       window.alert('업로드에 실패했습니다. 다시 시도해주세요.');
       console.error(e);
     }
-  } else if (writeType === 'archive') {
+  } else if (writeType === 'archives') {
     // 자료실
     try {
       await Axios.post('/archives/saveArchive', postData, {
