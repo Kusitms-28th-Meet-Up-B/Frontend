@@ -1,31 +1,45 @@
+import { fetchMostLikedPosting } from '@/apis/posting';
+import Loading from '@/components/Loading/Loading';
 import PageBar from '@/components/PageBar/PageBar';
 import { B2Bold, H3 } from '@/style/fonts/StyledFonts';
 import { useCallback, useState } from 'react';
+import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-const OtherPostings = () => {
-  const currentPath = window.location.pathname;
-  const route = currentPath.split('/')[1];
-
+const OtherPostings: React.FC<{ postingType: string }> = ({ postingType }) => {
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
   // Todo: 서버에서 데이터 불러와야 함(5개씩 페이지네이션)
 
-  const hanleClick = useCallback((id: number) => {
-    navigate(`/${route}/${id}`);
-  }, []);
+  const { isLoading, data } = useQuery(
+    ['mostLiked', page],
+    fetchMostLikedPosting(postingType, page, 5),
+  );
+
+  const hanleClick = useCallback(
+    (id: number) => {
+      const route = postingType === 'reviews' ? 'review' : 'archive';
+      navigate(`/${route}/${id}`);
+    },
+    [postingType],
+  );
+
+  if (isLoading) return <Loading />;
+  const postingData = data?.data?.result;
 
   return (
     <Container>
       <H3 $fontColor="#15191D">이 게시판 글</H3>
       <PostingList>
-        <PostingItem>
-          <B2Bold $fontColor="#53575C" onClick={() => hanleClick(1)}>
-            {/* Todo: 추후에 서버에서 불러온 데이터로 교체 */}
-            나홀로 갔다온 태안 3박4일 여행, 경비 절약한 방법...
-          </B2Bold>
-        </PostingItem>
+        {postingData &&
+          postingData.map(({ title, id }: { title: string; id: number }) => (
+            <PostingItem key={id}>
+              <B2Bold $fontColor="#53575C" onClick={() => hanleClick(id)}>
+                {title}
+              </B2Bold>
+            </PostingItem>
+          ))}
       </PostingList>
       <PageBar page={page} setPage={setPage} maxPage={20} />
     </Container>
