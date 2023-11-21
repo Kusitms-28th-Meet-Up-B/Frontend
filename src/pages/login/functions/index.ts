@@ -50,6 +50,10 @@ export const onLoginSuccess = (
       phoneNumber,
       imageUrl,
       role,
+      profileImageUrl,
+      registrationNum,
+      birth,
+      department,
     } = res?.data?.result;
 
     const currentTime = new Date();
@@ -75,6 +79,10 @@ export const onLoginSuccess = (
         imageUrl,
         phoneNumber,
         role,
+        profileImageUrl,
+        registrationNum,
+        birth,
+        department,
       });
     }
   }

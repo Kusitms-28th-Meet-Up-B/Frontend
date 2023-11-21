@@ -19,6 +19,10 @@ export const UserAtom = atom<UserInfoType>({
     imageUrl: '',
     phoneNumber: '',
     role: '',
+    profileImageUrl: '',
+    registrationNum: '',
+    department: '',
+    birth: '',
   },
   effects_UNSTABLE: [persistAtom],
 });

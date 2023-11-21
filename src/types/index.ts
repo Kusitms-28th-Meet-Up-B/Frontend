@@ -173,6 +173,10 @@ export interface UserInfoType {
   imageUrl: string;
   phoneNumber: string;
   role: string;
+  profileImageUrl: string;
+  registrationNum: string;
+  department: string;
+  birth: string;
 }
 
 // 수정시 데이터 미리 불러오는 함수 관련 타입
