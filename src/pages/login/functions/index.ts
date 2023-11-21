@@ -43,6 +43,7 @@ export const onLoginSuccess = (
       accessToken,
       refreshToken,
       id,
+      loginId,
       nickName,
       email,
       name,
@@ -66,11 +67,12 @@ export const onLoginSuccess = (
     if (setUserInfo) {
       setUserInfo({
         id,
+        loginId,
         nickName,
         email,
         name,
-        phoneNumber,
         imageUrl,
+        phoneNumber,
       });
     }
   }

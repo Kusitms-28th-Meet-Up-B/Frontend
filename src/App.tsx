@@ -13,6 +13,7 @@ import SignUp from './pages/signup';
 import DetailPosting from './pages/DetailPosting';
 import MyPosting from './pages/user/MyPosting';
 import DashBoard from './pages/admin/DashBoard';
+import Profile from './pages/user/Profile';
 import Write from './pages/write';
 import Mileage from './pages/mileage';
 import Gallae from './pages/about/Gallae';
@@ -54,7 +55,6 @@ const route = createBrowserRouter([
         path: 'detailProgram/:_programName/:_programId',
         element: <DetailProgram />,
       },
-      { path: 'register', element: <RegisterProgram /> },
       {
         path: 'signup',
         element: <SignUp />,
@@ -68,10 +68,6 @@ const route = createBrowserRouter([
         element: <Write />,
       },
       {
-        path: 'detailProgram/:_programName/:_programId',
-        element: <DetailProgram />,
-      },
-      {
         path: 'user',
         element: <Outlet />,
         children: [
@@ -79,6 +75,7 @@ const route = createBrowserRouter([
             path: 'posting',
             element: <MyPosting />,
           },
+          { path: 'profile', element: <Profile /> },
         ],
       },
       {
@@ -89,6 +86,11 @@ const route = createBrowserRouter([
       {
         path: 'mileage',
         element: <Mileage />,
+      },
+      {
+        path: 'admin',
+        element: <Outlet />,
+        children: [{ path: 'register', element: <RegisterProgram /> }],
       },
       {
         path: 'about',

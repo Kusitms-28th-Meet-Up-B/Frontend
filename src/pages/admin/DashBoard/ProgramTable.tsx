@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import IconTrash from '@/assets/icons/icon-trash.svg';
 import { useNavigate } from 'react-router-dom';
 import { ProgramManagingType } from '@/types';
-import { ProgramAPI } from '@/apis/program';
+import { ManagerAPI } from '@/apis/manager';
 
 interface ProgramTableProps {
   noDataText: string;
@@ -14,7 +14,7 @@ const ProgramTable = ({ noDataText, programList }: ProgramTableProps) => {
 
   const handleDelete = (id: number) => {
     if (window.confirm('공고를 삭제하시겠습니까?')) {
-      ProgramAPI.deleteProgram(id).then(() =>
+      ManagerAPI.deleteProgram(id).then(() =>
         window.alert('공고가 삭제되었습니다.'),
       );
     }

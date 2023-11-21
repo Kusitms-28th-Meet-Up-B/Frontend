@@ -12,6 +12,7 @@ export const UserAtom = atom<UserInfoType>({
   key: 'UserAtom',
   default: {
     id: -1,
+    loginId: '',
     nickName: '',
     email: '',
     name: '',

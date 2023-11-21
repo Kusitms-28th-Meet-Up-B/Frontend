@@ -1,56 +1,35 @@
 import { useQuery } from 'react-query';
 import Axios from '.';
 
+interface FilterType {
+  [key: string]: string | number | undefined;
+  programName?: string;
+  orderCriteria?: string;
+  location?: string;
+  programType?: string;
+  detailType?: string;
+  recruitStartDate?: string;
+  recruitEndDate?: string;
+  activeStartDate?: string;
+  activeEndDate?: string;
+  size?: number;
+}
+
 export const ProgramAPI = {
   getProgramDetailInfo: async (programId: number) => {
     const response = await Axios.get(`/programs/program?id=${programId}`);
     return response.data;
   },
-  getProgressPrograms: async ({
-    filter,
-    page,
-  }: {
-    filter: string | null;
-    page: number;
-  }) => {
-    const SIZE = 5;
-    const response = await Axios.get('/manager/progressPrograms', {
-      params: {
-        programType: filter === '전체' ? null : filter,
-        page: page,
-        size: SIZE,
-      },
-    });
-    return response.data;
-  },
-  getFinishPrograms: async ({
-    filter,
-    page,
-  }: {
-    filter: string | null;
-    page: number;
-  }) => {
-    const SIZE = 5;
-    const response = await Axios.get('/manager/finishPrograms', {
-      params: {
-        programType: filter === '전체' ? null : filter,
-        page: page,
-        size: SIZE,
-      },
-    });
-    return response.data;
-  },
-  deleteProgram: async (id: number) => {
-    const response = await Axios.delete(
-      `/manager/deleteProgram?programId=${id}`,
-    );
-    return response.data;
+
+  getSearchProgram: async (apiData: FilterType | null) => {
+    const response = await Axios.get(`/programs/filters`, { params: apiData });
+    return response.data.result.programs;
   },
 };
 
 export const useGetProgramDetailInfo = (programId: number) => {
   return useQuery(
-    'getProgramDetailInfo',
+    ['getProgramDetailInfo', programId],
     () => ProgramAPI.getProgramDetailInfo(programId),
     {
       cacheTime: 500000,
@@ -63,36 +42,12 @@ export const useGetProgramDetailInfo = (programId: number) => {
   );
 };
 
-export const useGetProgressPrograms = ({
-  filter,
-  page,
-}: {
-  filter: string | null;
-  page: number;
-}) => {
+export const useGetSearchProgram = (apiData: FilterType | null) => {
   return useQuery(
-    ['getProgressPrograms', filter, page],
-    () => ProgramAPI.getProgressPrograms({ filter, page }),
+    ['getSearchProgram', apiData],
+    () => ProgramAPI.getSearchProgram(apiData),
     {
-      cacheTime: 500000,
-      staleTime: 500005,
-      onSuccess: () => {},
-      onError: () => {},
-    },
-  );
-};
-
-export const useGetFinishPrograms = ({
-  filter,
-  page,
-}: {
-  filter: string | null;
-  page: number;
-}) => {
-  return useQuery(
-    ['getFinishPrograms', filter, page],
-    () => ProgramAPI.getFinishPrograms({ filter, page }),
-    {
+      enabled: false,
       cacheTime: 500000,
       staleTime: 500005,
       onSuccess: () => {},

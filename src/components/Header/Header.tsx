@@ -21,6 +21,7 @@ const Header = () => {
     console.log(userInfo);
     setUserInfo({
       id: -1,
+      loginId: '',
       email: '',
       phoneNumber: '',
       name: '',

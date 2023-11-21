@@ -5,7 +5,7 @@ import { useRecoilValue } from 'recoil';
 import { UserAtom } from '@/recoil/LoginAtom';
 import { useState } from 'react';
 import { DASHBOARD_FILTER } from '@/constants/Admin';
-import { useGetFinishPrograms, useGetProgressPrograms } from '@/apis/program';
+import { useGetFinishPrograms, useGetProgressPrograms } from '@/apis/manager';
 
 const DashBoard = () => {
   const userData = useRecoilValue(UserAtom);
