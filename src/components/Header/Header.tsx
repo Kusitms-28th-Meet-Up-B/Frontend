@@ -34,6 +34,10 @@ const Header = () => {
       nickName: '',
       imageUrl: '',
       role: '',
+      profileImageUrl: '',
+      registrationNum: '',
+      department: '',
+      birth: '',
     });
     Axios.defaults.headers.common['Authorization'] = '';
     // 캐싱한 쿼리 모두 삭제
