@@ -175,6 +175,11 @@ export interface UserInfoType {
   name: string;
   imageUrl: string;
   phoneNumber: string;
+  role: string;
+  profileImageUrl: string;
+  registrationNum: string;
+  department: string;
+  birth: string;
 }
 
 /** 추천 항목 관련 타입 */
