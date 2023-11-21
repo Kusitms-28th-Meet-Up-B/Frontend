@@ -3,6 +3,8 @@ import AdminProfile from './AdminProfile';
 import ProgramBox from './ProgramBox';
 import { useRecoilValue } from 'recoil';
 import { UserAtom } from '@/recoil/LoginAtom';
+import { useState } from 'react';
+import { DASHBOARD_FILTER } from '@/constants/Admin';
 
 const DATA = [
   {
@@ -49,6 +51,14 @@ const DATA = [
 
 const DashBoard = () => {
   const userData = useRecoilValue(UserAtom);
+  const [progressPage, setProgressPage] = useState(1);
+  const [finishedPage, setFinishedPage] = useState(1);
+  const [selectedProgressFilter, setSelectedProgessFilter] = useState(
+    DASHBOARD_FILTER[0],
+  );
+  const [selectedFinishedFilter, setSelectedFinishedFilter] = useState(
+    DASHBOARD_FILTER[0],
+  );
 
   return (
     <Container>
@@ -64,11 +74,19 @@ const DashBoard = () => {
             title="진행중인 공고"
             noDataText="아직 등록된 공고가 없습니다!"
             programList={DATA}
+            page={progressPage}
+            setPage={setProgressPage}
+            filter={selectedProgressFilter}
+            setFilter={setSelectedProgessFilter}
           />
           <ProgramBox
             title="마감된 공고"
             noDataText="아직 마감된 공고가 없습니다!"
             programList={[]}
+            page={finishedPage}
+            setPage={setFinishedPage}
+            filter={selectedFinishedFilter}
+            setFilter={setSelectedFinishedFilter}
           />
         </ProgramContainer>
       </InnerContainer>

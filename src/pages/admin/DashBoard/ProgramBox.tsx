@@ -1,7 +1,6 @@
-import { DASHBOARD_FILTER } from '@/constants/Admin';
 import ProgramBoxWrapper from './ProgramBoxWrapper';
 import ProgramTable from './ProgramTable';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 interface ProgramBoxProps {
   title: string;
@@ -14,21 +13,30 @@ interface ProgramBoxProps {
     start: string;
     end: string;
   }[];
+  page: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+  filter: string;
+  setFilter: (filter: string) => void;
 }
 
-const ProgramBox = ({ title, noDataText, programList }: ProgramBoxProps) => {
-  const [selectedFilter, setSelectedFilter] = useState(DASHBOARD_FILTER[0]);
-  const [page, setPage] = useState(1);
-
+const ProgramBox = ({
+  title,
+  noDataText,
+  programList,
+  page,
+  setPage,
+  filter,
+  setFilter,
+}: ProgramBoxProps) => {
   useEffect(() => {
     // TODO: 다시 GET
-  }, [selectedFilter, page]);
+  }, [filter, page]);
 
   return (
     <ProgramBoxWrapper
       title={title}
-      selectedFilter={selectedFilter}
-      setSelectedFilter={setSelectedFilter}
+      selectedFilter={filter}
+      setSelectedFilter={setFilter}
       page={page}
       setPage={setPage}
     >
