@@ -150,10 +150,4 @@ const BtnContainer = styled.div`
   }
 `;
 
-const LikeButtonWrapper = styled.div`
-  position: absolute;
-  right: 17px;
-  top: 18px;
-`;
-
 export default ProgramHead;
