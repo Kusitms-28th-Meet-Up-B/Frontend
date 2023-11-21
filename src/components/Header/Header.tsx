@@ -231,12 +231,19 @@ const Seperator = styled.div`
 `;
 
 const Logo = styled.div`
-  width: 48px;
-  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 64px;
+  height: 64px;
   margin-right: 15px;
 
+  border-radius: 50%;
+  background: #f1f8ff;
+
   img {
-    width: 100%;
-    height: 100%;
+    width: 48px;
+    height: 48px;
   }
 `;
