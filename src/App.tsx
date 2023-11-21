@@ -14,11 +14,15 @@ import DetailPosting from './pages/DetailPosting';
 import MyPosting from './pages/user/MyPosting';
 import WishList from './pages/user/WishList';
 import DashBoard from './pages/admin/DashBoard';
-import Profile from './pages/user/Profile';
+import UserProfile from './pages/user/Profile';
 import Write from './pages/write';
 import Mileage from './pages/mileage';
 import Gallae from './pages/about/Gallae';
 import Maker from './pages/about/Maker';
+import EditProgram from './pages/ModifyProgram';
+import AdminLayout from './components/Admin/AdminLayout';
+import Tips from './pages/about/Tips';
+import AdminProfile from './pages/admin/Profile';
 
 const route = createBrowserRouter([
   {
@@ -116,22 +120,21 @@ const route = createBrowserRouter([
             path: 'mileage',
             element: <Mileage />,
           },
-          { path: 'profile', element: <Profile /> },
+          { path: 'profile', element: <UserProfile /> },
         ],
       },
       {
         path: 'admin',
-        element: <Outlet />,
-        children: [{ path: 'dashboard', element: <DashBoard /> }],
-      },
-      {
-        path: 'mileage',
-        element: <Mileage />,
-      },
-      {
-        path: 'admin',
-        element: <Outlet />,
-        children: [{ path: 'register', element: <RegisterProgram /> }],
+        element: <AdminLayout />,
+        children: [
+          { path: 'register', element: <RegisterProgram /> },
+          { path: 'dashboard', element: <DashBoard /> },
+          {
+            path: 'edit/:_programId',
+            element: <EditProgram />,
+          },
+          { path: 'profile', element: <AdminProfile /> },
+        ],
       },
       {
         path: 'about',
@@ -142,6 +145,7 @@ const route = createBrowserRouter([
             element: <Gallae />,
           },
           { path: 'maker', element: <Maker /> },
+          { path: 'tips', element: <Tips /> },
         ],
       },
     ],
