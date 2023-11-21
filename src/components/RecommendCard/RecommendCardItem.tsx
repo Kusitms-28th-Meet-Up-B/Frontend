@@ -16,13 +16,13 @@ const RecommendCardItem = ({ result }: { result: RecommendDataType }) => {
 
 const Container = styled.div`
   width: 323px;
-  height: 323px;
+  height: max-content;
   position: relative;
   cursor: pointer;
 
   .image {
     width: 323px;
-    height: 400px;
+    height: 323px;
     border-radius: 20px;
     //object-fit: cover;
   }

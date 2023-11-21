@@ -3,26 +3,26 @@ import { H1 } from '@/style/fonts/StyledFonts';
 import { RecommendDataType } from '@/types';
 import styled from 'styled-components';
 
-interface RecommendSpotProps {
+interface RecommendAccomProps {
   resultList: RecommendDataType[];
 }
 
-const RecommendSpot = ({ resultList }: RecommendSpotProps) => {
+const RecommendAccom = ({ resultList }: RecommendAccomProps) => {
   return (
     <Container>
-      <H1 $fontColor="var(--color_gray900)">여행지 추천</H1>
+      <H1 $fontColor="var(--color_gray900)">숙소 추천</H1>
       <RecommendCard resultList={resultList} />
     </Container>
   );
 };
 
-export default RecommendSpot;
+export default RecommendAccom;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 65px;
-  margin-top: 130px;
-  padding-bottom: 16px;
+  margin-top: 80px;
+  margin-bottom: 193px;
   text-align: left;
 `;

@@ -6,7 +6,10 @@ const RecommendCard = ({ resultList }: { resultList: RecommendDataType[] }) => {
   return (
     <Container>
       {resultList.map(result => (
-        <RecommendCardItem key={result.title} result={result} />
+        <RecommendCardItem
+          key={`${result.title}-${result.photoUrl}`}
+          result={result}
+        />
       ))}
     </Container>
   );
@@ -18,7 +21,6 @@ const Container = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   gap: 36px;
-  padding-bottom: 36px;
 `;
 
 export default RecommendCard;

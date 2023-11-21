@@ -16,11 +16,17 @@ export const ProgramAPI = {
     const response = await Axios.get(`/programs/regionTour?id=${programId}`);
     return response.data.result;
   },
+  getRegionLodgment: async (programId: number) => {
+    const response = await Axios.get(
+      `/programs/regionLodgment?id=${programId}`,
+    );
+    return response.data.result;
+  },
 };
 
 export const useGetProgramDetailInfo = (programId: number) => {
   return useQuery(
-    'getProgramDetailInfo',
+    ['getProgramDetailInfo', programId],
     () => ProgramAPI.getProgramDetailInfo(programId),
     {
       cacheTime: 500000,
@@ -50,6 +56,20 @@ export const useGetRegionTour = (programId: number) => {
   return useQuery(
     ['getRegionTour', programId],
     () => ProgramAPI.getRegionTour(programId),
+    {
+      cacheTime: 500000,
+      staleTime: 500005,
+      onSuccess: data => {
+        console.log(data);
+      },
+      onError: () => {},
+    },
+  );
+};
+export const useGetRegionLodgment = (programId: number) => {
+  return useQuery(
+    ['getRegionLodgment', programId],
+    () => ProgramAPI.getRegionLodgment(programId),
     {
       cacheTime: 500000,
       staleTime: 500005,
