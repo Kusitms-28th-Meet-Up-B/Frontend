@@ -64,6 +64,8 @@ const PostingList = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  width: 100%;
 `;
 
 const PostingItem = styled.div`
@@ -73,6 +75,7 @@ const PostingItem = styled.div`
   width: 100%;
   padding: 32px 14px;
   gap: 136px;
+  border-bottom: 1px solid var(--grey-200, #e3e7ed);
 
   pre {
     &:hover {
