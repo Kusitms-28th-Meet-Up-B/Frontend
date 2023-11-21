@@ -152,3 +152,9 @@ export interface UserInfoType {
   name: string;
   phoneNumber: string;
 }
+
+/** 추천 항목 관련 타입 */
+export interface RecommendDataType {
+  title: string;
+  photoUrl: string;
+}

@@ -7,8 +7,10 @@ import HoneyTipButton from './HoneyTipButton';
 import { useParams } from 'react-router-dom';
 import {
   useGetProgramDetailInfo,
+  useGetRegionTour,
   useGetSimilarRecommend,
 } from '@/apis/program';
+import RecommendSpot from './RecommendSpot';
 
 const DetailProgram = () => {
   const { _programId } = useParams();
@@ -17,6 +19,9 @@ const DetailProgram = () => {
     programId ? programId : -1,
   );
   const { data: recommendProgram } = useGetSimilarRecommend(
+    programId ? programId : -1,
+  );
+  const { data: recommendSpotList } = useGetRegionTour(
     programId ? programId : -1,
   );
 
@@ -38,6 +43,16 @@ const DetailProgram = () => {
               }
             />
           </InnerContainer>
+        </CommonInner>
+        <BackgroundLine />
+        <CommonInner>
+          <RecommendSpot
+            resultList={
+              recommendSpotList && recommendSpotList.length > 0
+                ? recommendSpotList
+                : []
+            }
+          />
         </CommonInner>
         <HoneyTipButton />
       </Container>
@@ -68,6 +83,14 @@ const Background = styled.div`
   background-color: #f9f9f9;
   width: 100%;
   height: 800px;
+  position: absolute;
+  margin-top: 80px;
+`;
+
+const BackgroundLine = styled.div`
+  background-color: #f9f9f9;
+  width: 100%;
+  height: 12px;
   position: absolute;
   margin-top: 80px;
 `;

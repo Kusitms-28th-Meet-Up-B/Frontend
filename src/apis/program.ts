@@ -12,6 +12,10 @@ export const ProgramAPI = {
     );
     return response.data.result;
   },
+  getRegionTour: async (programId: number) => {
+    const response = await Axios.get(`/programs/regionTour?id=${programId}`);
+    return response.data.result;
+  },
 };
 
 export const useGetProgramDetailInfo = (programId: number) => {
@@ -31,6 +35,21 @@ export const useGetSimilarRecommend = (programId: number) => {
   return useQuery(
     ['getSimilarRecommend', programId],
     () => ProgramAPI.getSimilarRecommend(programId),
+    {
+      cacheTime: 500000,
+      staleTime: 500005,
+      onSuccess: data => {
+        console.log(data);
+      },
+      onError: () => {},
+    },
+  );
+};
+
+export const useGetRegionTour = (programId: number) => {
+  return useQuery(
+    ['getRegionTour', programId],
+    () => ProgramAPI.getRegionTour(programId),
     {
       cacheTime: 500000,
       staleTime: 500005,
