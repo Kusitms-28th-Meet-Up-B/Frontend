@@ -32,8 +32,8 @@ export interface ProgramDetailInfoType extends ProgramMainInfoType {
   location: string;
   recruitStartDate: string;
   recruitEndDate: string;
-  tripStartDate: string;
-  tripEndDate: string;
+  activeStartDate: string;
+  activeEndDate: string;
   contact: string;
   contactNumber: string;
   programLink: string;

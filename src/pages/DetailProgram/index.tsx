@@ -4,7 +4,7 @@ import ProgramHead from './ProgramHead';
 import ProgramBody from './ProgramBody';
 import RecommendProgram from './RecommendProgram';
 import HoneyTipButton from './HoneyTipButton';
-import { useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import {
   useGetProgramDetailInfo,
   useGetRegionLodgment,
@@ -17,35 +17,81 @@ import { useRecoilValue } from 'recoil';
 import { UserAtom } from '@/recoil/LoginAtom';
 import RoundedButton from '@/components/Button/RoundedButton';
 import { B1Bold } from '@/style/fonts/StyledFonts';
+import { useEffect, useState } from 'react';
+import { ManagerAPI } from '@/apis/manager';
 
 const DetailProgram = () => {
   const { _programId } = useParams();
+  const location = useLocation();
   const programId = Number(_programId);
-  const { data: programInfoData } = useGetProgramDetailInfo(
-    programId ? programId : -1,
-  );
-  const { data: recommendProgram } = useGetSimilarRecommend(
-    programId ? programId : -1,
-  );
-  const { data: recommendSpotList } = useGetRegionTour(
-    programId ? programId : -1,
-  );
-  const { data: recommendAccomList } = useGetRegionLodgment(
-    programId ? programId : -1,
-  );
+  const [isLike, setIsLike] = useState(false);
+  const [writerVersion, setWriterVersion] = useState<boolean | null>(null);
+  const { data: programInfoData, refetch: programInfoDataRefetch } =
+    useGetProgramDetailInfo(programId ? programId : -1);
+  const { data: recommendProgram } = useGetSimilarRecommend({
+    programId,
+    writerVersion,
+  });
+  const { data: recommendSpotList } = useGetRegionTour({
+    programId,
+    writerVersion,
+  });
+  const { data: recommendAccomList } = useGetRegionLodgment({
+    programId,
+    writerVersion,
+  });
   const userInfo = useRecoilValue(UserAtom);
+  const navigate = useNavigate();
 
-  if (programInfoData)
+  useEffect(() => {
+    if (location.state !== null) {
+      const { isRefetch } = location.state;
+      console.log(isRefetch);
+      if (writerVersion && isRefetch) programInfoDataRefetch();
+    }
+    //let isRefetch = false;
+    //if (location.state.isRefetch !== null) isRefetch = location.state.isRefetch;
+    //const { isRefetch } = location.state;
+    //if (writerVersion && isRefetch) programInfoDataRefetch();
+  }, [writerVersion]);
+
+  useEffect(() => {
+    if (programInfoData) {
+      if (userInfo.id === programInfoData.result.writerId) {
+        setWriterVersion(true);
+      } else {
+        setWriterVersion(false);
+      }
+
+      setIsLike(programInfoData.result.userLikeCheck);
+    }
+  }, [programInfoData]);
+
+  const handleDeleteProgram = () => {
+    if (window.confirm('공고를 삭제하시겠습니까?')) {
+      ManagerAPI.deleteProgram(programInfoData.result.id).then(() => {
+        window.alert('공고가 삭제되었습니다.');
+        navigate('/');
+      });
+    }
+  };
+
+  if (programInfoData && programInfoData !== undefined)
     return (
       <Container>
         <Background />
         <CommonInner>
           <InnerContainer>
-            <ProgramHead program={programInfoData.result} />
+            <ProgramHead
+              program={programInfoData.result}
+              isLike={isLike}
+              setIsLike={setIsLike}
+              writer={writerVersion}
+            />
             <hr />
             <ProgramBody description={programInfoData.result.description} />
             <hr />
-            {(userInfo.id !== programInfoData.writerId || userInfo.id < 0) && (
+            {!writerVersion && (
               <RecommendProgram
                 programs={
                   recommendProgram && recommendProgram.length > 0
@@ -56,7 +102,7 @@ const DetailProgram = () => {
             )}
           </InnerContainer>
         </CommonInner>
-        {(userInfo.id !== programInfoData.writerId || userInfo.id < 0) && (
+        {!writerVersion && (
           <div>
             <BackgroundLine />
             <CommonInner>
@@ -70,13 +116,14 @@ const DetailProgram = () => {
             <HoneyTipButton />
           </div>
         )}
-        {userInfo.id === programInfoData.writerId && (
+        {writerVersion && (
           <ButtonContainer>
             <RoundedButton
               $buttonColor="#AEB3B8"
               $buttonWidth="190px"
               $buttonHeight="54px"
               $hoverTextColor="rgba(255, 255, 255, 0.70)"
+              onClick={handleDeleteProgram}
             >
               <B1Bold $fontColor="white">삭제하기</B1Bold>
             </RoundedButton>
@@ -85,6 +132,9 @@ const DetailProgram = () => {
               $buttonWidth="190px"
               $buttonHeight="54px"
               $hoverTextColor="rgba(255, 255, 255, 0.70)"
+              onClick={() => {
+                navigate(`/admin/edit/${programInfoData.result.id}`);
+              }}
             >
               <B1Bold $fontColor="white">수정하기</B1Bold>
             </RoundedButton>

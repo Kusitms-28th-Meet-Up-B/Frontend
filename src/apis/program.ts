@@ -75,11 +75,18 @@ export const useGetSearchProgram = (apiData: FilterType | null) => {
   );
 };
 
-export const useGetSimilarRecommend = (programId: number) => {
+export const useGetSimilarRecommend = ({
+  programId,
+  writerVersion,
+}: {
+  programId: number;
+  writerVersion: boolean | null;
+}) => {
   return useQuery(
     ['getSimilarRecommend', programId],
     () => ProgramAPI.getSimilarRecommend(programId),
     {
+      enabled: writerVersion === null ? false : !writerVersion,
       cacheTime: 500000,
       staleTime: 500005,
       onSuccess: data => {
@@ -90,11 +97,18 @@ export const useGetSimilarRecommend = (programId: number) => {
   );
 };
 
-export const useGetRegionTour = (programId: number) => {
+export const useGetRegionTour = ({
+  programId,
+  writerVersion,
+}: {
+  programId: number;
+  writerVersion: boolean | null;
+}) => {
   return useQuery(
     ['getRegionTour', programId],
     () => ProgramAPI.getRegionTour(programId),
     {
+      enabled: writerVersion === null ? false : !writerVersion,
       cacheTime: 500000,
       staleTime: 500005,
       onSuccess: data => {
@@ -104,12 +118,18 @@ export const useGetRegionTour = (programId: number) => {
     },
   );
 };
-export const useGetRegionLodgment = (programId: number) => {
+export const useGetRegionLodgment = ({
+  programId,
+  writerVersion,
+}: {
+  programId: number;
+  writerVersion: boolean | null;
+}) => {
   return useQuery(
     ['getRegionLodgment', programId],
     () => ProgramAPI.getRegionLodgment(programId),
     {
-      cacheTime: 500000,
+      enabled: writerVersion === null ? false : !writerVersion,
       staleTime: 500005,
       onSuccess: data => {
         console.log(data);
