@@ -73,6 +73,15 @@ Axios.interceptors.response.use(
           window.location.href = '/login';
         }
       }
+    } else if (error.response?.status === 400) {
+      // 포인트가 부족한 상황
+      if (window.confirm('포인트가 부족합니다')) {
+        const currentPath = window.location.pathname;
+        window.location.href = `${currentPath.substring(
+          0,
+          currentPath.lastIndexOf('/'),
+        )}`;
+      }
     }
     return error;
   },
