@@ -26,7 +26,7 @@ const ProgramCardItem = ({ program }: { program: ProgramMainInfoType }) => {
           setIsLike={handleFavorite}
         />
       </LikeButtonWrapper>
-      {program.photoUrl === null ? (
+      {program.photoUrl === null || program.photoUrl === '' ? (
         <DefaultProgram />
       ) : (
         <img className="poster" alt="program-poster" src={program.photoUrl} />

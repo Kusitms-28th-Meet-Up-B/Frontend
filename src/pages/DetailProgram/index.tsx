@@ -17,6 +17,7 @@ const DetailProgram = () => {
   if (programInfoData)
     return (
       <Container>
+        <Background />
         <CommonInner>
           <InnerContainer>
             <ProgramHead program={programInfoData.result} />
@@ -33,12 +34,14 @@ const DetailProgram = () => {
   return null;
 };
 
+export default DetailProgram;
+
 const Container = styled.div`
   position: relative;
 `;
 
 const InnerContainer = styled.div`
-  padding-top: 10px;
+  padding-top: 80px;
   padding-bottom: 130px;
   text-align: center;
 
@@ -49,4 +52,10 @@ const InnerContainer = styled.div`
   }
 `;
 
-export default DetailProgram;
+const Background = styled.div`
+  background-color: #f9f9f9;
+  width: 100%;
+  height: 800px;
+  position: absolute;
+  margin-top: 80px;
+`;

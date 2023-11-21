@@ -5,6 +5,8 @@ import UnfavoriteButtonIcon from '@/assets/icons/unfavorite_button2_icon.svg';
 import { useState } from 'react';
 import MainButton from '@/components/Button/MainButton';
 import { B1Bold, H1, H3 } from '@/style/fonts/StyledFonts';
+import DefaultProgram from '@/components/Default/DefaultProgram';
+import LikeButton from '@/components/Button/LikeButton';
 
 const ProgramHead = ({ program }: { program: ProgramDetailInfoType }) => {
   // 임시방편
@@ -16,7 +18,11 @@ const ProgramHead = ({ program }: { program: ProgramDetailInfoType }) => {
 
   return (
     <Container>
-      <img alt="program-image" src={program.photoUrl} />
+      {program.photoUrl === null || program.photoUrl === '' ? (
+        <DefaultProgram />
+      ) : (
+        <img className="poster" alt="program-poster" src={program.photoUrl} />
+      )}
       <DescriptionContainer>
         <InfoContainer>
           <H1 $fontColor="var(--color_sub3)">{program.remainDay}</H1>
@@ -39,19 +45,9 @@ const ProgramHead = ({ program }: { program: ProgramDetailInfoType }) => {
           </SubInfo>
         </InfoContainer>
         <BtnContainer>
-          {!favorite ? (
-            <img
-              alt="favorite-button-icon"
-              src={FavoriteButtonIcon}
-              onClick={handleChange}
-            />
-          ) : (
-            <img
-              alt="unfavorite-button-icon"
-              src={UnfavoriteButtonIcon}
-              onClick={handleChange}
-            />
-          )}
+          <LikeButtonWrapper>
+            {/* <LikeButton isLike={program.} /> */}
+          </LikeButtonWrapper>
           <a href={program.programLink}>
             <MainButton
               $buttonColor="var(--color_sub3)"
@@ -135,6 +131,12 @@ const BtnContainer = styled.div`
     height: 62px;
     cursor: pointer;
   }
+`;
+
+const LikeButtonWrapper = styled.div`
+  position: absolute;
+  right: 17px;
+  top: 18px;
 `;
 
 export default ProgramHead;
