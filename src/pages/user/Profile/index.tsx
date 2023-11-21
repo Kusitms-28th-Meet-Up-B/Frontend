@@ -4,11 +4,11 @@ import { USER_INFO_TAG } from '@/constants/User/profile';
 import { B1, B1Bold, B3Bold } from '@/style/fonts/StyledFonts';
 import MainButton from '@/components/Button/MainButton';
 import UserTitle from '@/components/Title/UserTitle';
-import AuthBadge from './AuthBadge';
 import { useRecoilValue } from 'recoil';
 import { UserAtom } from '@/recoil/LoginAtom';
+import AuthBadge from '@/components/Badge/AuthBadge';
 
-const Profile = () => {
+const UserProfile = () => {
   const userInfo = useRecoilValue(UserAtom);
 
   return (
@@ -87,4 +87,4 @@ const Information = styled.div`
   }
 `;
 
-export default Profile;
+export default UserProfile;
