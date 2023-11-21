@@ -10,13 +10,10 @@ import { useQuery } from 'react-query';
 import { fetchPostingDetail } from '@/apis/posting';
 import Loading from '@/components/Loading/Loading';
 
-const PostingBox = () => {
+const PostingBox: React.FC<{ postingType: string }> = ({ postingType }) => {
   const { id } = useParams();
   const postingId = parseInt(id as string, 10);
   const [isLike, setIsLike] = useState(false);
-  const postingType: string = window.location.pathname.includes('review')
-    ? 'reviews'
-    : 'archives';
 
   const { isLoading, data } = useQuery(
     [postingType, 'detail', postingId],

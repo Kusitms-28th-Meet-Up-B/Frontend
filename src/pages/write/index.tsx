@@ -65,7 +65,11 @@ const Write = () => {
       window.alert('입력되지 않은 내용이 있습니다.');
       return;
     }
+    const splitPath = currentPath.split('/');
+    const id = isEdit ? splitPath[splitPath.length - 1] : null;
     postBoardData(
+      id,
+      isEdit,
       writeType,
       selected,
       title,

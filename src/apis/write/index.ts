@@ -2,6 +2,8 @@ import { setEditDataFunctionType } from '@/types';
 import Axios from '..';
 
 export const postBoardData = async (
+  id: string | null,
+  isEdit: boolean,
   writeType: string,
   selected: string,
   title: string,
@@ -10,43 +12,87 @@ export const postBoardData = async (
   inputFile: File | undefined,
   nickName: string,
 ) => {
-  const postData = new FormData();
-  postData.append('category', selected);
-  postData.append('writer', nickName);
-  if (inputFile) postData.append('file', inputFile as File);
-  postData.append('title', title);
-  postData.append('body', content);
-  postData.append('hashTags', tags?.join(',') || '');
+  const postData = {
+    category: selected,
+    writer: nickName,
+    file: inputFile || null,
+    title,
+    body: content,
+    hashTags: tags?.join(',') || '',
+  };
 
-  if (writeType === 'reviews') {
-    // 지원 후기
-    try {
-      const res = await Axios.post('/reviews/saveReview', postData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      if (res?.status === 200) {
-        window.location.href = '/review';
+  if (!isEdit) {
+    if (writeType === 'reviews') {
+      // 지원 후기
+      try {
+        const res = await Axios.post('/reviews/saveReview', postData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        if (res?.status === 200) {
+          window.location.href = '/review';
+        }
+      } catch (e) {
+        window.alert('업로드에 실패했습니다. 다시 시도해주세요.');
+        console.error(e);
       }
-    } catch (e) {
-      window.alert('업로드에 실패했습니다. 다시 시도해주세요.');
-      console.error(e);
+    } else if (writeType === 'archives') {
+      // 자료실
+      try {
+        const res = await Axios.post('/archives/saveArchive', postData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        if (res?.status === 200) {
+          window.location.href = '/archive';
+        }
+      } catch (e) {
+        window.alert('업로드에 실패했습니다. 다시 시도해주세요.');
+        console.error(e);
+      }
     }
-  } else if (writeType === 'archives') {
-    // 자료실
-    try {
-      const res = await Axios.post('/archives/saveArchive', postData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      if (res?.status === 200) {
-        window.location.href = '/archive';
+  } else {
+    // 수정 시
+    const editData = {
+      ...postData,
+      [`${writeType === 'reviews' ? 'reviewId' : 'archiveId'}`]: parseInt(
+        id as string,
+        10,
+      ),
+    };
+
+    if (writeType === 'reviews') {
+      // 지원 후기
+      try {
+        const res = await Axios.post('/reviews/editReview', editData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        if (res?.status === 200) {
+          window.location.href = '/review';
+        }
+      } catch (e) {
+        window.alert('업로드에 실패했습니다. 다시 시도해주세요.');
+        console.error(e);
       }
-    } catch (e) {
-      window.alert('업로드에 실패했습니다. 다시 시도해주세요.');
-      console.error(e);
+    } else if (writeType === 'archives') {
+      // 자료실
+      try {
+        const res = await Axios.post('/archives/editArchive', editData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        if (res?.status === 200) {
+          window.location.href = '/archive';
+        }
+      } catch (e) {
+        window.alert('업로드에 실패했습니다. 다시 시도해주세요.');
+        console.error(e);
+      }
     }
   }
 };
