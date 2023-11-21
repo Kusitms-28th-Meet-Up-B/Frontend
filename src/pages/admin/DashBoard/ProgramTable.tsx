@@ -1,25 +1,23 @@
 import styled from 'styled-components';
 import IconTrash from '@/assets/icons/icon-trash.svg';
 import { useNavigate } from 'react-router-dom';
+import { ProgramManagingType } from '@/types';
+import { ProgramAPI } from '@/apis/program';
 
 interface ProgramTableProps {
   noDataText: string;
-  programList: {
-    id: number;
-    title: string;
-    views: number;
-    wish: number;
-    start: string;
-    end: string;
-  }[];
+  programList: ProgramManagingType[];
 }
 
 const ProgramTable = ({ noDataText, programList }: ProgramTableProps) => {
   const navigate = useNavigate();
 
-  const handleDelete = () => {
-    // TODO: 삭제 API 연결
-    console.log('삭제');
+  const handleDelete = (id: number) => {
+    if (window.confirm('공고를 삭제하시겠습니까?')) {
+      ProgramAPI.deleteProgram(id).then(() =>
+        window.alert('공고가 삭제되었습니다.'),
+      );
+    }
   };
 
   return (
@@ -44,12 +42,18 @@ const ProgramTable = ({ noDataText, programList }: ProgramTableProps) => {
               }}
             >
               <td width="360px">{program.title}</td>
-              <td width="120px">{program.views}</td>
-              <td width="120px">{program.wish}</td>
-              <td width="120px">{program.start}</td>
-              <td width="120px">{program.end}</td>
+              <td width="120px">{program.viewCount}</td>
+              <td width="120px">{program.like}</td>
+              <td width="120px">{program.recruitStartDate}</td>
+              <td width="120px">{program.recruitEndDate}</td>
               <td width="32px" className="icon">
-                <img alt="icon-trash" src={IconTrash} onClick={handleDelete} />
+                <img
+                  alt="icon-trash"
+                  src={IconTrash}
+                  onClick={() => {
+                    handleDelete(program.id);
+                  }}
+                />
               </td>
             </TableLine>
           ))}
@@ -105,9 +109,12 @@ const Text = styled.tbody`
   align-items: center;
 
   height: 100%;
-  color: #aeb3b8;
   font-family: SUIT-SemiBold;
   font-size: 18px;
   font-style: normal;
   line-height: 140%; /* 25.2px */
+
+  td {
+    color: #aeb3b8;
+  }
 `;

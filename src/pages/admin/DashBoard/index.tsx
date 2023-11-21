@@ -5,60 +5,26 @@ import { useRecoilValue } from 'recoil';
 import { UserAtom } from '@/recoil/LoginAtom';
 import { useState } from 'react';
 import { DASHBOARD_FILTER } from '@/constants/Admin';
-
-const DATA = [
-  {
-    id: 1,
-    title: '태안 2023 태안 한달살이',
-    views: 200,
-    wish: 20,
-    start: '2023.10.13',
-    end: '2023.10.13',
-  },
-  {
-    id: 2,
-    title: '태안 2023 태안 한달살이',
-    views: 200,
-    wish: 20,
-    start: '2023.10.13',
-    end: '2023.10.13',
-  },
-  {
-    id: 3,
-    title: '태안 2023 태안 한달살이',
-    views: 200,
-    wish: 20,
-    start: '2023.10.13',
-    end: '2023.10.13',
-  },
-  {
-    id: 4,
-    title: '태안 2023 태안 한달살이',
-    views: 200,
-    wish: 20,
-    start: '2023.10.13',
-    end: '2023.10.13',
-  },
-  {
-    id: 5,
-    title: '태안 2023 태안 한달살이',
-    views: 200,
-    wish: 20,
-    start: '2023.10.13',
-    end: '2023.10.13',
-  },
-];
+import { useGetFinishPrograms, useGetProgressPrograms } from '@/apis/program';
 
 const DashBoard = () => {
   const userData = useRecoilValue(UserAtom);
   const [progressPage, setProgressPage] = useState(1);
   const [finishedPage, setFinishedPage] = useState(1);
-  const [selectedProgressFilter, setSelectedProgessFilter] = useState(
+  const [selectedProgressFilter, setSelectedProgessFilter] = useState<string>(
     DASHBOARD_FILTER[0],
   );
   const [selectedFinishedFilter, setSelectedFinishedFilter] = useState(
     DASHBOARD_FILTER[0],
   );
+  const { data: progressPrograms } = useGetProgressPrograms({
+    filter: selectedProgressFilter,
+    page: progressPage,
+  });
+  const { data: finishPrograms } = useGetFinishPrograms({
+    filter: selectedProgressFilter,
+    page: progressPage,
+  });
 
   return (
     <Container>
@@ -73,7 +39,11 @@ const DashBoard = () => {
           <ProgramBox
             title="진행중인 공고"
             noDataText="아직 등록된 공고가 없습니다!"
-            programList={DATA}
+            programList={
+              progressPrograms && progressPrograms.length > 0
+                ? progressPrograms
+                : []
+            }
             page={progressPage}
             setPage={setProgressPage}
             filter={selectedProgressFilter}
@@ -82,7 +52,9 @@ const DashBoard = () => {
           <ProgramBox
             title="마감된 공고"
             noDataText="아직 마감된 공고가 없습니다!"
-            programList={[]}
+            programList={
+              finishPrograms && finishPrograms.length > 0 ? finishPrograms : []
+            }
             page={finishedPage}
             setPage={setFinishedPage}
             filter={selectedFinishedFilter}

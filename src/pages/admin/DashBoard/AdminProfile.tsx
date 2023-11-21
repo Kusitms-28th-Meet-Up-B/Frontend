@@ -23,8 +23,8 @@ const AdminProfile = (profile: AdminProfileProps) => {
           />
         </ProfileImage>
         <Profile>
-          <div>{profile.organization}</div>
-          <div>{profile.email}</div>
+          <div className="organization">{profile.organization}</div>
+          <div className="email">{profile.email}</div>
         </Profile>
       </ProfileContainer>
       <MainButton
@@ -81,8 +81,16 @@ const Profile = styled.div`
     color: white;
     text-align: center;
     font-family: SUIT-Medium;
-    font-size: 20px;
     font-style: normal;
+  }
+
+  .organization {
+    font-size: 20px;
     line-height: 150%; /* 30px */
+  }
+
+  .email {
+    font-size: 16px;
+    line-height: 140%;
   }
 `;

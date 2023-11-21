@@ -1,18 +1,11 @@
 import ProgramBoxWrapper from './ProgramBoxWrapper';
 import ProgramTable from './ProgramTable';
-import { useEffect } from 'react';
+import { ProgramManagingType } from '@/types';
 
 interface ProgramBoxProps {
   title: string;
   noDataText: string;
-  programList: {
-    id: number;
-    title: string;
-    views: number;
-    wish: number;
-    start: string;
-    end: string;
-  }[];
+  programList: ProgramManagingType[];
   page: number;
   setPage: React.Dispatch<React.SetStateAction<number>>;
   filter: string;
@@ -28,10 +21,6 @@ const ProgramBox = ({
   filter,
   setFilter,
 }: ProgramBoxProps) => {
-  useEffect(() => {
-    // TODO: 다시 GET
-  }, [filter, page]);
-
   return (
     <ProgramBoxWrapper
       title={title}

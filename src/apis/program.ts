@@ -7,20 +7,43 @@ export const ProgramAPI = {
     return response.data;
   },
   getProgressPrograms: async ({
-    programType,
+    filter,
     page,
   }: {
-    programType: string | null;
+    filter: string | null;
     page: number;
   }) => {
     const SIZE = 5;
     const response = await Axios.get('/manager/progressPrograms', {
       params: {
-        programType: programType,
+        programType: filter === '전체' ? null : filter,
         page: page,
         size: SIZE,
       },
     });
+    return response.data;
+  },
+  getFinishPrograms: async ({
+    filter,
+    page,
+  }: {
+    filter: string | null;
+    page: number;
+  }) => {
+    const SIZE = 5;
+    const response = await Axios.get('/manager/finishPrograms', {
+      params: {
+        programType: filter === '전체' ? null : filter,
+        page: page,
+        size: SIZE,
+      },
+    });
+    return response.data;
+  },
+  deleteProgram: async (id: number) => {
+    const response = await Axios.delete(
+      `/manager/deleteProgram?programId=${id}`,
+    );
     return response.data;
   },
 };
@@ -32,23 +55,46 @@ export const useGetProgramDetailInfo = (programId: number) => {
     {
       cacheTime: 500000,
       staleTime: 500005,
-      onSuccess: () => {},
+      onSuccess: data => {
+        console.log(data);
+      },
       onError: () => {},
     },
   );
 };
 
 export const useGetProgressPrograms = ({
-  programType,
+  filter,
   page,
 }: {
-  programType: string | null;
+  filter: string | null;
   page: number;
 }) => {
   return useQuery(
-    'getProgressPrograms',
-    () => ProgramAPI.getProgressPrograms({ programType, page }),
+    ['getProgressPrograms', filter, page],
+    () => ProgramAPI.getProgressPrograms({ filter, page }),
     {
+      cacheTime: 500000,
+      staleTime: 500005,
+      onSuccess: () => {},
+      onError: () => {},
+    },
+  );
+};
+
+export const useGetFinishPrograms = ({
+  filter,
+  page,
+}: {
+  filter: string | null;
+  page: number;
+}) => {
+  return useQuery(
+    ['getFinishPrograms', filter, page],
+    () => ProgramAPI.getFinishPrograms({ filter, page }),
+    {
+      cacheTime: 500000,
+      staleTime: 500005,
       onSuccess: () => {},
       onError: () => {},
     },
