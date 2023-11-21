@@ -3,7 +3,7 @@ import FavoriteIcon from '@/assets/icons/favorite_icon.svg';
 import { B1Bold, B3, B3Bold, H3 } from '@/style/fonts/StyledFonts';
 import { ProgramMainInfoType } from '@/types';
 import { useNavigate } from 'react-router-dom';
-import LikeButton from '../Button/LikeButton';
+import TranslucentLikeButton from '../Button/TranslucentLikeButton';
 
 const ProgramCardItem = ({ program }: { program: ProgramMainInfoType }) => {
   const navigate = useNavigate();
@@ -20,10 +20,9 @@ const ProgramCardItem = ({ program }: { program: ProgramMainInfoType }) => {
       }
     >
       <LikeButtonWrapper>
-        <LikeButton
+        <TranslucentLikeButton
           isLike={program.userLikeCheck}
           setIsLike={handleFavorite}
-          type="program"
         />
       </LikeButtonWrapper>
       {program.photoUrl === null ? (
