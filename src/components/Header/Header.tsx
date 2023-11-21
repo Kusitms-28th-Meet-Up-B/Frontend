@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
+import { QueryCache } from 'react-query';
 
 import { AdminDropdown, HeaderData, UserDropdown } from '@/constants/Header';
 import { B1, H3 } from '@/style/fonts/StyledFonts';
@@ -10,7 +11,8 @@ import RoundedButton from '../Button/RoundedButton';
 import { UserAtom } from '@/recoil/LoginAtom';
 import Cookies from 'js-cookie';
 import Axios from '@/apis';
-import { QueryCache } from 'react-query';
+
+import Character from '@/assets/icons/icon-character.svg';
 
 const Header = () => {
   const [isLogined, setIsLogined] = useState<boolean>(false);
@@ -57,6 +59,13 @@ const Header = () => {
       <InnerContainer>
         {/* 헤더 좌측 */}
         <NavBarContainer>
+          <Logo
+            onClick={() => {
+              navigate('/');
+            }}
+          >
+            <img src={Character} alt="character" />
+          </Logo>
           {HeaderData.map(({ main, dropDowns }) => (
             <NavBar key={main}>
               <H3 $fontColor="#15191D">{main}</H3>
@@ -219,4 +228,15 @@ const Seperator = styled.div`
   width: 180px;
   height: 0.5px;
   background: #e3e7ed;
+`;
+
+const Logo = styled.div`
+  width: 48px;
+  height: 48px;
+  margin-right: 15px;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
 `;
