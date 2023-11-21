@@ -13,6 +13,8 @@ import SignUp from './pages/signup';
 import DetailPosting from './pages/DetailPosting';
 import MyPosting from './pages/user/MyPosting';
 import WishList from './pages/user/WishList';
+import DashBoard from './pages/admin/DashBoard';
+import Profile from './pages/user/Profile';
 import Write from './pages/write';
 import Mileage from './pages/mileage';
 import Gallae from './pages/about/Gallae';
@@ -42,35 +44,65 @@ const route = createBrowserRouter([
       { path: 'search', element: <Search /> },
       {
         path: 'review',
-        element: (
-          <Board
-            title="지원후기"
-            description="여행 지원사업/대외활동/공모전의 지원후기를 볼 수 있는 페이지입니다."
-            imageSrc=""
-          />
-        ),
+        children: [
+          {
+            index: true,
+            element: (
+              <Board
+                title="지원후기"
+                description="여행 지원사업/대외활동/공모전의 지원후기를 볼 수 있는 페이지입니다."
+              />
+            ),
+          },
+          {
+            path: ':id',
+            element: <DetailPosting title="지원 후기" />,
+          },
+          {
+            path: 'write',
+            element: <Write />,
+          },
+          {
+            path: 'edit/:id',
+            element: <Write />,
+          },
+        ],
+      },
+      {
+        path: 'archive',
+        children: [
+          {
+            index: true,
+            element: (
+              <Board
+                title="자료실"
+                description="지원서 예시자료, 보고서 예시자료, 전문가의 꿀팁 등을 볼 수 있는 페이지입니다."
+              />
+            ),
+          },
+          {
+            path: ':id',
+            element: <DetailPosting title="자료실" />,
+          },
+          {
+            path: 'write',
+            element: <Write />,
+          },
+          {
+            path: 'edit/:id',
+            element: <Write />,
+          },
+        ],
       },
       {
         path: 'detailProgram/:_programName/:_programId',
         element: <DetailProgram />,
       },
-      { path: 'register', element: <RegisterProgram /> },
       {
         path: 'signup',
         element: <SignUp />,
       },
-      {
-        path: 'review/:id',
-        element: <DetailPosting title="지원 후기" />,
-      },
-      {
-        path: 'write',
-        element: <Write />,
-      },
-      {
-        path: 'detailProgram/:_programName/:_programId',
-        element: <DetailProgram />,
-      },
+
       {
         path: 'user',
         element: <Outlet />,
@@ -80,11 +112,26 @@ const route = createBrowserRouter([
             element: <MyPosting />,
           },
           { path: 'wishlist', element: <WishList /> },
+          {
+            path: 'mileage',
+            element: <Mileage />,
+          },
+          { path: 'profile', element: <Profile /> },
         ],
+      },
+      {
+        path: 'admin',
+        element: <Outlet />,
+        children: [{ path: 'dashboard', element: <DashBoard /> }],
       },
       {
         path: 'mileage',
         element: <Mileage />,
+      },
+      {
+        path: 'admin',
+        element: <Outlet />,
+        children: [{ path: 'register', element: <RegisterProgram /> }],
       },
       {
         path: 'about',
