@@ -4,7 +4,6 @@ import LikeIcon from '@/assets/icons/favorite_button2_icon.svg';
 import UnLikeIcon from '@/assets/icons/unfavorite_button2_icon.svg';
 import { useCallback } from 'react';
 import { postLike } from '@/apis/like';
-import { QueryCache } from 'react-query';
 
 interface Props {
   id: number;
@@ -20,7 +19,6 @@ const LikeButton: React.FC<Props> = ({ id, isLike, setIsLike, type }) => {
       e.stopPropagation();
       postLike(type, id);
       setIsLike(prev => !prev);
-      // Todo: 여기서 좋아요 누른 글에 대한 캐시를 지우면 좋을듯
     },
     [isLike],
   );
