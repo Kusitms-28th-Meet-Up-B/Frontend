@@ -135,8 +135,8 @@ export interface MileageHistoryType {
   date: string;
   time: string;
   type: string;
-  detail: string;
-  usage: number;
+  activityDetails: string;
+  pointScore: number;
 }
 
 export interface TipDataType {
