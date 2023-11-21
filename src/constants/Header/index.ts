@@ -97,7 +97,7 @@ export const UserDropdown: DropDown[] = [
     link: '/user/posting',
   },
   {
-    title: '내 포인트',
+    title: '내 마일리지',
     link: '/user/mileage',
   },
   {
