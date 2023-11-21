@@ -19,6 +19,7 @@ import Mileage from './pages/mileage';
 import Gallae from './pages/about/Gallae';
 import Maker from './pages/about/Maker';
 import AdminLayout from './components/Admin/AdminLayout';
+import Tips from './pages/about/Tips';
 
 const route = createBrowserRouter([
   {
@@ -135,6 +136,7 @@ const route = createBrowserRouter([
             element: <Gallae />,
           },
           { path: 'maker', element: <Maker /> },
+          { path: 'tips', element: <Tips /> },
         ],
       },
     ],
