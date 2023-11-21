@@ -12,7 +12,6 @@ import DropDown from '@/components/DropDown/DropDown';
 import { useQuery } from 'react-query';
 import { fetchPointList } from '@/apis/mileage';
 import Loading from '@/components/Loading/Loading';
-import { MileageHistoryType } from '@/types';
 
 const filterList: string[] = ['전체', '적립 내역', '사용 내역'];
 const termList: string[] = ['전체', '일주일', '한 달', '3개월', '6개월', '1년'];

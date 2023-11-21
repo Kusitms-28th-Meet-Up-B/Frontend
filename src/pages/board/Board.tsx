@@ -17,7 +17,6 @@ import Loading from '@/components/Loading/Loading';
 interface BoardProps {
   title: string;
   description: string;
-  imageSrc: string;
 }
 
 const filterList: string[][] = [
@@ -25,7 +24,7 @@ const filterList: string[][] = [
   ['전체', '지원서 예시자료', '보고서 예시자료'],
 ];
 
-const Board: React.FC<BoardProps> = ({ title, description, imageSrc }) => {
+const Board: React.FC<BoardProps> = ({ title, description }) => {
   const [filter, setFilter] = useState<string>('전체'); // 전체가 디폴트
   const [page, setPage] = useState(1);
   const [searchInput, setSearchInput] = useState<string>('');
