@@ -77,10 +77,10 @@ export const UserDropdown: DropDown[] = [
   },
   {
     title: '내 포인트',
-    link: '',
+    link: '/user/mileage',
   },
   {
     title: '회원정보',
-    link: '',
+    link: '/user/profile',
   },
 ];
