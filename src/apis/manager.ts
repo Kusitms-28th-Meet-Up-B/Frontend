@@ -22,7 +22,7 @@ export const ManagerAPI = {
         size: SIZE,
       },
     });
-    return response.data;
+    return response.data.result;
   },
 
   getFinishPrograms: async ({
@@ -40,7 +40,7 @@ export const ManagerAPI = {
         size: SIZE,
       },
     });
-    return response.data;
+    return response.data.result;
   },
 
   getExistingProgram: async (programId: number) => {
