@@ -12,8 +12,12 @@ import RegisterProgram from './pages/RegisterProgram';
 import SignUp from './pages/signup';
 import DetailPosting from './pages/DetailPosting';
 import MyPosting from './pages/user/MyPosting';
+import DashBoard from './pages/admin/DashBoard';
+import Profile from './pages/user/Profile';
 import Write from './pages/write';
 import Mileage from './pages/mileage';
+import Gallae from './pages/about/Gallae';
+import Maker from './pages/about/Maker';
 
 const route = createBrowserRouter([
   {
@@ -93,16 +97,11 @@ const route = createBrowserRouter([
         path: 'detailProgram/:_programName/:_programId',
         element: <DetailProgram />,
       },
-      { path: 'register', element: <RegisterProgram /> },
       {
         path: 'signup',
         element: <SignUp />,
       },
 
-      {
-        path: 'detailProgram/:_programName/:_programId',
-        element: <DetailProgram />,
-      },
       {
         path: 'user',
         element: <Outlet />,
@@ -115,6 +114,32 @@ const route = createBrowserRouter([
             path: 'mileage',
             element: <Mileage />,
           },
+          { path: 'profile', element: <Profile /> },
+        ],
+      },
+      {
+        path: 'admin',
+        element: <Outlet />,
+        children: [{ path: 'dashboard', element: <DashBoard /> }],
+      },
+      {
+        path: 'mileage',
+        element: <Mileage />,
+      },
+      {
+        path: 'admin',
+        element: <Outlet />,
+        children: [{ path: 'register', element: <RegisterProgram /> }],
+      },
+      {
+        path: 'about',
+        element: <Outlet />,
+        children: [
+          {
+            path: 'gallae',
+            element: <Gallae />,
+          },
+          { path: 'maker', element: <Maker /> },
         ],
       },
     ],

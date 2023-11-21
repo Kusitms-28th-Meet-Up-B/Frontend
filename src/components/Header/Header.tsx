@@ -25,10 +25,12 @@ const Header = () => {
     localStorage.removeItem('expireToken');
     setUserInfo({
       id: -1,
+      loginId: '',
       email: '',
       phoneNumber: '',
       name: '',
       nickName: '',
+      imageUrl: '',
     });
     Axios.defaults.headers.common['Authorization'] = '';
     // 캐싱한 쿼리 모두 삭제

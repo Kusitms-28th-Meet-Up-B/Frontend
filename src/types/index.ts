@@ -8,6 +8,15 @@ export interface ProgramMainInfoType {
   like: number;
 }
 
+export interface ProgramManagingType {
+  id: number;
+  title: string;
+  viewCount: number;
+  like: number;
+  recruitStartDate: string;
+  recruitEndDate: string;
+}
+
 export interface PostingType {
   category: string;
   title: string;
@@ -38,14 +47,14 @@ export interface FilterListType {
 
 export interface FilterInputType {
   [key: string]: string | null;
-  sort: string | null;
+  orderCriteria: string | null;
   location: string | null;
-  program: string | null;
-  category: string | null;
+  programType: string | null;
+  detailType: string | null;
   recruitStartDate: string | null;
   recruitEndDate: string | null;
-  tripStartDate: string | null;
-  tripEndDate: string | null;
+  activeStartDate: string | null;
+  activeEndDate: string | null;
 }
 
 /** Search 페이지의 CustomCalendar 관련 type */
@@ -144,12 +153,24 @@ export interface TipDataType {
   content: string[];
 }
 
+/** 갈래 소개 관련 타입 */
+export interface GallaeIntroduction {
+  [key: string]: {
+    title: string;
+    subTitle: string;
+    content: string[];
+  };
+}
+
 // 사용자 정보 관련 타입
 export interface UserInfoType {
+  [key: string]: string | number;
   id: number;
+  loginId: string;
   nickName: string;
   email: string;
   name: string;
+  imageUrl: string;
   phoneNumber: string;
 }
 
