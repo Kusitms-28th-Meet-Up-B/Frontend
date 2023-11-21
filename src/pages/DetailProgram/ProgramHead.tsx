@@ -1,19 +1,13 @@
 import { ProgramDetailInfoType } from '@/types';
 import styled from 'styled-components';
-import FavoriteButtonIcon from '@/assets/icons/favorite_button2_icon.svg';
-import UnfavoriteButtonIcon from '@/assets/icons/unfavorite_button2_icon.svg';
-import { useState } from 'react';
 import MainButton from '@/components/Button/MainButton';
 import { B1Bold, H1, H3 } from '@/style/fonts/StyledFonts';
 import DefaultProgram from '@/components/Default/DefaultProgram';
 import LikeButton from '@/components/Button/LikeButton';
 
 const ProgramHead = ({ program }: { program: ProgramDetailInfoType }) => {
-  // 임시방편
-  const [favorite, setFavorite] = useState<boolean>(true);
-
   const handleChange = () => {
-    setFavorite(!favorite);
+    console.log('구현 해야 함.');
   };
 
   return (
@@ -46,7 +40,11 @@ const ProgramHead = ({ program }: { program: ProgramDetailInfoType }) => {
         </InfoContainer>
         <BtnContainer>
           <LikeButtonWrapper>
-            {/* <LikeButton isLike={program.} /> */}
+            <LikeButton
+              isLike={program.userLikeCheck}
+              setIsLike={handleChange}
+              type="program"
+            />
           </LikeButtonWrapper>
           <a
             href={
