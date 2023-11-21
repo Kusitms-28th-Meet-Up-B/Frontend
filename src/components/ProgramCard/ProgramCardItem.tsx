@@ -4,6 +4,7 @@ import { B1Bold, B3, B3Bold, H3 } from '@/style/fonts/StyledFonts';
 import { ProgramMainInfoType } from '@/types';
 import { useNavigate } from 'react-router-dom';
 import TranslucentLikeButton from '../Button/TranslucentLikeButton';
+import DefaultProgram from '../Default/DefaultProgram';
 
 const ProgramCardItem = ({ program }: { program: ProgramMainInfoType }) => {
   const navigate = useNavigate();
@@ -26,12 +27,7 @@ const ProgramCardItem = ({ program }: { program: ProgramMainInfoType }) => {
         />
       </LikeButtonWrapper>
       {program.photoUrl === null ? (
-        <div className="default-poster">
-          <div className="text">
-            <span>이미지가 없어요!</span>
-            <span>클릭하여 상세내용을 확인해보세요!</span>
-          </div>
-        </div>
+        <DefaultProgram />
       ) : (
         <img className="poster" alt="program-poster" src={program.photoUrl} />
       )}
@@ -65,33 +61,6 @@ const Container = styled.div`
     height: 400px;
     border-radius: 20px;
     //object-fit: cover;
-  }
-
-  .default-poster {
-    width: 323px;
-    height: 400px;
-    border-radius: 20px;
-    background-color: #d3d3d3;
-
-    .text {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      position: absolute;
-      top: 254px;
-      left: 50%;
-      transform: translate(-50%, 0);
-      width: max-content;
-    }
-
-    span {
-      color: var(--grey-600, #666b6f);
-      font-family: SUIT-Medium;
-      font-size: 16px;
-      font-style: normal;
-      line-height: 140%; /* 22.4px */
-    }
   }
 `;
 
