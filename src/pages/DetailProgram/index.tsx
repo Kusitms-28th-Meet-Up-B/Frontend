@@ -4,7 +4,7 @@ import ProgramHead from './ProgramHead';
 import ProgramBody from './ProgramBody';
 import RecommendProgram from './RecommendProgram';
 import HoneyTipButton from './HoneyTipButton';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
   useGetProgramDetailInfo,
   useGetRegionLodgment,
@@ -22,12 +22,12 @@ import { ManagerAPI } from '@/apis/manager';
 
 const DetailProgram = () => {
   const { _programId } = useParams();
-  const location = useLocation();
   const programId = Number(_programId);
   const [isLike, setIsLike] = useState(false);
   const [writerVersion, setWriterVersion] = useState<boolean | null>(null);
-  const { data: programInfoData, refetch: programInfoDataRefetch } =
-    useGetProgramDetailInfo(programId ? programId : -1);
+  const { data: programInfoData } = useGetProgramDetailInfo(
+    programId ? programId : -1,
+  );
   const { data: recommendProgram } = useGetSimilarRecommend({
     programId,
     writerVersion,
@@ -42,18 +42,6 @@ const DetailProgram = () => {
   });
   const userInfo = useRecoilValue(UserAtom);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (location.state !== null) {
-      const { isRefetch } = location.state;
-      console.log(isRefetch);
-      if (writerVersion && isRefetch) programInfoDataRefetch();
-    }
-    //let isRefetch = false;
-    //if (location.state.isRefetch !== null) isRefetch = location.state.isRefetch;
-    //const { isRefetch } = location.state;
-    //if (writerVersion && isRefetch) programInfoDataRefetch();
-  }, [writerVersion]);
 
   useEffect(() => {
     if (programInfoData) {

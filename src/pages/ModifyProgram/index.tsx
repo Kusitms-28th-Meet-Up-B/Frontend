@@ -36,15 +36,18 @@ const EditProgram = () => {
 
       setProgramContent(insertData);
       setPhotoFile(programData.result.photo);
-      setPhotoName(programData.result.photo);
-      //console.log(programData.photo.blob());
+
+      const ext = programData.result.photo.split('.').pop();
+      const filename = programData.result.photo.split('/').pop();
+      const metadata = { type: `image/${ext}` };
+      const newPhotoName = new File([filename], filename!, metadata);
+      setPhotoName(newPhotoName);
     }
   }, [programData]);
 
   const handleChangeUploadImage = (
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
-    console.log('파일 리더 함수 돈다~!');
     if (!event.target.files) {
       return;
     }
@@ -60,7 +63,6 @@ const EditProgram = () => {
     };
     reader.readAsDataURL(event.target.files[0]);
     setPhotoName(event.target.files[0]);
-    console.log(programContent);
   };
 
   const handleUploadButtonClick = () => {
@@ -110,9 +112,7 @@ const EditProgram = () => {
         });
 
         ManagerAPI.postEditProgram(formData).then(data =>
-          navigate(`/detailProgram/${programContent['programName']}/${data}`, {
-            state: { isefetch: true },
-          }),
+          navigate(`/detailProgram/${programContent['programName']}/${data}`),
         );
       }
     } else {

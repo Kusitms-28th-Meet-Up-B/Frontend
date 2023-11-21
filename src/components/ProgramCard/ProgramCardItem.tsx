@@ -32,7 +32,11 @@ const ProgramCardItem = ({ program }: { program: ProgramMainInfoType }) => {
         />
       </LikeButtonWrapper>
       <ProgramInfoContainer>
-        <B1Bold $fontColor="var(--color_sub3)">{`D-${program.remainDay}`}</B1Bold>
+        <B1Bold $fontColor="var(--color_sub3)">
+          {program.remainDay === '마감'
+            ? program.remainDay
+            : `D-${program.remainDay}`}
+        </B1Bold>
         <H3 $fontColor="var(--color_gray900)">{program.programName}</H3>
         <div className="hashTag-container">
           {program.hashTag.map(tag => (

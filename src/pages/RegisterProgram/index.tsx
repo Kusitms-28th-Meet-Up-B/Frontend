@@ -40,8 +40,12 @@ const RegisterProgram = () => {
       if (isTemp) {
         if (window.confirm(ALERT_MESSAGE.getDraft)) {
           setPhotoFile(tempData.photoUrl);
-          setPhotoName(tempData.photoUrl);
 
+          const ext = tempData.photoUrl.split('.').pop();
+          const filename = tempData.photoUrl.split('/').pop();
+          const metadata = { type: `image/${ext}` };
+          const newPhotoName = new File([filename], filename!, metadata);
+          setPhotoName(newPhotoName);
           setProgramContent(insertData);
         } else {
           ManagerAPI.deleteTempProgram(tempData.programId);
@@ -68,7 +72,6 @@ const RegisterProgram = () => {
     };
     reader.readAsDataURL(event.target.files[0]);
     setPhotoName(event.target.files[0]);
-    console.log(programContent);
   };
 
   const handleUploadButtonClick = () => {

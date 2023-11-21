@@ -26,7 +26,11 @@ const ProgramHead = ({
       )}
       <DescriptionContainer>
         <InfoContainer>
-          <H1 $fontColor="var(--color_sub3)">{`D-${program.remainDay}`}</H1>
+          <H1 $fontColor="var(--color_sub3)">
+            {program.remainDay === '마감'
+              ? program.remainDay
+              : `D-${program.remainDay}`}
+          </H1>
           <div className="program-name">{program.programName}</div>
           <SubInfo>
             <div className="title-container">
