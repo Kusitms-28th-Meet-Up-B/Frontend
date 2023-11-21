@@ -4,7 +4,7 @@ import { B1Bold, B3, B3Bold, H3 } from '@/style/fonts/StyledFonts';
 import { ProgramMainInfoType } from '@/types';
 import { useNavigate } from 'react-router-dom';
 import TranslucentLikeButton from '../Button/TranslucentLikeButton';
-import DefaultProgram from '../Default/DefaultProgram';
+import DefaultProgramPreview from '../Default/DefaultProgramPreview';
 
 const ProgramCardItem = ({ program }: { program: ProgramMainInfoType }) => {
   const navigate = useNavigate();
@@ -20,19 +20,19 @@ const ProgramCardItem = ({ program }: { program: ProgramMainInfoType }) => {
         navigate(`/detailProgram/${program.programName}/${program.id}`)
       }
     >
+      {program.photoUrl === null || program.photoUrl === '' ? (
+        <DefaultProgramPreview />
+      ) : (
+        <img className="poster" alt="program-poster" src={program.photoUrl} />
+      )}
       <LikeButtonWrapper>
         <TranslucentLikeButton
           isLike={program.userLikeCheck}
           setIsLike={handleFavorite}
         />
       </LikeButtonWrapper>
-      {program.photoUrl === null || program.photoUrl === '' ? (
-        <DefaultProgram />
-      ) : (
-        <img className="poster" alt="program-poster" src={program.photoUrl} />
-      )}
       <ProgramInfoContainer>
-        <B1Bold $fontColor="var(--color_sub3)">{program.remainDay}</B1Bold>
+        <B1Bold $fontColor="var(--color_sub3)">{`D-${program.remainDay}`}</B1Bold>
         <H3 $fontColor="var(--color_gray900)">{program.programName}</H3>
         <div className="hashTag-container">
           {program.hashTag.map(tag => (
