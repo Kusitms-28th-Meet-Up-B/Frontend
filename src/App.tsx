@@ -119,10 +119,6 @@ const route = createBrowserRouter([
         ],
       },
       {
-        path: 'mileage',
-        element: <Mileage />,
-      },
-      {
         path: 'admin',
         element: <AdminLayout />,
         children: [
