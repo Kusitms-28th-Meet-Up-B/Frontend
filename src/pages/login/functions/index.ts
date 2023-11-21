@@ -49,6 +49,7 @@ export const onLoginSuccess = (
       name,
       phoneNumber,
       imageUrl,
+      role,
     } = res?.data?.result;
 
     const currentTime = new Date();
@@ -73,6 +74,7 @@ export const onLoginSuccess = (
         name,
         imageUrl,
         phoneNumber,
+        role,
       });
     }
   }

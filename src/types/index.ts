@@ -172,6 +172,7 @@ export interface UserInfoType {
   name: string;
   imageUrl: string;
   phoneNumber: string;
+  role: string;
 }
 
 // 수정시 데이터 미리 불러오는 함수 관련 타입
