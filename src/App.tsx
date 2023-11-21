@@ -85,6 +85,10 @@ const route = createBrowserRouter([
             path: 'write',
             element: <Write />,
           },
+          {
+            path: 'edit/:id',
+            element: <Write />,
+          },
         ],
       },
       {

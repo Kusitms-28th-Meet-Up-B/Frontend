@@ -21,11 +21,14 @@ export const postBoardData = async (
   if (writeType === 'reviews') {
     // 지원 후기
     try {
-      await Axios.post('/reviews/saveReview', postData, {
+      const res = await Axios.post('/reviews/saveReview', postData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
+      if (res?.status === 200) {
+        window.location.href = '/review';
+      }
     } catch (e) {
       window.alert('업로드에 실패했습니다. 다시 시도해주세요.');
       console.error(e);
@@ -33,11 +36,14 @@ export const postBoardData = async (
   } else if (writeType === 'archives') {
     // 자료실
     try {
-      await Axios.post('/archives/saveArchive', postData, {
+      const res = await Axios.post('/archives/saveArchive', postData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
+      if (res?.status === 200) {
+        window.location.href = '/archive';
+      }
     } catch (e) {
       window.alert('업로드에 실패했습니다. 다시 시도해주세요.');
       console.error(e);
@@ -46,9 +52,10 @@ export const postBoardData = async (
 };
 
 export const fetchEditData = async (writeType: string, id: number) => {
-  const res = Axios.get(`/${writeType}/${id}/detail`, {
+  const key = writeType === 'reviews' ? 'reviewId' : 'archiveId';
+  const res = Axios.get(`/${writeType}/detail`, {
     params: {
-      id,
+      [key]: id,
     },
   });
   return res;
