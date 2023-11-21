@@ -32,16 +32,18 @@ const OtherPostings: React.FC<{ postingType: string }> = ({ postingType }) => {
     <Container>
       <H3 $fontColor="#15191D">이 게시판 글</H3>
       <PostingList>
-        {postingData &&
-          postingData.map(({ title, id }: { title: string; id: number }) => (
-            <PostingItem key={id}>
-              <B2Bold $fontColor="#53575C" onClick={() => hanleClick(id)}>
-                {title}
-              </B2Bold>
-            </PostingItem>
-          ))}
+        {postingData[postingType] &&
+          postingData[postingType].map(
+            ({ title, id }: { title: string; id: number }) => (
+              <PostingItem key={id}>
+                <B2Bold $fontColor="#53575C" onClick={() => hanleClick(id)}>
+                  {title}
+                </B2Bold>
+              </PostingItem>
+            ),
+          )}
       </PostingList>
-      <PageBar page={page} setPage={setPage} maxPage={20} />
+      <PageBar page={page} setPage={setPage} maxPage={postingData?.totalSize} />
     </Container>
   );
 };

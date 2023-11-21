@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import UserIcon from '@/assets/icons/user-icon.svg';
 import LikeButton from '@/components/Button/LikeButton';
 
+import './styles/posting.module.css';
 import { B1Bold, B3, B3Bold, H2 } from '@/style/fonts/StyledFonts';
 import { PostingDetailType } from '@/types';
 import { useRecoilValue } from 'recoil';
@@ -41,13 +42,21 @@ const Posting: React.FC<PostingDetailType> = ({
             <EditDelete writeType={writeType} id={id} />
           )}
           <LikeButtonWrapper>
-            <LikeButton isLike={isLike} setIsLike={setIsLike} type="posting" />
+            <LikeButton
+              isLike={isLike}
+              setIsLike={setIsLike}
+              type={writeType}
+              id={id}
+            />
           </LikeButtonWrapper>
         </RightBox>
       </PostingInfoContainer>
       <Seperator />
       <MainContent>
-        <div dangerouslySetInnerHTML={{ __html: body }}></div>
+        <div
+          className=".ql-body"
+          dangerouslySetInnerHTML={{ __html: body }}
+        ></div>
         <TagContainer>
           {hashtag
             ?.split(',')
