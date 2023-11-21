@@ -7,7 +7,7 @@ const AdminLayout = () => {
   const userInfo = useRecoilValue(UserAtom);
   useEffect(() => {
     if (userInfo.role !== 'MANAGER') {
-      window.alert('관리자만 사용 가능한 페이지입니다.');
+      window.alert('관리자만 접근 가능한 페이지입니다.');
       window.location.href = '/';
     }
   }, []);
