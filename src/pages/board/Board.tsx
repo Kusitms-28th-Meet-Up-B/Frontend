@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import { useQuery } from 'react-query';
+
 import Introduction from './Introduction';
 import Filter from './Filter';
 import PostingList from './PostingList';
+import ReviewImage from '@/assets/board/review-image.svg';
+import ArchiveImage from '@/assets/board/archive-image.svg';
+
 import PageBar from '@/components/PageBar/PageBar';
-import { useLocation } from 'react-router-dom';
 import SearchBar from '@/components/SearchBar/SearchBar';
-import { useQuery } from 'react-query';
 import { fetchBoardData } from '@/apis/board';
 import Loading from '@/components/Loading/Loading';
 
@@ -62,7 +66,7 @@ const Board: React.FC<BoardProps> = ({ title, description, imageSrc }) => {
       <Introduction
         title={title}
         description={description}
-        imageSrc={imageSrc}
+        imageSrc={boardType === 'reviews' ? ReviewImage : ArchiveImage}
       />
       <Filter
         filter={filter}
