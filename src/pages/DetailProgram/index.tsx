@@ -5,12 +5,18 @@ import ProgramBody from './ProgramBody';
 import RecommendProgram from './RecommendProgram';
 import HoneyTipButton from './HoneyTipButton';
 import { useParams } from 'react-router-dom';
-import { useGetProgramDetailInfo } from '@/apis/program';
+import {
+  useGetProgramDetailInfo,
+  useGetSimilarRecommend,
+} from '@/apis/program';
 
 const DetailProgram = () => {
   const { _programId } = useParams();
   const programId = Number(_programId);
   const { data: programInfoData } = useGetProgramDetailInfo(
+    programId ? programId : -1,
+  );
+  const { data: recommendProgram } = useGetSimilarRecommend(
     programId ? programId : -1,
   );
 
@@ -22,9 +28,15 @@ const DetailProgram = () => {
           <InnerContainer>
             <ProgramHead program={programInfoData.result} />
             <hr />
-            <ProgramBody description={programInfoData.description} />
+            <ProgramBody description={programInfoData.result.description} />
             <hr />
-            <RecommendProgram programs={[]} />
+            <RecommendProgram
+              programs={
+                recommendProgram && recommendProgram.length > 0
+                  ? recommendProgram
+                  : []
+              }
+            />
           </InnerContainer>
         </CommonInner>
         <HoneyTipButton />

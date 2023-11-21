@@ -48,7 +48,13 @@ const ProgramHead = ({ program }: { program: ProgramDetailInfoType }) => {
           <LikeButtonWrapper>
             {/* <LikeButton isLike={program.} /> */}
           </LikeButtonWrapper>
-          <a href={program.programLink}>
+          <a
+            href={
+              program.programLink.includes('https://')
+                ? program.programLink
+                : `https://${program.programLink}`
+            }
+          >
             <MainButton
               $buttonColor="var(--color_sub3)"
               $buttonWidth="182px"
