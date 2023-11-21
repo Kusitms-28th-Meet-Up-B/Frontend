@@ -109,11 +109,11 @@ const route = createBrowserRouter([
             path: 'posting',
             element: <MyPosting />,
           },
+          {
+            path: 'mileage',
+            element: <Mileage />,
+          },
         ],
-      },
-      {
-        path: 'mileage',
-        element: <Mileage />,
       },
     ],
   },
