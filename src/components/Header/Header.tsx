@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
 
-import { HeaderData, UserDropdown } from '@/constants/Header';
+import { AdminDropdown, HeaderData, UserDropdown } from '@/constants/Header';
 import { B1, H3 } from '@/style/fonts/StyledFonts';
 import UserIcon from '@/assets/icons/user-icon.svg';
 import RoundedButton from '../Button/RoundedButton';
@@ -31,6 +31,7 @@ const Header = () => {
       name: '',
       nickName: '',
       imageUrl: '',
+      role: '',
     });
     Axios.defaults.headers.common['Authorization'] = '';
     // 캐싱한 쿼리 모두 삭제
@@ -78,13 +79,22 @@ const Header = () => {
             <NavBar>
               <img src={UserIcon} alt="user" />
               <Dropdown>
-                {UserDropdown.map(({ title, link }, index) => (
-                  <li key={index} className={`${title}`}>
-                    <Link to={link} state={{ filter: title }}>
-                      <B1 $fontColor="#15191D">{title}</B1>
-                    </Link>
-                  </li>
-                ))}
+                {userInfo.role === 'USER' &&
+                  UserDropdown.map(({ title, link }, index) => (
+                    <li key={index} className={`${title}`}>
+                      <Link to={link} state={{ filter: title }}>
+                        <B1 $fontColor="#15191D">{title}</B1>
+                      </Link>
+                    </li>
+                  ))}
+                {userInfo.role === 'MANAGER' &&
+                  AdminDropdown.map(({ title, link }, index) => (
+                    <li key={index} className={`${title}`}>
+                      <Link to={link} state={{ filter: title }}>
+                        <B1 $fontColor="#15191D">{title}</B1>
+                      </Link>
+                    </li>
+                  ))}
                 <Seperator />
                 <li onClick={handleLogout}>
                   <B1 $fontColor="#15191D">{'로그아웃'}</B1>
