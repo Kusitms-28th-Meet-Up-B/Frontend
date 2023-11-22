@@ -71,11 +71,19 @@ const Container = styled.div`
 `;
 
 const ProgramInfoContainer = styled.div`
+  width: inherit;
   display: flex;
   flex-direction: column;
   align-items: start;
   padding-top: 16px;
   gap: 4px;
+
+  ${H3} {
+    width: inherit;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
   .hashTag-container {
     display: flex;
