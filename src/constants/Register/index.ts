@@ -80,7 +80,7 @@ export const INPUT_FIELD: ProgramRegisterFieldType = {
   contact: {
     title: '문의처',
     placeholder: '문의처명을 입력해주세요.',
-    alertMessage: '문의처명을 입력해주세요.',
+    alertMessage: '문의처을 입력해주세요.',
   },
   contactPhone: {
     title: '',
