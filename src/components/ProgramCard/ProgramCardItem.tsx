@@ -10,10 +10,23 @@ import { useEffect, useState } from 'react';
 const ProgramCardItem = ({ program }: { program: ProgramMainInfoType }) => {
   const navigate = useNavigate();
   const [isLike, setIsLike] = useState(false);
+  const [likeCount, setLikeCount] = useState(program.like);
 
   useEffect(() => {
     setIsLike(program.userLikeCheck);
   }, [program]);
+
+  const handleLikeCount = () => {
+    if (program.userLikeCheck && likeCount === program.like) {
+      setLikeCount(likeCount - 1);
+    } else if (program.userLikeCheck && likeCount < program.like) {
+      setLikeCount(likeCount + 1);
+    } else if (!program.userLikeCheck && likeCount === program.like) {
+      setLikeCount(likeCount + 1);
+    } else if (!program.userLikeCheck && likeCount > program.like) {
+      setLikeCount(likeCount - 1);
+    }
+  };
 
   return (
     <Container
@@ -31,6 +44,7 @@ const ProgramCardItem = ({ program }: { program: ProgramMainInfoType }) => {
           id={program.id}
           isLike={isLike}
           setIsLike={setIsLike}
+          handleLikeCount={handleLikeCount}
         />
       </LikeButtonWrapper>
       <ProgramInfoContainer>
@@ -49,7 +63,7 @@ const ProgramCardItem = ({ program }: { program: ProgramMainInfoType }) => {
         </div>
         <div className="favorite-container">
           <img alt="favorite-icon" src={FavoriteIcon} />
-          <B3Bold $fontColor="var(--color_gray600)">{program.like}</B3Bold>
+          <B3Bold $fontColor="var(--color_gray600)">{likeCount}</B3Bold>
         </div>
       </ProgramInfoContainer>
     </Container>
