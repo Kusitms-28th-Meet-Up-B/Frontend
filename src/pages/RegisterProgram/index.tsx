@@ -145,8 +145,6 @@ const RegisterProgram = () => {
           return formData.append(key, programContent[key]);
       });
 
-      Object.keys(programContent).map(key => console.log(formData.get(key)));
-
       ManagerAPI.postTempSaveProgram(formData)
         .then(data => {
           if (data.code === 200) {

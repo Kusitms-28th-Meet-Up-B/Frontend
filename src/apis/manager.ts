@@ -145,9 +145,7 @@ export const useGetExistingProgram = (programId: number) => {
     {
       cacheTime: 500000,
       staleTime: 500005,
-      onSuccess: data => {
-        console.log(data);
-      },
+      onSuccess: () => {},
       onError: () => {},
     },
   );
