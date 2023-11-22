@@ -16,7 +16,7 @@ const TranslucentLikeButton: React.FC<Props> = ({ id, isLike, setIsLike }) => {
   const handleClick = useCallback(
     (e: React.MouseEvent) => {
       e.stopPropagation();
-      postLike('poster', id);
+      postLike('program', id);
       setIsLike(prev => !prev);
     },
     [isLike],
