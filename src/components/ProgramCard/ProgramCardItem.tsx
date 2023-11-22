@@ -11,6 +11,7 @@ const ProgramCardItem = ({ program }: { program: ProgramMainInfoType }) => {
   const navigate = useNavigate();
   const [isLike, setIsLike] = useState(false);
   const [likeCount, setLikeCount] = useState(program.like);
+  const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
     setIsLike(program.userLikeCheck);
@@ -28,16 +29,25 @@ const ProgramCardItem = ({ program }: { program: ProgramMainInfoType }) => {
     }
   };
 
+  const handleImageError = () => {
+    setImageError(true);
+  };
+
   return (
     <Container
       onClick={() =>
         navigate(`/detailProgram/${program.programName}/${program.id}`)
       }
     >
-      {program.photoUrl === null || program.photoUrl === '' ? (
+      {program.photoUrl === null || program.photoUrl === '' || imageError ? (
         <DefaultProgramPreview />
       ) : (
-        <img className="poster" alt="program-poster" src={program.photoUrl} />
+        <img
+          className="poster"
+          alt="program-poster"
+          src={program.photoUrl}
+          onError={handleImageError}
+        />
       )}
       <LikeButtonWrapper>
         <TranslucentLikeButton
