@@ -83,7 +83,8 @@ const Container = styled.div`
   padding: 130px 0px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  //justify-content: space-between;
+  gap: 215px;
   align-items: center;
 
   img {
