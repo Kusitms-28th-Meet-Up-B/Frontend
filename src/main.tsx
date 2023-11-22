@@ -9,11 +9,9 @@ import '@/style/minreset.css';
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <RecoilRoot>
-        <App />
-      </RecoilRoot>
-    </QueryClientProvider>
-  </React.StrictMode>,
+  <QueryClientProvider client={queryClient}>
+    <RecoilRoot>
+      <App />
+    </RecoilRoot>
+  </QueryClientProvider>,
 );

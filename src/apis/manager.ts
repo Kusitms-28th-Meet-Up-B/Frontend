@@ -63,7 +63,7 @@ export const ManagerAPI = {
         'Content-Type': 'multipart/form-data',
       },
     });
-    return response.data.result;
+    return response.data;
   },
 
   postEditProgram: async (formData: FormData) => {
@@ -94,8 +94,6 @@ export const useFindTempProgram = (id: number | null) => {
     () => ManagerAPI.getFindTempProgram(),
     {
       enabled: id === null,
-      cacheTime: 500000,
-      staleTime: 500005,
       onSuccess: () => {},
       onError: () => {},
     },

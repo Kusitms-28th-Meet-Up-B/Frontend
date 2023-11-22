@@ -59,7 +59,7 @@ const DetailProgram = () => {
     if (window.confirm('공고를 삭제하시겠습니까?')) {
       ManagerAPI.deleteProgram(programInfoData.result.id).then(() => {
         window.alert('공고가 삭제되었습니다.');
-        navigate('/');
+        navigate(-1);
       });
     }
   };

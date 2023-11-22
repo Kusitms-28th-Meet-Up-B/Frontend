@@ -119,9 +119,17 @@ const RegisterProgram = () => {
             return formData.append(key, programContent[key]);
         });
 
-        ManagerAPI.postSaveProgram(formData).then(data =>
-          navigate(`/detailProgram/${programContent['programName']}/${data}`),
-        );
+        ManagerAPI.postSaveProgram(formData)
+          .then(data => {
+            if (data.code === 200) {
+              navigate(
+                `/detailProgram/${programContent['programName']}/${data.result}`,
+              );
+            } else {
+              window.alert('공고 등록에 실패했습니다.');
+            }
+          })
+          .catch(() => window.alert('공고 등록에 실패했습니다.'));
       }
     } else {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -139,7 +147,17 @@ const RegisterProgram = () => {
 
       Object.keys(programContent).map(key => console.log(formData.get(key)));
 
-      ManagerAPI.postTempSaveProgram(formData);
+      ManagerAPI.postTempSaveProgram(formData)
+        .then(data => {
+          if (data.code === 200) {
+            navigate(
+              `/detailProgram/${programContent['programName']}/${data.result}`,
+            );
+          } else {
+            window.alert('임시 저장에 실패했습니다.');
+          }
+        })
+        .catch(() => window.alert('임시 저장에 실패했습니다.'));
     }
   };
 
@@ -175,4 +193,8 @@ export default RegisterProgram;
 const Container = styled.div`
   padding-top: 15px;
   padding-bottom: 268px;
+
+  body:not(&) {
+    background-color: white;
+  }
 `;
