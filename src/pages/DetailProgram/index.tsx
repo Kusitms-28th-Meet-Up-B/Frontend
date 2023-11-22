@@ -141,6 +141,10 @@ const Container = styled.div`
   padding-bottom: 190px;
   display: flex;
   flex-direction: column;
+
+  body:not(&) {
+    background-color: white;
+  }
 `;
 
 const InnerContainer = styled.div`

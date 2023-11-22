@@ -108,6 +108,10 @@ const Container = styled.div`
 
   padding: 0 260px;
   margin-bottom: 128px;
+
+  body:not(&) {
+    background-color: white;
+  }
 `;
 
 const SearchBarWrapper = styled.div`

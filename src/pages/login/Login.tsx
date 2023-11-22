@@ -105,6 +105,10 @@ const Container = styled.div`
   gap: 40px;
 
   zoom: 1.33333;
+
+  body:not(&) {
+    background-color: white;
+  }
 `;
 
 const Title = styled.div`

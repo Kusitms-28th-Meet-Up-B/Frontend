@@ -151,4 +151,8 @@ export default EditProgram;
 const Container = styled.div`
   padding-top: 15px;
   padding-bottom: 268px;
+
+  body:not(&) {
+    background-color: white;
+  }
 `;
