@@ -50,6 +50,7 @@ const TipCard = styled.div`
   height: 332px;
 
   .description {
+    margin-top: 32px;
     color: var(--grey-700, #53575c);
     font-family: SUIT-Medium;
     font-size: 18px;
