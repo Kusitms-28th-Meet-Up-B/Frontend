@@ -19,6 +19,7 @@ import RoundedButton from '@/components/Button/RoundedButton';
 import { B1Bold } from '@/style/fonts/StyledFonts';
 import { useEffect, useState } from 'react';
 import { ManagerAPI } from '@/apis/manager';
+import Footer from '@/components/Footer/Footer';
 
 const DetailProgram = () => {
   const { _programId } = useParams();
@@ -32,16 +33,14 @@ const DetailProgram = () => {
     programId,
     writerVersion,
   });
-  const { data: recommendSpotList, isLoading: spotListLoading } =
-    useGetRegionTour({
-      programId,
-      writerVersion,
-    });
-  const { data: recommendAccomList, isLoading: accomListLoading } =
-    useGetRegionLodgment({
-      programId,
-      writerVersion,
-    });
+  const { data: recommendSpotList } = useGetRegionTour({
+    programId,
+    writerVersion,
+  });
+  const { data: recommendAccomList } = useGetRegionLodgment({
+    programId,
+    writerVersion,
+  });
   const userInfo = useRecoilValue(UserAtom);
   const navigate = useNavigate();
 
@@ -68,79 +67,72 @@ const DetailProgram = () => {
 
   if (programInfoData && programInfoData !== undefined)
     return (
-      <Container>
-        <Background />
-        <CommonInner>
-          <InnerContainer>
-            <ProgramHead
-              program={programInfoData.result}
-              isLike={isLike}
-              setIsLike={setIsLike}
-              writer={writerVersion}
-            />
-            <hr />
-            <ProgramBody description={programInfoData.result.description} />
-            <hr />
-            {!writerVersion && (
-              <RecommendProgram
-                programs={
-                  recommendProgram && recommendProgram.length > 0
-                    ? recommendProgram
-                    : []
-                }
+      <>
+        <Container>
+          <Background />
+          <CommonInner>
+            <InnerContainer>
+              <ProgramHead
+                program={programInfoData.result}
+                isLike={isLike}
+                setIsLike={setIsLike}
+                writer={writerVersion}
               />
-            )}
-          </InnerContainer>
-        </CommonInner>
-        {!writerVersion && (
-          <div>
-            <BackgroundLine />
-            <CommonInner>
-              <RecommendSpot
-                resultList={
-                  recommendSpotList && recommendSpotList.length > 0
-                    ? recommendSpotList
-                    : []
-                }
-                isLoading={spotListLoading}
-              />
-              <RecommendAccom
-                resultList={
-                  recommendAccomList && recommendAccomList.length > 0
-                    ? recommendAccomList
-                    : []
-                }
-                isLoading={accomListLoading}
-              />
-            </CommonInner>
-            <HoneyTipButton />
-          </div>
-        )}
-        {writerVersion && (
-          <ButtonContainer>
-            <RoundedButton
-              $buttonColor="#AEB3B8"
-              $buttonWidth="190px"
-              $buttonHeight="54px"
-              $hoverTextColor="rgba(255, 255, 255, 0.70)"
-              onClick={handleDeleteProgram}
-            >
-              <B1Bold $fontColor="white">삭제하기</B1Bold>
-            </RoundedButton>
-            <RoundedButton
-              $buttonColor="var(--color_main1)"
-              $buttonWidth="190px"
-              $buttonHeight="54px"
-              $hoverTextColor="rgba(255, 255, 255, 0.70)"
-              onClick={() => {
-                navigate(`/admin/edit/${programInfoData.result.id}`);
-              }}
-            >
-              <B1Bold $fontColor="white">수정하기</B1Bold>
-            </RoundedButton>
-          </ButtonContainer>
-        )}
-      </Container>
+              <hr />
+              <ProgramBody description={programInfoData.result.description} />
+              <hr />
+              {!writerVersion && (
+                <RecommendProgram
+                  programs={
+                    recommendProgram && recommendProgram.length > 0
+                      ? recommendProgram
+                      : []
+                  }
+                />
+              )}
+            </InnerContainer>
+          </CommonInner>
+          {!writerVersion && (
+            <div>
+              <BackgroundLine />
+              <CommonInner>
+                {recommendSpotList && recommendSpotList.length > 0 && (
+                  <RecommendSpot resultList={recommendSpotList} />
+                )}
+                {recommendAccomList && recommendAccomList.length > 0 && (
+                  <RecommendAccom resultList={recommendAccomList} />
+                )}
+              </CommonInner>
+              <HoneyTipButton />
+            </div>
+          )}
+          {writerVersion && (
+            <ButtonContainer>
+              <RoundedButton
+                $buttonColor="#AEB3B8"
+                $buttonWidth="190px"
+                $buttonHeight="54px"
+                $hoverTextColor="rgba(255, 255, 255, 0.70)"
+                onClick={handleDeleteProgram}
+              >
+                <B1Bold $fontColor="white">삭제하기</B1Bold>
+              </RoundedButton>
+              <RoundedButton
+                $buttonColor="var(--color_main1)"
+                $buttonWidth="190px"
+                $buttonHeight="54px"
+                $hoverTextColor="rgba(255, 255, 255, 0.70)"
+                onClick={() => {
+                  navigate(`/admin/edit/${programInfoData.result.id}`);
+                }}
+              >
+                <B1Bold $fontColor="white">수정하기</B1Bold>
+              </RoundedButton>
+            </ButtonContainer>
+          )}
+        </Container>
+        <Footer />
+      </>
     );
 
   return null;
