@@ -17,6 +17,7 @@ export const DEFAULT_REQUIRED_CONTENT: ProgramRegisterInfoType = {
 };
 
 export const LOCATION_LIST = [
+  '전국',
   '서울',
   '인천',
   '대전',
