@@ -72,7 +72,7 @@ export const ManagerAPI = {
         'Content-Type': 'multipart/form-data',
       },
     });
-    return response.data.result;
+    return response.data;
   },
 
   deleteTempProgram: async (id: number) => {

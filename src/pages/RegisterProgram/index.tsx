@@ -40,12 +40,6 @@ const RegisterProgram = () => {
       if (isTemp) {
         if (window.confirm(ALERT_MESSAGE.getDraft)) {
           setPhotoFile(tempData.photoUrl);
-
-          const ext = tempData.photoUrl.split('.').pop();
-          const filename = tempData.photoUrl.split('/').pop();
-          const metadata = { type: `image/${ext}` };
-          const newPhotoName = new File([filename], filename!, metadata);
-          setPhotoName(newPhotoName);
           setProgramContent(insertData);
         } else {
           ManagerAPI.deleteTempProgram(tempData.programId);
@@ -100,7 +94,7 @@ const RegisterProgram = () => {
     });
 
     result = result && programContent.programName.length <= 50;
-    result = result && photoName !== null;
+    result = result && photoFile !== '';
     setIsPossibleSubmit(result);
 
     const tagString = programContent['hashtag']
@@ -109,7 +103,8 @@ const RegisterProgram = () => {
 
     if (result) {
       if (window.confirm(ALERT_MESSAGE.register)) {
-        photoName && formData.append('photo', photoName);
+        photoName !== null && formData.append('photo', photoName);
+        formData.append('photoCheck', photoName === null ? '0' : '1');
 
         Object.keys(programContent).map(key => {
           if (programContent[key] !== '' && key === 'hashtag') {
@@ -138,7 +133,8 @@ const RegisterProgram = () => {
 
   const handleDraft = () => {
     if (window.confirm(ALERT_MESSAGE.draft)) {
-      photoName && formData.append('photo', photoName);
+      photoName !== null && formData.append('photo', photoName);
+      formData.append('photoCheck', photoName === null ? '0' : '1');
 
       Object.keys(programContent).map(key => {
         if (programContent[key] !== '')
@@ -148,9 +144,7 @@ const RegisterProgram = () => {
       ManagerAPI.postTempSaveProgram(formData)
         .then(data => {
           if (data.code === 200) {
-            navigate(
-              `/detailProgram/${programContent['programName']}/${data.result}`,
-            );
+            window.alert('임시 저장되었습니다.');
           } else {
             window.alert('임시 저장에 실패했습니다.');
           }
